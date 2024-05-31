@@ -1,39 +1,56 @@
-# dtpay
+**dtpay支付系统**是一套开源聚合支付系统，以聚合支付为核心业务，融合了商户收款管理、支付网关、电子钱包、报表产品生态矩阵等为一体的智能聚合支付系统。 可为有聚合支付业务需求的客户提供一套完整的支付解决方案。欢迎加入开源项目，让我们一起把项目从0到100进行开发完善。
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+**dtpay支付系统**是由一个支付网关，运营商、商户、报表等多个平台组成的综合性收款平台。商户可借本系统中的商户管理子系统完成商家支付管理、会员营销管理等业务。
 
-#### 软件架构
-软件架构说明
+## 系统构成
 
+![dtpay-系统构成.png](https://note.youdao.com/yws/api/personal/file/WEB6398d12221dbca6c368fab77ac53accd?method=download\&shareKey=02a0602e7427a3f151a1a9e2a3da0743)
 
-#### 安装教程
+## dtpay支付功能架构
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+![dtpay系统功能.png](https://note.youdao.com/yws/api/personal/file/WEB22d3044a0b0d80f9837bd61d0e69ba77?method=download\&shareKey=6ca1d1ede02b990204dbf7274dca6f0d)
 
-#### 使用说明
+## 业务模块子系统
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+![运营平台.png](https://note.youdao.com/yws/api/personal/file/WEB1257424ff3a4977729e59ce6e7eee50f?method=download\&shareKey=91128238b55d34d4b181bf9cde6f20a9)
 
-#### 参与贡献
+![商户平台.png](https://note.youdao.com/yws/api/personal/file/WEBe6d4288f2adf5f502cd76376b6135ac2?method=download\&shareKey=83af62fe19a8bb8076646fcf5ca91c40)
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+dtpay服务端基于jdk1.8开发，开发工具IDEA2022.3，使用maven3.9.2构建
 
+技术栈介绍
 
-#### 特技
+| 框架           | 描述                   | 版本                                                                                                                 |
+| :----------- | :------------------- |:-------------------------------------------------------------------------------------------------------------------|
+| JDK          | Java运行环境             | 1.8                                                                                                                |
+| SpringBoot   | 基于SpringBoot完成后端代码开发 | 2.7.18                                                                                                             |
+| SpringCloud  | 微服务框架                | [2021.0.x](https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2021.0-Release-Notes) aka Jubile |
+| Redis        | 分布式缓存                | 6.2                                                                                                                |
+| Nacos        | 注册中心/配置中心            | 2.3.2                                                                                                              |
+| MySQL        | 数据库                  | 5.7.x                                                                                                              |
+| RocketMQ     | 消息中间件                | 5.0                                                                                                                |
+| Vue          | 运营和商户平台前端框架          | 3.x                                                                                                                |
+| Uni-app      | 前端小程序框架              |                                                                                                                    |
+| Swagger      | api文档生成框架            |                                                                                                                    |
+| ShardingJDBC | 分库分表框架               |                                                                                                                    |
+| Mockito      | Java Mock框架          |                                                                                                                    |
+| MyBatis      | 持久层框架                |                                                                                                                    |
+| Redisson     | redis客户端框架           |                                                                                                                    |
+| Screw        | 数据库文档生成工具            |                                                                                                                    |
+| Seata        | 分布式事务框架              |                                                                                                                    |
+| Sentinel     | 限流框架                 |                                                                                                                    |
+| xxl-job      | 分布式定时任务              |                                                                                                                    |
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+服务端模块介绍
+
+| 子模块名称          | 模块描述        | 端口   |
+| :------------- | :---------- | :--- |
+| dtpay-core     | 核心工具类       |      |
+| dtpay-service  | 公共服务类       |      |
+| dtpay-gateway  | 支付网关        | 9028 |
+| dtpay-manager  | 运营平台        | 9029 |
+| dtpay-merchant | 商户平台        | 9030 |
+| dtpay-task     | 定时任务(佣金，对账) | 9031 |
+| dtpay-bi       | 报表系统        | 9032 |
+| dtpay-ewallet  | 电子钱包        | 9033 |
+
