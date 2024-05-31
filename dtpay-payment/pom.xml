@@ -51,10 +51,6 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.itbeien</groupId>
-            <artifactId>dtpay-core</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
             <version>2021.0.6.0</version>
