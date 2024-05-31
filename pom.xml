@@ -41,7 +41,6 @@
         <springcloud-version>2021.0.7</springcloud-version>
         <spring-cloud-alibaba-version>2021.1</spring-cloud-alibaba-version>
         <mysql-connector-java-version>5.1.49</mysql-connector-java-version>
-        <dtpay-core-version>1.0.0</dtpay-core-version>
         <nacos-config-spring-boot-starter-version>0.2.12</nacos-config-spring-boot-starter-version>
         <fastjson-version>2.0.20</fastjson-version>
         <com.google.zxing-version>3.5.3</com.google.zxing-version>
@@ -110,11 +109,6 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector-java-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.itbeien</groupId>
-                <artifactId>dtpay-core</artifactId>
-                <version>${dtpay-core-version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.boot</groupId>
