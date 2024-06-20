@@ -74,9 +74,7 @@ spring:
   # redis 配置
   redis:
     # 地址
-    host: 139.9.46.7
-    #host: 118.31.60.178
-    #host: 127.0.0.1
+    host: 127.0.0.1
     # 端口，默认为6379
     port: 6379
     # 数据库索引
@@ -138,29 +136,9 @@ xss:
 
 system:
   qrcode:
-    #url: http://883l1832q6.vicp.fun/pay/auth?code=%s
-    url: http://yunsaoba.cn/pay/auth?code=%s
+    url: http://883l1832q6.vicp.fun/pay/auth?code=%s
 qr:
   number: 5
-#qrcode_location: /home/dtpay/qrimg/%s
-#qrcode_location: D:/dtpay/uploadPath/%s
-# 进件相关参数
-#yscard:
-#  agent:
-#    key: eGGlh0NHurHFNwHB
-#    clientCode: 48310323
-#    version: 1.0
-#    gen: https://mtest.eycard.cn:4443/AG_MerchantManagementSystem_Core/agent/api/gen
-#  uploadImg:
-#    url: https://mtest.eycard.cn:4443/AG_MerchantManagementSystem_Core/agent/api/imgUpl
-yscard:
-  agent:
-    key: NnefA5aulEwzIG9j
-    clientCode: 48312411
-    version: 1.0
-    gen: https://mms.eycard.cn/AG_MerchantManagementSystem_Core/agent/api/gen
-  uploadImg:
-    url: https://mms.eycard.cn/AG_MerchantManagementSystem_Core/agent/api/imgUpl
 snowFlake:
   datacenterId: 1000
   sequence: 2000
@@ -168,11 +146,3 @@ snowFlake:
 ## dev,product,test
 channel:
   env: product
-#测试退款,退款查询，支付查询
-#yscardapi:
-#  refund: https://t-wapi.bhecard.com:6111/
-#  query: https://t-wapi.bhecard.com:8443/
-#生产退款,退款查询，支付查询
-yscardapi:
-  refund: https://platform.eycard.cn:6111/
-  query: https://platform.eycard.cn:8443/
