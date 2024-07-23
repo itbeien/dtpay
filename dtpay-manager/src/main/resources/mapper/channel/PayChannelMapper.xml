@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itbeien.business.channel.mapper.PayChannelMapper">
+  <resultMap id="payChannelResult" type="cn.itbeien.business.channel.domain.PayChannel">
+    <id column="CHANNEL_CODE" jdbcType="VARCHAR" property="channelCode" />
+    <result column="CHANNEL_NAME" jdbcType="VARCHAR" property="channelName" />
+    <result column="CHN_NICK_NAME" jdbcType="VARCHAR" property="chnNickName" />
+    <result column="ORG_ID" jdbcType="VARCHAR" property="orgId" />
+    <result column="ORG_TERM_NO" jdbcType="VARCHAR" property="orgTermNo" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="PRIVATE_KEY" jdbcType="VARCHAR" property="privateKey" />
+    <result column="CHANNEL_ENV" jdbcType="VARCHAR" property="channelEnv" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    CHANNEL_CODE, CHANNEL_NAME, CHN_NICK_NAME, ORG_ID, ORG_TERM_NO, STATUS, PRIVATE_KEY,
+    CHANNEL_ENV,CREATE_TIME
+  </sql>
+
+  <sql id="selectPayChannelVo">
+    select CHANNEL_CODE, CHANNEL_NAME, CHN_NICK_NAME, ORG_ID, ORG_TERM_NO, STATUS, PRIVATE_KEY,
+    CHANNEL_ENV,CREATE_TIME from dt_pay_channel
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="payChannelResult">
+    select 
+    <include refid="Base_Column_List" />
+    from dt_pay_channel
+    where CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dt_pay_channel
+    where CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="cn.itbeien.business.channel.domain.PayChannel">
+    insert into dt_pay_channel (CHANNEL_CODE, CHANNEL_NAME, CHN_NICK_NAME, 
+      ORG_ID, ORG_TERM_NO, STATUS,
+      PRIVATE_KEY, CHANNEL_ENV)
+    values (#{channelCode,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, #{chnNickName,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=VARCHAR}, #{orgTermNo,jdbcType=VARCHAR}, #{status,jdbcType=CHAR},
+      #{privateKey,jdbcType=VARCHAR}, #{channelEnv,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.itbeien.business.channel.domain.PayChannel">
+    insert into dt_pay_channel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="channelCode != null">
+        CHANNEL_CODE,
+      </if>
+      <if test="channelName != null">
+        CHANNEL_NAME,
+      </if>
+      <if test="chnNickName != null">
+        CHN_NICK_NAME,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="orgTermNo != null">
+        ORG_TERM_NO,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="privateKey != null">
+        PRIVATE_KEY,
+      </if>
+      <if test="channelEnv != null">
+        CHANNEL_ENV,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="channelCode != null">
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null">
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="chnNickName != null">
+        #{chnNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgTermNo != null">
+        #{orgTermNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="privateKey != null">
+        #{privateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="channelEnv != null">
+        #{channelEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itbeien.business.channel.domain.PayChannel">
+    update dt_pay_channel
+    <set>
+      <if test="channelName != null">
+        CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="chnNickName != null">
+        CHN_NICK_NAME = #{chnNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgTermNo != null">
+        ORG_TERM_NO = #{orgTermNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="privateKey != null">
+        PRIVATE_KEY = #{privateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="channelEnv != null">
+        CHANNEL_ENV = #{channelEnv,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.itbeien.business.channel.domain.PayChannel">
+    update dt_pay_channel
+    set CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      CHN_NICK_NAME = #{chnNickName,jdbcType=VARCHAR},
+      ORG_ID = #{orgId,jdbcType=VARCHAR},
+      ORG_TERM_NO = #{orgTermNo,jdbcType=VARCHAR},
+        STATUS = #{status,jdbcType=CHAR},
+      PRIVATE_KEY = #{privateKey,jdbcType=VARCHAR},
+      CHANNEL_ENV = #{channelEnv,jdbcType=VARCHAR}
+    where CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectPayChannelList" parameterType="PayChannel" resultMap="payChannelResult">
+    <include refid="selectPayChannelVo"/>
+    <where>
+      <if test="channelName != null and channelName != ''">
+        AND CHANNEL_NAME like concat('%', #{channelName}, '%')
+      </if>
+      <if test="status != null and status != ''">
+         AND status = #{status}
+      </if>
+      <if test="channelCode != null and channelCode != ''">
+        AND CHANNEL_CODE like concat('%', #{channelCode}, '%')
+      </if>
+    </where>
+  </select>
+
+  <delete id="deleteChannelByCodes" parameterType="String">
+    delete from dt_pay_channel where CHANNEL_CODE in
+    <foreach collection="array" item="channelCode" open="(" separator="," close=")">
+      #{channelCode}
+    </foreach>
+  </delete>
+</mapper>

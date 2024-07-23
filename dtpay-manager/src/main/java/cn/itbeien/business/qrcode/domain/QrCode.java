@@ -12,6 +12,9 @@ public class QrCode {
     @Excel(name = "二维码图片", cellType = Excel.ColumnType.IMAGE, prompt = "二维码图片")
     private String qrUrl;
 
+    @Excel(name = "二维码content", type = Excel.Type.EXPORT)
+    private String qrContent;
+
     private Long createBy;
 
     private String createUser;
@@ -27,6 +30,8 @@ public class QrCode {
     private String qrStatus;
 
     private Integer number;
+
+    private Long agentId;
 
     public Integer getId() {
         return id;
@@ -114,5 +119,21 @@ public class QrCode {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public String getQrContent() {
+        return qrContent;
+    }
+
+    public void setQrContent(String qrContent) {
+        this.qrContent = qrContent;
+    }
+
+    public Long getAgentId() {
+        return agentId;
+    }
+
+    public void setAgentId(Long agentId) {
+        this.agentId = agentId;
     }
 }
