@@ -30,10 +30,10 @@ import java.util.Map;
 @Slf4j
 public class MerchantService implements IMerchantService {
 
-    @Value("${yscard.agent.clientCode}")
+    //@Value("${yscard.agent.clientCode}")
     private String clientCode;
 
-    @Value("${yscard.agent.version}")
+    //@Value("${yscard.agent.version}")
     private String version;
 
     @Value("${snowFlake.workerId}")

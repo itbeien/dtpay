@@ -27,10 +27,10 @@ import java.util.List;
 @Slf4j
 public class MerchantController extends BaseController {
 
-    @Value("${yscard.agent.clientCode}")
+    //@Value("${yscard.agent.clientCode}")
     private String clientCode;
 
-    @Value("${yscard.agent.version}")
+    //@Value("${yscard.agent.version}")
     private String version;
 
     @Autowired

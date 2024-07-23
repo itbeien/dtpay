@@ -47,10 +47,10 @@ public class PaySeqController extends BaseController {
     @Autowired
     private IMerchantService merchantService;
 
-    @Value("${yscardapi.query}")
+    //@Value("${yscardapi.query}")
     private String payUrl;
 
-    @Value("${yscardapi.refund}")
+    //@Value("${yscardapi.refund}")
     private String refundUrl;
 
     /**

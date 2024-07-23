@@ -61,7 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
      * 允许匿名访问的地址
      */
     @Autowired
-    //@Qualifier("permitAllUrlProperties")
     private PermitAllUrlProperties permitAllUrl;
 
     /**

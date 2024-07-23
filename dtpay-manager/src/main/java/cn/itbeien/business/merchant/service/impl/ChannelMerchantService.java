@@ -29,10 +29,10 @@ import java.util.Map;
 @Slf4j
 public class ChannelMerchantService implements IChannelMerchantService {
 
-    @Value("${yscard.agent.clientCode}")
+    //@Value("${yscard.agent.clientCode}")
     private String clientCode;
 
-    @Value("${yscard.agent.version}")
+   // @Value("${yscard.agent.version}")
     private String version;
 
     @Value("${snowFlake.workerId}")

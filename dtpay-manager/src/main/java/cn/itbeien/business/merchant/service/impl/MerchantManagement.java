@@ -35,16 +35,16 @@ import static cn.itbeien.business.merchant.domain.easypay.RunApp.doPost;
 @Slf4j
 public class MerchantManagement implements IMerchantManagement {
 
-    @Value("${yscard.agent.key}")
+   // @Value("${yscard.agent.key}")
     private String key;
 
-    @Value("${yscard.uploadImg.url}")
+    //@Value("${yscard.uploadImg.url}")
     String imgUrl;
 
     @Value("${dtpay.merchant.upload}")
     private String uploadDir;
 
-    @Value("${yscard.agent.gen}")
+    //@Value("${yscard.agent.gen}")
     private String genUrl;
 
     /**

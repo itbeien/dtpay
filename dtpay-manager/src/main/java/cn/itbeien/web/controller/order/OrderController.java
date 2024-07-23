@@ -46,10 +46,10 @@ public class OrderController extends BaseController {
     @Autowired
     private IMerchantService merchantService;
 
-    @Value("${yscardapi.refund}")
+    //@Value("${yscardapi.refund}")
     private String refundUrl;
 
-    @Value("${yscardapi.query}")
+    //@Value("${yscardapi.query}")
     private String payUrl;
 
     /**
