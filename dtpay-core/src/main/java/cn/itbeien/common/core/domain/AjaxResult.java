@@ -6,8 +6,15 @@ import cn.itbeien.common.utils.StringUtils;
 import java.util.HashMap;
 import java.util.Objects;
 
+
+
 /**
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
  * 操作消息提醒
+ * Copyright© 2024 itbeien
  */
 public class AjaxResult extends HashMap<String, Object>
 {
