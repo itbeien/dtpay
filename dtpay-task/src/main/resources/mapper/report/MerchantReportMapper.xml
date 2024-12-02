@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itbeien.task.dao.report.MerchantReportMapper">
+  <resultMap id="BaseResultMap" type="cn.itbeien.task.entity.MerchantReport">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="MER_NO" jdbcType="VARCHAR" property="merNo" />
+    <result column="MER_NAME" jdbcType="VARCHAR" property="merName" />
+    <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+    <result column="PAYWAY_CODE" jdbcType="VARCHAR" property="paywayCode" />
+    <result column="SCENE_CODE" jdbcType="VARCHAR" property="sceneCode" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="REFUND_AMOUNT" jdbcType="DECIMAL" property="refundAmount" />
+    <result column="MER_CHARGE" jdbcType="DECIMAL" property="merCharge" />
+    <result column="MER_SETTLE" jdbcType="DECIMAL" property="merSettle" />
+    <result column="CHANNEL_MER_NO" jdbcType="VARCHAR" property="channelMerNo" />
+    <result column="CHANNEL_MER_NAME" jdbcType="VARCHAR" property="channelMerName" />
+    <result column="CREATOR_NAME" jdbcType="VARCHAR" property="creatorName" />
+    <result column="TRADE_TIME" jdbcType="TIMESTAMP" property="tradeTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, MER_NO, MER_NAME, ORDER_NO, PAYWAY_CODE, SCENE_CODE, AMOUNT, REFUND_AMOUNT, MER_CHARGE, 
+    MER_SETTLE, CHANNEL_MER_NO, CHANNEL_MER_NAME, CREATOR_NAME, TRADE_TIME, CREATE_TIME
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dt_merchant_report
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dt_merchant_report
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="cn.itbeien.task.entity.MerchantReport">
+    insert into dt_merchant_report (ID, MER_NO, MER_NAME, 
+      ORDER_NO, PAYWAY_CODE, SCENE_CODE, 
+      AMOUNT, REFUND_AMOUNT, MER_CHARGE, 
+      MER_SETTLE, CHANNEL_MER_NO, CHANNEL_MER_NAME, 
+      CREATOR_NAME, TRADE_TIME, CREATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{merNo,jdbcType=VARCHAR}, #{merName,jdbcType=VARCHAR},
+      #{orderNo,jdbcType=VARCHAR}, #{paywayCode,jdbcType=VARCHAR}, #{sceneCode,jdbcType=VARCHAR},
+      #{amount,jdbcType=DECIMAL}, #{refundAmount,jdbcType=DECIMAL}, #{merCharge,jdbcType=DECIMAL},
+      #{merSettle,jdbcType=DECIMAL}, #{channelMerNo,jdbcType=VARCHAR}, #{channelMerName,jdbcType=VARCHAR},
+      #{creatorName,jdbcType=VARCHAR}, #{tradeTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="batchInsert">
+    insert into dt_merchant_report (ID, MER_NO, MER_NAME,
+    ORDER_NO, PAYWAY_CODE, SCENE_CODE,
+    AMOUNT, REFUND_AMOUNT, MER_CHARGE,
+    MER_SETTLE, CHANNEL_MER_NO, CHANNEL_MER_NAME,
+    CREATOR_NAME, TRADE_TIME, CREATE_TIME
+    )
+    VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.merNo,jdbcType=VARCHAR}, #{item.merName,jdbcType=VARCHAR},
+      #{item.orderNo,jdbcType=VARCHAR}, #{item.paywayCode,jdbcType=VARCHAR}, #{item.sceneCode,jdbcType=VARCHAR},
+      #{item.amount,jdbcType=DECIMAL}, #{item.refundAmount,jdbcType=DECIMAL}, #{item.merCharge,jdbcType=DECIMAL},
+      #{item.merSettle,jdbcType=DECIMAL}, #{item.channelMerNo,jdbcType=VARCHAR}, #{item.channelMerName,jdbcType=VARCHAR},
+      #{item.creatorName,jdbcType=VARCHAR}, #{item.tradeTime,jdbcType=TIMESTAMP}, #{item.createTime,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="cn.itbeien.task.entity.MerchantReport">
+    insert into dt_merchant_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="merNo != null">
+        MER_NO,
+      </if>
+      <if test="merName != null">
+        MER_NAME,
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO,
+      </if>
+      <if test="paywayCode != null">
+        PAYWAY_CODE,
+      </if>
+      <if test="sceneCode != null">
+        SCENE_CODE,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="refundAmount != null">
+        REFUND_AMOUNT,
+      </if>
+      <if test="merCharge != null">
+        MER_CHARGE,
+      </if>
+      <if test="merSettle != null">
+        MER_SETTLE,
+      </if>
+      <if test="channelMerNo != null">
+        CHANNEL_MER_NO,
+      </if>
+      <if test="channelMerName != null">
+        CHANNEL_MER_NAME,
+      </if>
+      <if test="creatorName != null">
+        CREATOR_NAME,
+      </if>
+      <if test="tradeTime != null">
+        TRADE_TIME,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="merNo != null">
+        #{merNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merName != null">
+        #{merName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paywayCode != null">
+        #{paywayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneCode != null">
+        #{sceneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundAmount != null">
+        #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="merCharge != null">
+        #{merCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="merSettle != null">
+        #{merSettle,jdbcType=DECIMAL},
+      </if>
+      <if test="channelMerNo != null">
+        #{channelMerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMerName != null">
+        #{channelMerName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTime != null">
+        #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itbeien.task.entity.MerchantReport">
+    update dt_merchant_report
+    <set>
+      <if test="merNo != null">
+        MER_NO = #{merNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merName != null">
+        MER_NAME = #{merName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paywayCode != null">
+        PAYWAY_CODE = #{paywayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneCode != null">
+        SCENE_CODE = #{sceneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundAmount != null">
+        REFUND_AMOUNT = #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="merCharge != null">
+        MER_CHARGE = #{merCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="merSettle != null">
+        MER_SETTLE = #{merSettle,jdbcType=DECIMAL},
+      </if>
+      <if test="channelMerNo != null">
+        CHANNEL_MER_NO = #{channelMerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMerName != null">
+        CHANNEL_MER_NAME = #{channelMerName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTime != null">
+        TRADE_TIME = #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.itbeien.task.entity.MerchantReport">
+    update dt_merchant_report
+    set MER_NO = #{merNo,jdbcType=VARCHAR},
+      MER_NAME = #{merName,jdbcType=VARCHAR},
+      ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      PAYWAY_CODE = #{paywayCode,jdbcType=VARCHAR},
+      SCENE_CODE = #{sceneCode,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      REFUND_AMOUNT = #{refundAmount,jdbcType=DECIMAL},
+      MER_CHARGE = #{merCharge,jdbcType=DECIMAL},
+      MER_SETTLE = #{merSettle,jdbcType=DECIMAL},
+      CHANNEL_MER_NO = #{channelMerNo,jdbcType=VARCHAR},
+      CHANNEL_MER_NAME = #{channelMerName,jdbcType=VARCHAR},
+      CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      TRADE_TIME = #{tradeTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

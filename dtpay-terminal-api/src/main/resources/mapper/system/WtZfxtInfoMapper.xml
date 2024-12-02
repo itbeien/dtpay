@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itbeien.terminal.dao.WtZfxtInfoMapper">
+
+  <select id="selectWtZfxtInfo" parameterType="java.lang.String" resultType="cn.itbeien.terminal.vo.WtZfxtInfoVO">
+    SELECT zfxt_hh as value ,ZFXT_CYZQC as label from wt_zfxt_info_gd
+    <where>
+      <if test="keyword != null and keyword != ''">
+    <!--AND ZFXT_CYZQC like concat('%', #{keyword}, '%')-->
+    AND ZFXT_CYZJC like concat('%', #{keyword}, '%')
+  </if>
+</where>
+limit #{page},#{pageSize}
+  </select>
+
+<select id="selectWtZfxtInfoCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT count(*) from wt_zfxt_info_gd
+<!--    <where>-->
+<!--      <if test="keyword != null and keyword != ''">&ndash;&gt;-->
+<!--        AND ZFXT_CYZQC like concat('%', #{keyword}, '%')-->
+<!--      </if>-->
+<!--    </where>-->
+   </select>
+
+
+    <select id="selectBankByHbdm" resultType="cn.itbeien.terminal.vo.BankVO">
+        SELECT ZFXT_HH as value,ZFXT_CYZQC as text from wt_zfxt_info_gd where ZFXT_HBDM in(#{hbdm}) limit 100
+    </select>
+</mapper>
