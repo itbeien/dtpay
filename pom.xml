@@ -17,6 +17,9 @@
         <module>dtpay-core</module>
         <module>dtpay-service</module>
         <module>dtpay-task</module>
+        <module>dtpay-api-service</module>
+        <module>dtpay-mybatis-generator</module>
+        <module>dtpay-terminal-api</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>
@@ -57,7 +60,7 @@
         <swagger.version>3.0.0</swagger.version>
         <kaptcha.version>2.3.3</kaptcha.version>
         <pagehelper.boot.version>1.4.7</pagehelper.boot.version>
-        <fastjson.version>2.0.43</fastjson.version>
+        <fastjson.version>2.0.47</fastjson.version>
         <oshi.version>6.4.13</oshi.version>
         <commons.io.version>2.13.0</commons.io.version>
         <poi.version>4.1.2</poi.version>
@@ -67,6 +70,14 @@
         <druid-spring-boot-version>1.2.19</druid-spring-boot-version>
         <redisson-spring-boot-version>3.17.4</redisson-spring-boot-version>
         <dynamic-datasource-version>3.5.2</dynamic-datasource-version>
+        <xxl-job-core-version>2.4.1</xxl-job-core-version>
+        <dtpay-core-version>1.0.0</dtpay-core-version>
+        <com.google.zxing-version>3.5.3</com.google.zxing-version>
+        <common-lang-version>20030203.000129</common-lang-version>
+        <apache-httpclient-version>4.5.12</apache-httpclient-version>
+        <mapstruct-verrsion>1.5.5.Final</mapstruct-verrsion>
+        <mapstruct-processor-version>1.5.5.Final</mapstruct-processor-version>
+        <aliyun-sms-version>1.0.0</aliyun-sms-version>
     </properties>
 
     <dependencyManagement>
@@ -253,6 +264,56 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid-spring-boot-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl-job-core-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itbeien</groupId>
+                <artifactId>dtpay-core</artifactId>
+                <version>${dtpay-core-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>${com.google.zxing-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${common-lang-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${apache-httpclient-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>${apache-httpclient-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct-verrsion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct-processor-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>aliyun-sms-spring-boot-starter</artifactId>
+                <version>${aliyun-sms-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

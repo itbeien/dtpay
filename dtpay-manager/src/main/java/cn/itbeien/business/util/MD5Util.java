@@ -11,10 +11,12 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * @author beien
- * @date 2024-03-27 11:19
- * Copyright© 2024 beien
- * 上游机构md5
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ * 上游机构MD5
+ * Copyright© 2024 itbeien
  */
 @Slf4j
 public class MD5Util {

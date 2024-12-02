@@ -1,11 +1,13 @@
 package cn.itbeien.business.util;
 
 /**
- * @author beien
- * @date 2023-09-26 14:58
- * Copyright© 2023 beien
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
  * 所有生成的id按时间趋势递增
  * 整个分布式系统内不会产生重复id（因为有datacenterId和workerId来做区分）
+ * Copyright© 2024 itbeien
  */
 public class SnowFlake {
     // 因为二进制里第一个 bit 为如果是 1，那么都是负数，但是我们生成的 id 都是正数，所以第一个 bit 统一都是 0。

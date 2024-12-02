@@ -5,9 +5,11 @@ import cn.itbeien.business.agent.domain.AgentOrg;
 import java.util.List;
 
 /**
- * @author beien
- * @date 2024-05-26 17:45
- * Copyright© 2024 beien
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ * Copyright© 2024 itbeien
  */
 public interface IAgentOrgService {
     List<AgentOrg> selectAgentOrgList(AgentOrg agentOrg);

@@ -17,20 +17,23 @@ import java.util.Map;
 import static cn.itbeien.business.merchant.domain.easypay.RunApp.doPost;
 
 /**
- * @author beien
- * @date 2024-03-26 11:50
- * Copyright© 2024 beien
- * 商户入网进件管理
- * 入网上游支付机构
- *
- * 1.图片上传
- * 2.商户信息录入
- * 3.商户信息补件
- * 4.商户异步通知回调
- * 5.商户审核结果查询
- * 6.商户信息查询
- * 7.商户签约申请接口 电子签约必调
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ *  * 商户入网进件管理
+ *  * 入网上游支付机构
+ *  *
+ *  * 1.图片上传
+ *  * 2.商户信息录入
+ *  * 3.商户信息补件
+ *  * 4.商户异步通知回调
+ *  * 5.商户审核结果查询
+ *  * 6.商户信息查询
+ *  * 7.商户签约申请接口 电子签约必调
+ * Copyright© 2024 itbeien
  */
+
 @Service
 @Slf4j
 public class MerchantManagement implements IMerchantManagement {

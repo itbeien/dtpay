@@ -3,9 +3,11 @@ package cn.itbeien.business.util;
 import java.lang.reflect.Method;
 
 /**
- * @author beien
- * @date 2024-04-04 16:31
- * Copyright© 2024 beien
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ * Copyright© 2024 itbeien
  */
 public class Base64Util {
     /***

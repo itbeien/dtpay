@@ -5,7 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
  * 启动程序
+ * Copyright© 2024 itbeien
  */
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 public class DtPayApplication

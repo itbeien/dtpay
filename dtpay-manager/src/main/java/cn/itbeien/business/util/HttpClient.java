@@ -43,9 +43,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author beien
- * @date 2024-03-05 0:54
- * Copyright© 2024 beien
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ * Copyright© 2024 itbeien
  */
 @Slf4j
 public class HttpClient {

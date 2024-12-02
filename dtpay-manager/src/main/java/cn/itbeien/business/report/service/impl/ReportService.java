@@ -11,9 +11,11 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author beien
- * @date 2024-05-31 7:01
- * Copyright© 2024 beien
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ * Copyright© 2024 itbeien
  */
 @Service
 public class ReportService implements IReportService {

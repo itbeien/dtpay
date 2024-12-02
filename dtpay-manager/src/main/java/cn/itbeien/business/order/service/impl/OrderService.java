@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author beien
- * @date 2024-04-18 9:21
- * Copyright© 2024 beien
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ * Copyright© 2024 itbeien
  */
 @Service
 public class OrderService implements IOrderService {
