@@ -1,8 +1,7 @@
 package cn.itbeien.terminal.service;
 
 
-import cn.itbeien.terminal.entity.SysUser;
-
+import cn.itbeien.common.core.domain.entity.SysUser;
 
 /**
  * @author itbeien

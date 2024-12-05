@@ -1,6 +1,6 @@
 package cn.itbeien.terminal.controller;
 
-import cn.itbeien.terminal.entity.SysUser;
+import cn.itbeien.common.core.domain.entity.SysUser;
 import cn.itbeien.terminal.enums.BankHbdm;
 import cn.itbeien.terminal.enums.SystemEnum;
 import cn.itbeien.terminal.service.ISystemService;

@@ -6,6 +6,8 @@ import cn.itbeien.terminal.entity.MerchantInfo;
 import cn.itbeien.terminal.vo.BaseMerchantVO;
 import cn.itbeien.terminal.vo.SmallMerchantVO;
 
+import java.util.List;
+
 
 /**
  * @author itbeien
@@ -22,11 +24,20 @@ public interface IMerchantService {
      * @return
      */
     void merchantReg(MerchantInfo merchantInfo, SmallMerchantVO smallMerchantVO) throws Exception;
+
+
     void baseMerchantReg(MerchantInfo merchantInfo, BaseMerchantVO baseMerchantVO) throws Exception;
 
     MerchantInfo findMerchantByCreator(String uid);
 
     MerchantInfo findBaseMerchantByCreator(String uid);
+
+    List<MerchantInfo> findMerchantAllByCreator(String uid);
+
+
+    SmallMerchantVO selectEditSmallMerchantAllCreator(String uid);
+
+    BaseMerchantVO selectEditBaseMerchantAllCreator(String uid);
 
 
 }

@@ -1,6 +1,6 @@
 package cn.itbeien.terminal.dao;
 
-import cn.itbeien.terminal.entity.SysUser;
+import cn.itbeien.common.core.domain.entity.SysUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

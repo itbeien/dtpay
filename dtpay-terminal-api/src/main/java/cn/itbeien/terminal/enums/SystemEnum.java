@@ -34,6 +34,7 @@ public enum SystemEnum {
     D0("0","D0清算（前提：开通秒到功能）"),
     TOKEN_PARAMS_NULL("40001","token不能为空"),
     TOKEN_PARAMS_ERROR("40002","token不合法"),
+    AUDITRESULT_TODO("80001","需要自行对接上游支付机构接口"),
     ;
     /**
      * 支付产品

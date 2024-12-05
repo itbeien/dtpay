@@ -1,7 +1,7 @@
 package cn.itbeien.terminal.service.impl;
 
+import cn.itbeien.common.core.domain.entity.SysUser;
 import cn.itbeien.terminal.dao.SysUserMapper;
-import cn.itbeien.terminal.entity.SysUser;
 import cn.itbeien.terminal.service.IUserService;
 import cn.itbeien.terminal.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Value;

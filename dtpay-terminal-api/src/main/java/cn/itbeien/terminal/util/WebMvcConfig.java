@@ -30,7 +30,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        String[] noCheck = new String[]{"/api/send.do","/api/login","/api/initBank","/api/area","/api/mcc","/api/upload"};
+        String[] noCheck = new String[]{"/api/send.do","/api/login","/api/initBank","/api/area","/api/mcc","/api/upload","/profile/*"};
         String[] checkSettleAccounts = new String[]{"/user/login.html","/user/confirmCheckout.html","/goods/uploadFile.html", "/user/checkout.html","/scr/sw/doLoadSwMenu.html","/scr/sw/doLoadSwLeftMenuCategory.html","/scr/sw/doLoadSwCategoryGoods.html"};
 
         //registry.addInterceptor(authorityInterceptor).addPathPatterns("/**").excludePathPatterns("/system/uploadFile.html") ; //不需要拦截的

@@ -6,8 +6,14 @@ import org.springframework.util.AntPathMatcher;
 
 import java.util.*;
 
+
 /**
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
  * 字符串工具类
+ * Copyright© 2024 itbeien
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils
 {

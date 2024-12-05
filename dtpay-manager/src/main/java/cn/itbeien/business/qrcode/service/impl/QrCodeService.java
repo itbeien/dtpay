@@ -35,7 +35,7 @@ public class QrCodeService implements IQrCodeService {
      *
      * @param qrNumber  创建聚合二维码的数量
      * @param qrCodeUrl 聚合二维码中的内容
-     * @param qrLocation 聚合二维码存放的物理路径
+     * @param baseQrLocation 聚合二维码存放的物理路径
      * @return
      * @throws Exception
      */
