@@ -4,8 +4,14 @@ import cn.itbeien.common.utils.spring.SpringUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
+
 /**
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
  * 获取i18n资源文件
+ * Copyright© 2024 itbeien
  */
 public class MessageUtils
 {

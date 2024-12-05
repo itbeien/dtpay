@@ -1,10 +1,15 @@
 package cn.itbeien.common.exception.base;
 
 import cn.itbeien.common.utils.MessageUtils;
-import cn.itbeien.common.utils.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
  * 基础异常
+ * Copyright© 2024 itbeien
  */
 public class BaseException extends RuntimeException
 {

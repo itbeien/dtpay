@@ -14,9 +14,10 @@ import java.net.URL;
 import java.nio.file.Path;
 
 /**
- * @author beien
- * @date 2024-03-12 11:05
- * Copyright© 2024 beien
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
  */
 public class MatrixToImageWriterWithLogo {
     private static final MatrixToImageConfig config = new MatrixToImageConfig();

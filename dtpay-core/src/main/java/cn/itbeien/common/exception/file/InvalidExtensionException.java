@@ -3,7 +3,11 @@ package cn.itbeien.common.exception.file;
 import java.util.Arrays;
 
 /**
- * 文件上传 误异常类
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ * Copyright© 2024 itbeien
  */
 public class InvalidExtensionException extends FileUploadException
 {

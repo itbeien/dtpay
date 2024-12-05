@@ -1,6 +1,6 @@
 package cn.itbeien.terminal.util;
 
-import cn.itbeien.terminal.entity.SysUser;
+import cn.itbeien.common.core.domain.entity.SysUser;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;

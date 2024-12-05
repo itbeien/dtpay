@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author itbeien
@@ -128,7 +129,20 @@ public class MerchantService implements IMerchantService {
     }
 
 
+    @Override
+    public List<MerchantInfo> findMerchantAllByCreator(String uid) {
+        return this.merchantInfoMapper.selectMerchantAllCreator(uid);
+    }
 
+    @Override
+    public SmallMerchantVO selectEditSmallMerchantAllCreator(String uid) {
+        return this.merchantInfoMapper.selectEditSmallMerchantAllCreator(uid);
+    }
+
+    @Override
+    public BaseMerchantVO selectEditBaseMerchantAllCreator(String uid) {
+        return this.merchantInfoMapper.selectEditBaseMerchantAllCreator(uid);
+    }
 
     public static void main(String[] args) {
 
@@ -141,7 +155,5 @@ public class MerchantService implements IMerchantService {
         System.out.println(merchantInfo.getMerMode());
         System.out.println(merchantInfo.getCreateTime());
     }
-
-
 
 }

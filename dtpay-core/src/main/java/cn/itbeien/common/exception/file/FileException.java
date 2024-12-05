@@ -3,7 +3,11 @@ package cn.itbeien.common.exception.file;
 import cn.itbeien.common.exception.base.BaseException;
 
 /**
- * 文件信息异常类
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ * Copyright© 2024 itbeien
  */
 public class FileException extends BaseException
 {
