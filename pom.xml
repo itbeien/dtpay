@@ -20,6 +20,7 @@
         <module>dtpay-api-service</module>
         <module>dtpay-mybatis-generator</module>
         <module>dtpay-terminal-api</module>
+        <module>xxl-job-admin</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>
