@@ -45,7 +45,7 @@
         <druid-spring-boot-version>1.2.19</druid-spring-boot-version>
         <redisson-spring-boot-version>3.17.4</redisson-spring-boot-version>
         <springboot-version>2.7.18</springboot-version>
-        <springcloud-version>2021.0.7</springcloud-version>
+        <springcloud-version>2021.0.9</springcloud-version>
         <spring-cloud-alibaba-version>2021.0.6.0</spring-cloud-alibaba-version>
         <mysql-connector-java-version>5.1.49</mysql-connector-java-version>
         <nacos-config-spring-boot-starter-version>0.2.12</nacos-config-spring-boot-starter-version>
