@@ -306,11 +306,11 @@
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct-verrsion}</version>
             </dependency>
-            <dependency>
+           <!-- <dependency>
                 <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
+                <artifactId>mapstruct-processor</artifactId>
                 <version>${mapstruct-processor-version}</version>
-            </dependency>
+            </dependency>-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>aliyun-sms-spring-boot-starter</artifactId>
