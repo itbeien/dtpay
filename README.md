@@ -34,6 +34,9 @@ dtpay服务端基于JDK17/21开发，开发工具IDEA2024.3.5，使用Maven3.9.9
 | MySQL               | 数据库                      | 8.4.4    | https://dev.mysql.com/downloads/mysql/              |
 | RocketMQ            | 消息中间件                  | Latest   | https://rocketmq.apache.org/zh/                     |
 | Vue                 | 运营和商户平台前端框架      | Latest   | https://cn.vuejs.org/                               |
+| Vue Router          | 路由管理库                  | Latest   | https://router.vuejs.org/zh/                        |
+| Pinia               | 状态管理库                  | Latest   | https://pinia.vuejs.org/zh/                         |
+| Vite                | 前端构建工具                | Latest   | https://cn.vite.dev/                                |
 | Uni-app             | 前端小程序框架              | Latest   | https://zh.uniapp.dcloud.io/                        |
 | Knife4j             | api文档生成框架             | Latest   | https://github.com/xiaoymin/knife4j                 |
 | ShardingJDBC        | 分库分表框架                | Latest   | https://shardingsphere.apache.org/index_zh.html     |
