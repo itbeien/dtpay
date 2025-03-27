@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itbeien.business.base.mapper.MccMapper">
+  <resultMap id="BaseResultMap" type="cn.itbeien.business.base.domain.Mcc">
+    <result column="MCC_ID" jdbcType="VARCHAR" property="mccId" />
+    <result column="MCC_NAME" jdbcType="VARCHAR" property="mccName" />
+    <result column="MCC_PARENT" jdbcType="VARCHAR" property="mccParent" />
+    <result column="MCC_FLAG" jdbcType="VARCHAR" property="mccFlag" />
+    <result column="MCC_REMARK" jdbcType="VARCHAR" property="mccRemark" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    MCC_ID, MCC_NAME, MCC_PARENT, MCC_FLAG, MCC_REMARK
+  </sql>
+
+  <insert id="insert" parameterType="cn.itbeien.business.base.domain.Mcc">
+    insert into mcc (MCC_ID, MCC_NAME, MCC_PARENT, 
+      MCC_FLAG, MCC_REMARK)
+    values (#{mccId,jdbcType=VARCHAR}, #{mccName,jdbcType=VARCHAR}, #{mccParent,jdbcType=VARCHAR}, 
+      #{mccFlag,jdbcType=VARCHAR}, #{mccRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.itbeien.business.base.domain.Mcc">
+    insert into mcc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mccId != null">
+        MCC_ID,
+      </if>
+      <if test="mccName != null">
+        MCC_NAME,
+      </if>
+      <if test="mccParent != null">
+        MCC_PARENT,
+      </if>
+      <if test="mccFlag != null">
+        MCC_FLAG,
+      </if>
+      <if test="mccRemark != null">
+        MCC_REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mccId != null">
+        #{mccId,jdbcType=VARCHAR},
+      </if>
+      <if test="mccName != null">
+        #{mccName,jdbcType=VARCHAR},
+      </if>
+      <if test="mccParent != null">
+        #{mccParent,jdbcType=VARCHAR},
+      </if>
+      <if test="mccFlag != null">
+        #{mccFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="mccRemark != null">
+        #{mccRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectMccParent" resultMap="BaseResultMap">
+    SELECT mcc_id,mcc_name FROM mcc where MCC_ID like 'A%'
+  </select>
+
+  <select id="selectMccByParent" resultMap="BaseResultMap">
+    SELECT mcc_id,mcc_name FROM mcc where MCC_PARENT = #{mccParent}
+  </select>
+
+</mapper>

@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itbeien.task.dao.order.TradeOrderMapper">
+  <resultMap id="BaseResultMap" type="cn.itbeien.task.entity.TradeOrder">
+    <id column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+    <result column="MERC_NO" jdbcType="VARCHAR" property="mercNo" />
+    <result column="MERC_ORDER_NO" jdbcType="VARCHAR" property="mercOrderNo" />
+    <result column="TRADE_TYPE" jdbcType="CHAR" property="tradeType" />
+    <result column="SUBJECT" jdbcType="VARCHAR" property="subject" />
+    <result column="BODY" jdbcType="VARCHAR" property="body" />
+    <result column="ORDER_AMOUNT" jdbcType="DECIMAL" property="orderAmount" />
+    <result column="ORDER_TIME" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="ORDER_IP" jdbcType="VARCHAR" property="orderIp" />
+    <result column="RETURN_URL" jdbcType="VARCHAR" property="returnUrl" />
+    <result column="NOTIFY_URL" jdbcType="VARCHAR" property="notifyUrl" />
+    <result column="REFERER_URL" jdbcType="VARCHAR" property="refererUrl" />
+    <result column="ORDER_PERIOD" jdbcType="INTEGER" property="orderPeriod" />
+    <result column="EXPIRE_TIME" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="PAY_STATUS" jdbcType="VARCHAR" property="payStatus" />
+    <result column="IS_REFUND" jdbcType="CHAR" property="isRefund" />
+    <result column="REFUND_TIMES" jdbcType="INTEGER" property="refundTimes" />
+    <result column="SUCCESS_REFUND_AMOUNT" jdbcType="DECIMAL" property="successRefundAmount" />
+    <result column="TERM_TYPE" jdbcType="VARCHAR" property="termType" />
+    <result column="SIGN_TYPE" jdbcType="VARCHAR" property="signType" />
+    <result column="CHARSET" jdbcType="VARCHAR" property="charset" />
+    <result column="VERSION" jdbcType="VARCHAR" property="version" />
+    <result column="LOCALE" jdbcType="VARCHAR" property="locale" />
+    <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+    <result column="MP_OPENID" jdbcType="VARCHAR" property="mpOpenid" />
+    <result column="MP_APPID" jdbcType="VARCHAR" property="mpAppid" />
+    <result column="INTERFACE_CODE" jdbcType="VARCHAR" property="interfaceCode" />
+    <result column="FEE_VALUE" jdbcType="DECIMAL" property="feeValue" />
+    <result column="IS_STATIC" jdbcType="CHAR" property="isStatic" />
+    <result column="CHANNEL_CODE" jdbcType="VARCHAR" property="channelCode" />
+    <result column="PAYWAY_CODE" jdbcType="VARCHAR" property="paywayCode" />
+    <result column="SCENE_CODE" jdbcType="VARCHAR" property="sceneCode" />
+    <result column="CALL_BACK_TIME" jdbcType="TIMESTAMP" property="callBackTime" />
+    <result column="TIME_DIFFERENCE" jdbcType="BIGINT" property="timeDifference" />
+    <result column="COST_VALUE" jdbcType="DECIMAL" property="costValue" />
+    <result column="COST_RATIO" jdbcType="DECIMAL" property="costRatio" />
+    <result column="FEE_RATIO" jdbcType="DECIMAL" property="feeRatio" />
+  </resultMap>
+
+  <resultMap id="AgentReportDetailMap" type="cn.itbeien.task.entity.AgentReportDetail">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="AGENT_ID" jdbcType="BIGINT" property="agentId" />
+    <result column="AGENT_NAME" jdbcType="VARCHAR" property="agentName" />
+    <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+    <result column="PAYWAY_CODE" jdbcType="VARCHAR" property="paywayCode" />
+    <result column="SCENE_CODE" jdbcType="VARCHAR" property="sceneCode" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="REFUND_AMOUNT" jdbcType="DECIMAL" property="refundAmount" />
+    <result column="MER_INCOME" jdbcType="DECIMAL" property="merIncome" />
+    <result column="AGENT_INCOME" jdbcType="DECIMAL" property="agentIncome" />
+    <result column="CREATOR_NAME" jdbcType="VARCHAR" property="creatorName" />
+    <result column="TRADE_TIME" jdbcType="TIMESTAMP" property="tradeTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <resultMap id="MerchantReportMap" type="cn.itbeien.task.entity.MerchantReport">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="MER_NO" jdbcType="VARCHAR" property="merNo" />
+    <result column="MER_NAME" jdbcType="VARCHAR" property="merName" />
+    <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+    <result column="PAYWAY_CODE" jdbcType="VARCHAR" property="paywayCode" />
+    <result column="SCENE_CODE" jdbcType="VARCHAR" property="sceneCode" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="REFUND_AMOUNT" jdbcType="DECIMAL" property="refundAmount" />
+    <result column="MER_CHARGE" jdbcType="DECIMAL" property="merCharge" />
+    <result column="MER_SETTLE" jdbcType="DECIMAL" property="merSettle" />
+    <result column="CHANNEL_MER_NO" jdbcType="VARCHAR" property="channelMerNo" />
+    <result column="CHANNEL_MER_NAME" jdbcType="VARCHAR" property="channelMerName" />
+    <result column="CREATOR_NAME" jdbcType="VARCHAR" property="creatorName" />
+    <result column="TRADE_TIME" jdbcType="TIMESTAMP" property="tradeTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ORDER_ID, MERC_NO, MERC_ORDER_NO, TRADE_TYPE, SUBJECT, BODY, ORDER_AMOUNT, ORDER_TIME, 
+    ORDER_IP, RETURN_URL, NOTIFY_URL, REFERER_URL, ORDER_PERIOD, EXPIRE_TIME, REMARK, 
+    CREATE_TIME, PAY_STATUS, IS_REFUND, REFUND_TIMES, SUCCESS_REFUND_AMOUNT, TERM_TYPE, 
+    SIGN_TYPE, CHARSET, VERSION, LOCALE, CURRENCY, MP_OPENID, MP_APPID, INTERFACE_CODE, 
+    FEE_VALUE, IS_STATIC, CHANNEL_CODE, PAYWAY_CODE, SCENE_CODE, CALL_BACK_TIME, TIME_DIFFERENCE, 
+    COST_VALUE, COST_RATIO, FEE_RATIO
+  </sql>
+
+  <insert id="insert" parameterType="cn.itbeien.task.entity.TradeOrder">
+    insert into dt_trade_order (ORDER_ID, MERC_NO, MERC_ORDER_NO, 
+      TRADE_TYPE, SUBJECT, BODY, 
+      ORDER_AMOUNT, ORDER_TIME, ORDER_IP, 
+      RETURN_URL, NOTIFY_URL, REFERER_URL, 
+      ORDER_PERIOD, EXPIRE_TIME, REMARK, 
+      CREATE_TIME, PAY_STATUS, IS_REFUND, 
+      REFUND_TIMES, SUCCESS_REFUND_AMOUNT, TERM_TYPE, 
+      SIGN_TYPE, CHARSET, VERSION, 
+      LOCALE, CURRENCY, MP_OPENID, 
+      MP_APPID, INTERFACE_CODE, FEE_VALUE, 
+      IS_STATIC, CHANNEL_CODE, PAYWAY_CODE, 
+      SCENE_CODE, CALL_BACK_TIME, TIME_DIFFERENCE, 
+      COST_VALUE, COST_RATIO, FEE_RATIO
+      )
+    values (#{orderId,jdbcType=VARCHAR}, #{mercNo,jdbcType=VARCHAR}, #{mercOrderNo,jdbcType=VARCHAR}, 
+      #{tradeType,jdbcType=CHAR}, #{subject,jdbcType=VARCHAR}, #{body,jdbcType=VARCHAR}, 
+      #{orderAmount,jdbcType=DECIMAL}, #{orderTime,jdbcType=TIMESTAMP}, #{orderIp,jdbcType=VARCHAR}, 
+      #{returnUrl,jdbcType=VARCHAR}, #{notifyUrl,jdbcType=VARCHAR}, #{refererUrl,jdbcType=VARCHAR}, 
+      #{orderPeriod,jdbcType=INTEGER}, #{expireTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{payStatus,jdbcType=VARCHAR}, #{isRefund,jdbcType=CHAR}, 
+      #{refundTimes,jdbcType=INTEGER}, #{successRefundAmount,jdbcType=DECIMAL}, #{termType,jdbcType=VARCHAR}, 
+      #{signType,jdbcType=VARCHAR}, #{charset,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
+      #{locale,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, #{mpOpenid,jdbcType=VARCHAR}, 
+      #{mpAppid,jdbcType=VARCHAR}, #{interfaceCode,jdbcType=VARCHAR}, #{feeValue,jdbcType=DECIMAL}, 
+      #{isStatic,jdbcType=CHAR}, #{channelCode,jdbcType=VARCHAR}, #{paywayCode,jdbcType=VARCHAR}, 
+      #{sceneCode,jdbcType=VARCHAR}, #{callBackTime,jdbcType=TIMESTAMP}, #{timeDifference,jdbcType=BIGINT}, 
+      #{costValue,jdbcType=DECIMAL}, #{costRatio,jdbcType=DECIMAL}, #{feeRatio,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.itbeien.task.entity.TradeOrder">
+    insert into dt_trade_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="mercNo != null">
+        MERC_NO,
+      </if>
+      <if test="mercOrderNo != null">
+        MERC_ORDER_NO,
+      </if>
+      <if test="tradeType != null">
+        TRADE_TYPE,
+      </if>
+      <if test="subject != null">
+        SUBJECT,
+      </if>
+      <if test="body != null">
+        BODY,
+      </if>
+      <if test="orderAmount != null">
+        ORDER_AMOUNT,
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME,
+      </if>
+      <if test="orderIp != null">
+        ORDER_IP,
+      </if>
+      <if test="returnUrl != null">
+        RETURN_URL,
+      </if>
+      <if test="notifyUrl != null">
+        NOTIFY_URL,
+      </if>
+      <if test="refererUrl != null">
+        REFERER_URL,
+      </if>
+      <if test="orderPeriod != null">
+        ORDER_PERIOD,
+      </if>
+      <if test="expireTime != null">
+        EXPIRE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="payStatus != null">
+        PAY_STATUS,
+      </if>
+      <if test="isRefund != null">
+        IS_REFUND,
+      </if>
+      <if test="refundTimes != null">
+        REFUND_TIMES,
+      </if>
+      <if test="successRefundAmount != null">
+        SUCCESS_REFUND_AMOUNT,
+      </if>
+      <if test="termType != null">
+        TERM_TYPE,
+      </if>
+      <if test="signType != null">
+        SIGN_TYPE,
+      </if>
+      <if test="charset != null">
+        CHARSET,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+      <if test="locale != null">
+        LOCALE,
+      </if>
+      <if test="currency != null">
+        CURRENCY,
+      </if>
+      <if test="mpOpenid != null">
+        MP_OPENID,
+      </if>
+      <if test="mpAppid != null">
+        MP_APPID,
+      </if>
+      <if test="interfaceCode != null">
+        INTERFACE_CODE,
+      </if>
+      <if test="feeValue != null">
+        FEE_VALUE,
+      </if>
+      <if test="isStatic != null">
+        IS_STATIC,
+      </if>
+      <if test="channelCode != null">
+        CHANNEL_CODE,
+      </if>
+      <if test="paywayCode != null">
+        PAYWAY_CODE,
+      </if>
+      <if test="sceneCode != null">
+        SCENE_CODE,
+      </if>
+      <if test="callBackTime != null">
+        CALL_BACK_TIME,
+      </if>
+      <if test="timeDifference != null">
+        TIME_DIFFERENCE,
+      </if>
+      <if test="costValue != null">
+        COST_VALUE,
+      </if>
+      <if test="costRatio != null">
+        COST_RATIO,
+      </if>
+      <if test="feeRatio != null">
+        FEE_RATIO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mercNo != null">
+        #{mercNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mercOrderNo != null">
+        #{mercOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        #{tradeType,jdbcType=CHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null">
+        #{body,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null">
+        #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderIp != null">
+        #{orderIp,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUrl != null">
+        #{returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null">
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="refererUrl != null">
+        #{refererUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPeriod != null">
+        #{orderPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isRefund != null">
+        #{isRefund,jdbcType=CHAR},
+      </if>
+      <if test="refundTimes != null">
+        #{refundTimes,jdbcType=INTEGER},
+      </if>
+      <if test="successRefundAmount != null">
+        #{successRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="termType != null">
+        #{termType,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null">
+        #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="charset != null">
+        #{charset,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="locale != null">
+        #{locale,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="mpOpenid != null">
+        #{mpOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="mpAppid != null">
+        #{mpAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceCode != null">
+        #{interfaceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="feeValue != null">
+        #{feeValue,jdbcType=DECIMAL},
+      </if>
+      <if test="isStatic != null">
+        #{isStatic,jdbcType=CHAR},
+      </if>
+      <if test="channelCode != null">
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paywayCode != null">
+        #{paywayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneCode != null">
+        #{sceneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="callBackTime != null">
+        #{callBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeDifference != null">
+        #{timeDifference,jdbcType=BIGINT},
+      </if>
+      <if test="costValue != null">
+        #{costValue,jdbcType=DECIMAL},
+      </if>
+      <if test="costRatio != null">
+        #{costRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="feeRatio != null">
+        #{feeRatio,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itbeien.task.entity.TradeOrder">
+    update dt_trade_order
+    <set>
+      <if test="mercNo != null">
+        MERC_NO = #{mercNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mercOrderNo != null">
+        MERC_ORDER_NO = #{mercOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        TRADE_TYPE = #{tradeType,jdbcType=CHAR},
+      </if>
+      <if test="subject != null">
+        SUBJECT = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null">
+        BODY = #{body,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null">
+        ORDER_AMOUNT = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderIp != null">
+        ORDER_IP = #{orderIp,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUrl != null">
+        RETURN_URL = #{returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null">
+        NOTIFY_URL = #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="refererUrl != null">
+        REFERER_URL = #{refererUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPeriod != null">
+        ORDER_PERIOD = #{orderPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null">
+        EXPIRE_TIME = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payStatus != null">
+        PAY_STATUS = #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isRefund != null">
+        IS_REFUND = #{isRefund,jdbcType=CHAR},
+      </if>
+      <if test="refundTimes != null">
+        REFUND_TIMES = #{refundTimes,jdbcType=INTEGER},
+      </if>
+      <if test="successRefundAmount != null">
+        SUCCESS_REFUND_AMOUNT = #{successRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="termType != null">
+        TERM_TYPE = #{termType,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null">
+        SIGN_TYPE = #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="charset != null">
+        CHARSET = #{charset,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="locale != null">
+        LOCALE = #{locale,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="mpOpenid != null">
+        MP_OPENID = #{mpOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="mpAppid != null">
+        MP_APPID = #{mpAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceCode != null">
+        INTERFACE_CODE = #{interfaceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="feeValue != null">
+        FEE_VALUE = #{feeValue,jdbcType=DECIMAL},
+      </if>
+      <if test="isStatic != null">
+        IS_STATIC = #{isStatic,jdbcType=CHAR},
+      </if>
+      <if test="channelCode != null">
+        CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paywayCode != null">
+        PAYWAY_CODE = #{paywayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneCode != null">
+        SCENE_CODE = #{sceneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="callBackTime != null">
+        CALL_BACK_TIME = #{callBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeDifference != null">
+        TIME_DIFFERENCE = #{timeDifference,jdbcType=BIGINT},
+      </if>
+      <if test="costValue != null">
+        COST_VALUE = #{costValue,jdbcType=DECIMAL},
+      </if>
+      <if test="costRatio != null">
+        COST_RATIO = #{costRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="feeRatio != null">
+        FEE_RATIO = #{feeRatio,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.itbeien.task.entity.TradeOrder">
+    update dt_trade_order
+    set MERC_NO = #{mercNo,jdbcType=VARCHAR},
+      MERC_ORDER_NO = #{mercOrderNo,jdbcType=VARCHAR},
+      TRADE_TYPE = #{tradeType,jdbcType=CHAR},
+      SUBJECT = #{subject,jdbcType=VARCHAR},
+      BODY = #{body,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{orderAmount,jdbcType=DECIMAL},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      ORDER_IP = #{orderIp,jdbcType=VARCHAR},
+      RETURN_URL = #{returnUrl,jdbcType=VARCHAR},
+      NOTIFY_URL = #{notifyUrl,jdbcType=VARCHAR},
+      REFERER_URL = #{refererUrl,jdbcType=VARCHAR},
+      ORDER_PERIOD = #{orderPeriod,jdbcType=INTEGER},
+      EXPIRE_TIME = #{expireTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      PAY_STATUS = #{payStatus,jdbcType=VARCHAR},
+      IS_REFUND = #{isRefund,jdbcType=CHAR},
+      REFUND_TIMES = #{refundTimes,jdbcType=INTEGER},
+      SUCCESS_REFUND_AMOUNT = #{successRefundAmount,jdbcType=DECIMAL},
+      TERM_TYPE = #{termType,jdbcType=VARCHAR},
+      SIGN_TYPE = #{signType,jdbcType=VARCHAR},
+      CHARSET = #{charset,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=VARCHAR},
+      LOCALE = #{locale,jdbcType=VARCHAR},
+      CURRENCY = #{currency,jdbcType=VARCHAR},
+      MP_OPENID = #{mpOpenid,jdbcType=VARCHAR},
+      MP_APPID = #{mpAppid,jdbcType=VARCHAR},
+      INTERFACE_CODE = #{interfaceCode,jdbcType=VARCHAR},
+      FEE_VALUE = #{feeValue,jdbcType=DECIMAL},
+      IS_STATIC = #{isStatic,jdbcType=CHAR},
+      CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR},
+      PAYWAY_CODE = #{paywayCode,jdbcType=VARCHAR},
+      SCENE_CODE = #{sceneCode,jdbcType=VARCHAR},
+      CALL_BACK_TIME = #{callBackTime,jdbcType=TIMESTAMP},
+      TIME_DIFFERENCE = #{timeDifference,jdbcType=BIGINT},
+      COST_VALUE = #{costValue,jdbcType=DECIMAL},
+      COST_RATIO = #{costRatio,jdbcType=DECIMAL},
+      FEE_RATIO = #{feeRatio,jdbcType=DECIMAL}
+    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateTradeOrderByOrderId">
+    update dt_trade_order set PAY_STATUS = #{payStatus} where ORDER_ID = #{orderId}
+  </update>
+
+  <select id="selectTradeOrderByPrimaryKey" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+        from dt_trade_order where ORDER_ID=#{orderId}
+  </select>
+
+  <select id="selectTradeOrderByAgentId" resultMap="AgentReportDetailMap">
+    select m.AGENT_ID,ao.AGENT_NAME, t.ORDER_ID as ORDER_NO,t.PAYWAY_CODE,t.SCENE_CODE,t.ORDER_AMOUNT as AMOUNT,t.SUCCESS_REFUND_AMOUNT as REFUND_AMOUNT,
+           (t.ORDER_AMOUNT-t.ORDER_AMOUNT*t.FEE_RATIO) as MER_INCOME,t.COST_VALUE*(#{agentRate}-t.COST_RATIO)as AGENT_INCOME,t.ORDER_TIME as TRADE_TIME
+    from dt_trade_order t right join dt_merchant_info m on t.MERC_NO = m.MERC_NO right join dt_agent_org ao on ao.ID = m.AGENT_ID WHERE t.PAY_STATUS='p0000'and t.MERC_NO in(select m.MERC_NO FROM dt_merchant_info m WHERE m.AGENT_ID=#{agentId})
+                                                                                                                                    and DATE_FORMAT(t.order_time,'%Y%m%d')=DATE_FORMAT(SYSDATE(),'%Y%m%d')
+  </select>
+
+  <select id="selectTradeOrderByMerchantNo" resultMap="MerchantReportMap">
+    select m.MERC_NAME as MER_NAME,m.MERC_NO as MER_NO,t.CHANNEL_CODE as CHANNEL_MER_NO, ch.CHANNEL_NAME as CHANNEL_MER_NAME,t.ORDER_ID as ORDER_NO,t.PAYWAY_CODE,t.SCENE_CODE,t.ORDER_AMOUNT as AMOUNT,t.SUCCESS_REFUND_AMOUNT as REFUND_AMOUNT,
+           (t.ORDER_AMOUNT*t.FEE_RATIO) as MER_CHARGE,t.ORDER_AMOUNT-(t.ORDER_AMOUNT*t.FEE_RATIO)as MER_SETTLE,t.ORDER_TIME as TRADE_TIME
+    from dt_trade_order t right join dt_merchant_info m on t.MERC_NO = m.MERC_NO right join dt_pay_channel ch on t.CHANNEL_CODE = ch.CHANNEL_CODE
+    WHERE t.PAY_STATUS='p0000' and t.MERC_NO = #{merchantNo} and DATE_FORMAT(t.order_time,'%Y%m%d')=DATE_FORMAT(SYSDATE(),'%Y%m%d')
+  </select>
+  
+</mapper>
