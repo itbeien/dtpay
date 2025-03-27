@@ -1,4 +1,0 @@
-Application Version: ${dtpay.version}
-Spring Boot Version: ${spring-boot.version}
-
-                    dtpay聚合支付系统
