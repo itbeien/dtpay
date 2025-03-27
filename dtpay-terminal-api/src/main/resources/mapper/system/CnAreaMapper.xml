@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itbeien.terminal.dao.CnAreaMapper">
+  <resultMap id="BaseResultMap" type="cn.itbeien.terminal.entity.CnArea">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="level" jdbcType="BIT" property="level" />
+    <result column="parent_code" jdbcType="BIGINT" property="parentCode" />
+    <result column="area_code" jdbcType="BIGINT" property="areaCode" />
+    <result column="zip_code" jdbcType="INTEGER" property="zipCode" />
+    <result column="city_code" jdbcType="CHAR" property="cityCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="short_name" jdbcType="VARCHAR" property="shortName" />
+    <result column="merger_name" jdbcType="VARCHAR" property="mergerName" />
+    <result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
+    <result column="lng" jdbcType="DECIMAL" property="lng" />
+    <result column="lat" jdbcType="DECIMAL" property="lat" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, level, parent_code, area_code, zip_code, city_code, name, short_name, merger_name, 
+    pinyin, lng, lat
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cn_area
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cn_area
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="cn.itbeien.terminal.entity.CnArea">
+    insert into cn_area (id, level, parent_code, 
+      area_code, zip_code, city_code, 
+      name, short_name, merger_name, 
+      pinyin, lng, lat)
+    values (#{id,jdbcType=INTEGER}, #{level,jdbcType=BIT}, #{parentCode,jdbcType=BIGINT}, 
+      #{areaCode,jdbcType=BIGINT}, #{zipCode,jdbcType=INTEGER}, #{cityCode,jdbcType=CHAR}, 
+      #{name,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, #{mergerName,jdbcType=VARCHAR}, 
+      #{pinyin,jdbcType=VARCHAR}, #{lng,jdbcType=DECIMAL}, #{lat,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.itbeien.terminal.entity.CnArea">
+    insert into cn_area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="zipCode != null">
+        zip_code,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="shortName != null">
+        short_name,
+      </if>
+      <if test="mergerName != null">
+        merger_name,
+      </if>
+      <if test="pinyin != null">
+        pinyin,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=BIT},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=BIGINT},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=BIGINT},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=INTEGER},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="mergerName != null">
+        #{mergerName,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null">
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=DECIMAL},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itbeien.terminal.entity.CnArea">
+    update cn_area
+    <set>
+      <if test="level != null">
+        level = #{level,jdbcType=BIT},
+      </if>
+      <if test="parentCode != null">
+        parent_code = #{parentCode,jdbcType=BIGINT},
+      </if>
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=BIGINT},
+      </if>
+      <if test="zipCode != null">
+        zip_code = #{zipCode,jdbcType=INTEGER},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="mergerName != null">
+        merger_name = #{mergerName,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null">
+        pinyin = #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=DECIMAL},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.itbeien.terminal.entity.CnArea">
+    update cn_area
+    set level = #{level,jdbcType=BIT},
+      parent_code = #{parentCode,jdbcType=BIGINT},
+      area_code = #{areaCode,jdbcType=BIGINT},
+      zip_code = #{zipCode,jdbcType=INTEGER},
+      city_code = #{cityCode,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      merger_name = #{mergerName,jdbcType=VARCHAR},
+      pinyin = #{pinyin,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=DECIMAL},
+      lat = #{lat,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectCnArea" parameterType="java.lang.String">
+    select area_code as value,name as text from cn_area where parent_code=#{parentCode}
+  </select>
+</mapper>
