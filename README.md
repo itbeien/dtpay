@@ -18,7 +18,17 @@
 
 ![商户平台.png](https://note.youdao.com/yws/api/personal/file/WEBe6d4288f2adf5f502cd76376b6135ac2?method=download&shareKey=83af62fe19a8bb8076646fcf5ca91c40)
 
-## 4 技术栈介绍
+## 4 dtpay2.0版本开发
+
+基于JDK17/21和SpringBoot3开发dtpay聚合支付系统2.0版本，以下为具体的进度表(实时更新)
+
+| 模块           | 说明         | 进度   |
+| -------------- | ------------ | ------ |
+| dtpay-merchant | 商户管理后台 | 进行中 |
+| dtpay-manager  | 运营管理后台 | 进行中 |
+| dtpay-payment  | 支付交易系统 | 进行中 |
+
+## 5 技术栈介绍
 
 dtpay服务端基于JDK17/21开发，开发工具IDEA2024.3.5，使用Maven3.9.9构建
 
@@ -50,19 +60,19 @@ dtpay服务端基于JDK17/21开发，开发工具IDEA2024.3.5，使用Maven3.9.9
 | Quartz              | 定时任务框架                | Latest   | https://github.com/quartz-scheduler/quartz          |
 | Mybatis-Spring-Boot | SpringBoot整合MyBatis组件   | 3.0.4    | https://github.com/mybatis/spring-boot-starter      |
 
-## 5 服务端模块介绍
+## 6 服务端模块介绍
 
 | 子模块名称     | 模块描述             | 端口 |
 | :------------- | :------------------- | :--- |
 | dtpay-core     | 核心工具类           |      |
 | dtpay-service  | 公共服务类           |      |
-| dtpay-gateway  | 支付网关             | 9028 |
+| dtpay-payment  | 支付交易系统         | 9028 |
 | dtpay-manager  | 运营平台             | 9029 |
 | dtpay-merchant | 商户平台             | 9030 |
 | dtpay-task     | 定时任务(佣金，对账) | 9031 |
 | dtpay-bi       | 报表系统             | 9032 |
 | dtpay-ewallet  | 电子钱包             | 9033 |
 
-## 6 加入我的社群
+## 7 加入我的社群
 
 ![](https://gitee.com/itbeien/base/raw/master/images/贝恩聊架构-知识星球-含知识星球二维码new.png)
