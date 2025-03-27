@@ -22,28 +22,30 @@
 
 dtpay服务端基于JDK17/21开发，开发工具IDEA2024.3.5，使用Maven3.9.9构建
 
-| 框架              | 描述                        | 版本     | 官方网站                                            |
-| :---------------- | :-------------------------- | :------- | --------------------------------------------------- |
-| JDK               | 基础环境                    | 17/21    | https://bell-sw.com/pages/downloads/#jdk-17-lts     |
-| SpringBoot        | 基础环境                    | 3.4.4    | https://spring.io/projects/spring-boot              |
-| SpringSecurity    | 安全权限框架                | 6.4.4    | https://spring.io/projects/spring-security          |
-| SpringFramework   | 基础环境                    | 6.2.5    | https://spring.io/projects/spring-framework         |
-| SpringCloud       | 微服务版本基础环境          | 2024.0.1 | https://spring.io/projects/spring-cloud             |
-| Redis             | 分布式缓存                  | Latest   | https://redis.io/                                   |
-| Nacos             | 注册中心/配置中心           | Latest   | https://nacos.io/                                   |
-| MySQL             | 数据库                      | 8.4.4    | https://dev.mysql.com/downloads/mysql/              |
-| RocketMQ          | 消息中间件                  | Latest   | https://rocketmq.apache.org/zh/                     |
-| Vue               | 运营和商户平台前端框架      | Latest   | https://cn.vuejs.org/                               |
-| Uni-app           | 前端小程序框架              | Latest   | https://zh.uniapp.dcloud.io/                        |
-| Knife4j           | api文档生成框架             | Latest   | https://github.com/xiaoymin/knife4j                 |
-| ShardingJDBC      | 分库分表框架                | Latest   | https://shardingsphere.apache.org/index_zh.html     |
-| Mockito           | Java Mock框架               | Latest   | https://github.com/mockito/mockito                  |
-| MyBatis           | 持久层框架                  | 3.5.19   | https://github.com/mybatis/mybatis-3                |
-| Spring Data Redis | redis客户端框架             | 3.4.4    | https://spring.io/projects/spring-data-redis        |
-| JWT               | JWT是用于创建令牌的开放标准 | Latest   | https://swagger.io/ \| https://github.com/jwtk/jjwt |
-| Seata             | 分布式事务框架              | Latest   | https://seata.apache.org/zh-cn/                     |
-| Sentinel          | 限流框架                    | Latest   | https://sentinelguard.io/zh-cn/index.html           |
-| xxl-job           | 分布式定时任务              | Latest   | https://github.com/xuxueli/xxl-job                  |
+| 框架                | 描述                        | 版本     | 官方网站                                            |
+| :------------------ | :-------------------------- | :------- | --------------------------------------------------- |
+| JDK                 | 基础环境                    | 17/21    | https://bell-sw.com/pages/downloads/#jdk-17-lts     |
+| SpringBoot          | 基础环境                    | 3.4.4    | https://spring.io/projects/spring-boot              |
+| SpringSecurity      | 安全权限框架                | 6.4.4    | https://spring.io/projects/spring-security          |
+| SpringFramework     | 基础环境                    | 6.2.5    | https://spring.io/projects/spring-framework         |
+| SpringCloud         | 微服务版本基础环境          | 2024.0.1 | https://spring.io/projects/spring-cloud             |
+| Redis               | 分布式缓存                  | Latest   | https://redis.io/                                   |
+| Nacos               | 注册中心/配置中心           | Latest   | https://nacos.io/                                   |
+| MySQL               | 数据库                      | 8.4.4    | https://dev.mysql.com/downloads/mysql/              |
+| RocketMQ            | 消息中间件                  | Latest   | https://rocketmq.apache.org/zh/                     |
+| Vue                 | 运营和商户平台前端框架      | Latest   | https://cn.vuejs.org/                               |
+| Uni-app             | 前端小程序框架              | Latest   | https://zh.uniapp.dcloud.io/                        |
+| Knife4j             | api文档生成框架             | Latest   | https://github.com/xiaoymin/knife4j                 |
+| ShardingJDBC        | 分库分表框架                | Latest   | https://shardingsphere.apache.org/index_zh.html     |
+| Mockito             | Java Mock框架               | Latest   | https://github.com/mockito/mockito                  |
+| MyBatis             | 持久层框架                  | 3.5.19   | https://github.com/mybatis/mybatis-3                |
+| Spring Data Redis   | redis客户端框架             | 3.4.4    | https://spring.io/projects/spring-data-redis        |
+| JWT                 | JWT是用于创建令牌的开放标准 | Latest   | https://swagger.io/ \| https://github.com/jwtk/jjwt |
+| Seata               | 分布式事务框架              | Latest   | https://seata.apache.org/zh-cn/                     |
+| Sentinel            | 限流框架                    | Latest   | https://sentinelguard.io/zh-cn/index.html           |
+| XXL-JOB             | 分布式定时任务              | Latest   | https://github.com/xuxueli/xxl-job                  |
+| Quartz              | 定时任务框架                | Latest   | https://github.com/quartz-scheduler/quartz          |
+| Mybatis-Spring-Boot | SpringBoot整合MyBatis组件   | 3.0.4    | https://github.com/mybatis/spring-boot-starter      |
 
 ## 5 服务端模块介绍
 
