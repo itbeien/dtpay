@@ -25,7 +25,7 @@
 | 模块           | 说明         | 进度   |
 | -------------- | ------------ | ------ |
 | dtpay-merchant | 商户管理后台 | 进行中 |
-| dtpay-manager  | 运营管理后台 | 进行中 |
+| dtpay-admin    | 运营管理后台 | 进行中 |
 | dtpay-payment  | 支付交易系统 | 进行中 |
 
 ## 5 技术栈介绍
@@ -67,7 +67,7 @@ dtpay服务端基于JDK17/21开发，开发工具IDEA2024.3.5，使用Maven3.9.9
 | dtpay-core     | 核心工具类           |      |
 | dtpay-service  | 公共服务类           |      |
 | dtpay-payment  | 支付交易系统         | 9028 |
-| dtpay-manager  | 运营平台             | 9029 |
+| dtpay-admin    | 运营平台             | 9029 |
 | dtpay-merchant | 商户平台             | 9030 |
 | dtpay-task     | 定时任务(佣金，对账) | 9031 |
 | dtpay-bi       | 报表系统             | 9032 |
