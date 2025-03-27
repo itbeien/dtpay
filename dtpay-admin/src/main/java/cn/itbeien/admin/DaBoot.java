@@ -1,4 +1,4 @@
-package cn.itbeien.merchant;
+package cn.itbeien.admin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,13 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 公众号：贝恩聊架构
  * 全网同名，欢迎小伙伴们关注
  * Java/AI/支付系统学习社群
- * dtpay2.0 基于JDK17/21 SpringBoot3
- * 商户系统-启动入口
+ * 运营管理后台启动入口
  * Copyright© 2025 itbeien
  */
 @SpringBootApplication
-public class DmBoot {
+public class DaBoot {
     public static void main(String[] args) {
-        SpringApplication.run(DmBoot.class,args);
+        SpringApplication.run(DaBoot.class, args);
     }
 }
