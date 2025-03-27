@@ -52,6 +52,10 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.itbeien</groupId>
+            <artifactId>dtpay-core</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

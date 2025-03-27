@@ -58,4 +58,4 @@ dtpay服务端基于jdk1.8开发，开发工具IDEA2024.2，使用maven3.9.2构�
 
 ## 6 加入我的社群
 
-![](https://gitee.com/starqidian/images/raw/master/javabase/%E8%B4%9D%E6%81%A9%E8%81%8A%E6%9E%B6%E6%9E%84-%E7%9F%A5%E8%AF%86%E6%98%9F%E7%90%83-%E8%81%9A%E5%90%88%E6%94%AF%E4%BB%98%E7%9F%A5%E8%AF%86%E6%98%9F%E7%90%83_01.png)
+![](https://gitee.com/itbeien/base/raw/master/images/贝恩聊架构-知识星球-含知识星球二维码new.png)

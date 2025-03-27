@@ -6,9 +6,10 @@ package cn.itbeien.common.exception;
  * 公众号：贝恩聊架构
  * 全网同名，欢迎小伙伴们关注
  * 业务异常
+ * 业务异常
  * Copyright© 2024 itbeien
  */
-public final class ServiceException extends RuntimeException
+public final class BusinessException extends RuntimeException
 {
     private static final long serialVersionUID = 1L;
 
@@ -32,16 +33,16 @@ public final class ServiceException extends RuntimeException
     /**
      * 空构造方法，避免反序列化问题
      */
-    public ServiceException()
+    public BusinessException()
     {
     }
 
-    public ServiceException(String message)
+    public BusinessException(String message)
     {
         this.message = message;
     }
 
-    public ServiceException(String message, Integer code)
+    public BusinessException(String message, Integer code)
     {
         this.message = message;
         this.code = code;
@@ -63,13 +64,13 @@ public final class ServiceException extends RuntimeException
         return code;
     }
 
-    public ServiceException setMessage(String message)
+    public BusinessException setMessage(String message)
     {
         this.message = message;
         return this;
     }
 
-    public ServiceException setDetailMessage(String detailMessage)
+    public BusinessException setDetailMessage(String detailMessage)
     {
         this.detailMessage = detailMessage;
         return this;

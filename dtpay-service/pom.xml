@@ -11,4 +11,10 @@
 
     <artifactId>dtpay-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.itbeien</groupId>
+            <artifactId>dtpay-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>

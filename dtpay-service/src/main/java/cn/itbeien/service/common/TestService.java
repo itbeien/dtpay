@@ -1,4 +1,4 @@
-package cn.itbeien;
+package cn.itbeien.service.common;
 
 
 /**
