@@ -1,7 +1,7 @@
 package cn.itbeien.payment.service.core;
 
-import cn.itbeien.entity.PlatPayDetail;
-import cn.itbeien.entity.TradeRefundSeq;
+import cn.itbeien.common.entity.PlatPayDetail;
+import cn.itbeien.common.entity.TradeRefundSeq;
 import cn.itbeien.payment.service.channel.vo.*;
 import cn.itbeien.payment.service.core.vo.request.PayQueryRequest;
 import cn.itbeien.payment.service.core.vo.request.PayRequest;

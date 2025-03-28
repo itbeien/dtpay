@@ -1,4 +1,4 @@
-package cn.itbeien.entity;
+package cn.itbeien.common.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
