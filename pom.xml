@@ -35,6 +35,8 @@
         <mybatis-spring-boot-version>3.0.4</mybatis-spring-boot-version>
         <druid-spring-boot-version>1.2.24</druid-spring-boot-version>
         <mysql-version>8.0.33</mysql-version>
+        <pagehelper.version>6.1.0</pagehelper.version>
+        <pagehelper-spring-boot-starter.version>2.1.0</pagehelper-spring-boot-starter.version>
     </properties>
 
     <!-- 以下依赖 全局所有的模块都会引入  -->
@@ -130,6 +132,16 @@
                 <groupId>cn.itbeien</groupId>
                 <artifactId>dtpay-common</artifactId>
                 <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

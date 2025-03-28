@@ -7,7 +7,7 @@ import cn.itbeien.common.vo.trade.PlatPayDetailQryPar;
 import cn.itbeien.common.vo.trade.TradeOrderSeqReportVO;
 
 import java.util.List;
-import java.util.Map;
+
 /**
  * @author itbeien
  * 项目网站：https://www.itbeien.cn
@@ -30,7 +30,7 @@ public interface IPlatPayDetailMapper {
 	 * @param param
 	 * @return
 	 */
-	public List<PlatPayDetail> getSettlementList(Map<String, Object> param);
+	public List<PlatPayDetail> getSettlementList(PlatPayDetailQryPar param);
 	
 	
 	/**
@@ -39,7 +39,7 @@ public interface IPlatPayDetailMapper {
 	 * @param param
 	 * @return
 	 */
-	public List<PlatPayDetail> getPlatPayDetailList(Map<String, Object> param);
+	public List<PlatPayDetail> getPlatPayDetailList(PlatPayDetailQryPar param);
 	
 	/**
 	 * 财务管理->资金记录

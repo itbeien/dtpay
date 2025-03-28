@@ -1,4 +1,4 @@
-package cn.itbeien.merchant.mapper.trade;
+package cn.itbeien.merchant.service.trade;
 
 
 import cn.itbeien.common.entity.trade.TradeOrder;
@@ -11,8 +11,8 @@ import cn.itbeien.common.entity.trade.TradeOrder;
  * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
  * Copyright© 2025 itbeien
  */
-public interface ITradeOrderMapper {
+public interface ITradeOrderService {
 
     TradeOrder selectByPrimaryKey(String orderId);
-
+    
 }

@@ -6,7 +6,6 @@ import cn.itbeien.common.vo.trade.TradeOrderSeqReportVO;
 import cn.itbeien.common.vo.trade.TradeOrderSeqVO;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author itbeien
