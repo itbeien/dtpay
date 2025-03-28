@@ -1,48 +1,37 @@
-package cn.itbeien.common.vo;
+package cn.itbeien.common.entity.merchant;
 
+import java.io.Serializable;
 import java.util.Date;
 
-
-public class MerchantAccountInfoVo extends BaseBean {
+public class MerchantAccountInfo implements Serializable {
 
     private String id;
 
-
     private String mercNo;
-
 
     private String mercNickName;
 
-
     private String fileName;
-
 
     private String filePath;
 
-
     private String fileSize;
-
 
     private Date startDate;
 
     private Date endDate;
 
-
     private Date createTime;
-
 
     private Date updateTime;
 
-
     private static final long serialVersionUID = 1L;
-
 
     public String getId() {
         return id;
     }
 
-
-    public MerchantAccountInfoVo withId(String id) {
+    public MerchantAccountInfo withId(String id) {
         this.setId(id);
         return this;
     }
@@ -51,49 +40,41 @@ public class MerchantAccountInfoVo extends BaseBean {
         this.id = id == null ? null : id.trim();
     }
 
-
     public String getMercNo() {
         return mercNo;
     }
 
-
-    public MerchantAccountInfoVo withMercNo(String mercNo) {
+    public MerchantAccountInfo withMercNo(String mercNo) {
         this.setMercNo(mercNo);
         return this;
     }
-
 
     public void setMercNo(String mercNo) {
         this.mercNo = mercNo == null ? null : mercNo.trim();
     }
 
-
     public String getMercNickName() {
         return mercNickName;
     }
 
-
-    public MerchantAccountInfoVo withMercNickName(String mercNickName) {
+    public MerchantAccountInfo withMercNickName(String mercNickName) {
         this.setMercNickName(mercNickName);
         return this;
     }
 
-
     public void setMercNickName(String mercNickName) {
         this.mercNickName = mercNickName == null ? null : mercNickName.trim();
     }
-
 
     public String getFileName() {
         return fileName;
     }
 
 
-    public MerchantAccountInfoVo withFileName(String fileName) {
+    public MerchantAccountInfo withFileName(String fileName) {
         this.setFileName(fileName);
         return this;
     }
-
 
     public void setFileName(String fileName) {
         this.fileName = fileName == null ? null : fileName.trim();
@@ -105,7 +86,7 @@ public class MerchantAccountInfoVo extends BaseBean {
     }
 
 
-    public MerchantAccountInfoVo withFilePath(String filePath) {
+    public MerchantAccountInfo withFilePath(String filePath) {
         this.setFilePath(filePath);
         return this;
     }
@@ -115,12 +96,13 @@ public class MerchantAccountInfoVo extends BaseBean {
         this.filePath = filePath == null ? null : filePath.trim();
     }
 
+
     public String getFileSize() {
         return fileSize;
     }
 
 
-    public MerchantAccountInfoVo withFileSize(String fileSize) {
+    public MerchantAccountInfo withFileSize(String fileSize) {
         this.setFileSize(fileSize);
         return this;
     }
@@ -135,9 +117,8 @@ public class MerchantAccountInfoVo extends BaseBean {
         return startDate;
     }
 
-    /**
-     */
-    public MerchantAccountInfoVo withStartDate(Date startDate) {
+
+    public MerchantAccountInfo withStartDate(Date startDate) {
         this.setStartDate(startDate);
         return this;
     }
@@ -153,11 +134,10 @@ public class MerchantAccountInfoVo extends BaseBean {
     }
 
 
-    public MerchantAccountInfoVo withEndDate(Date endDate) {
+    public MerchantAccountInfo withEndDate(Date endDate) {
         this.setEndDate(endDate);
         return this;
     }
-
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
@@ -169,7 +149,7 @@ public class MerchantAccountInfoVo extends BaseBean {
     }
 
 
-    public MerchantAccountInfoVo withCreateTime(Date createTime) {
+    public MerchantAccountInfo withCreateTime(Date createTime) {
         this.setCreateTime(createTime);
         return this;
     }
@@ -185,17 +165,17 @@ public class MerchantAccountInfoVo extends BaseBean {
     }
 
 
-    public MerchantAccountInfoVo withUpdateTime(Date updateTime) {
+    public MerchantAccountInfo withUpdateTime(Date updateTime) {
         this.setUpdateTime(updateTime);
         return this;
     }
-
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
-
+    /**
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -216,7 +196,8 @@ public class MerchantAccountInfoVo extends BaseBean {
         return sb.toString();
     }
 
-
+    /**
+     */
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -228,7 +209,7 @@ public class MerchantAccountInfoVo extends BaseBean {
         if (getClass() != that.getClass()) {
             return false;
         }
-        MerchantAccountInfoVo other = (MerchantAccountInfoVo) that;
+        MerchantAccountInfo other = (MerchantAccountInfo) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getMercNo() == null ? other.getMercNo() == null : this.getMercNo().equals(other.getMercNo()))
             && (this.getMercNickName() == null ? other.getMercNickName() == null : this.getMercNickName().equals(other.getMercNickName()))
@@ -241,7 +222,8 @@ public class MerchantAccountInfoVo extends BaseBean {
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-
+    /**
+     */
     @Override
     public int hashCode() {
         final int prime = 31;

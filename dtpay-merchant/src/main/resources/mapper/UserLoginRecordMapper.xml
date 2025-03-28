@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.merchant.mapper.common.IUserLoginRecordMapper">
+
+	<insert id="insertRecordOne" parameterType="cn.itbeien.common.entity.merchant.CusLoginRecord">
+		INSERT INTO cus_login_record  (
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+		      id,
+		    </if>
+			<if test="userName != null and userName != ''">
+		      userName,
+		    </if>
+			<if test="loginIP != null and loginIP != ''">
+		      loginIP,
+		    </if>
+			<if test="createTime != null">
+		      createTime,
+		    </if>
+		</trim>   
+		)VALUES(
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+		  		#{id},
+			</if>
+			<if test="userName != null and userName != ''">
+		  		#{userName},
+			</if>
+			<if test="loginIP != null and loginIP != ''">
+		  		#{loginIP},
+			</if>
+			<if test="createTime != null">
+		  		#{createTime},
+			</if>
+		</trim>
+		)
+	</insert>
+
+	<select id="getUserLoginRecordList" parameterType="cn.itbeien.common.entity.merchant.CusLoginRecord" resultType="cn.itbeien.common.entity.merchant.CusLoginRecord">
+		SELECT
+		<trim suffixOverrides=",">
+			clr.userName userName,
+			clr.loginIP loginIP,
+			clr.createTime createtime
+		</trim>
+		FROM cus_login_record clr 
+		<where>
+		    1=1
+			<if test="userName != null and userName != ''">
+				AND clr.userName = #{userName}
+			</if>
+		</where>
+		ORDER BY clr.createTime DESC
+	</select>
+
+</mapper>

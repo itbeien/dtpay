@@ -2,8 +2,6 @@ package cn.itbeien.merchant.mapper.merchant;
 
 import cn.itbeien.common.entity.merchant.MerchantInfo;
 
-import java.util.Map;
-
 /**
  * @author itbeien
  * 项目网站：https://www.itbeien.cn
@@ -16,31 +14,31 @@ public interface IMerchantInfoMapper {
 	
 	/**
 	 * 获取商户基本信息
-	 * @param param
+	 * @param mercNo
 	 * @return
 	 */
-	public Map<String, Object> getMerchantInfo(Map<String, Object> param);
+	public MerchantInfo getMerchantInfo(String mercNo);
 	
 	/**
 	 * 获取商户支付密碼
 	 * @param mercNo
 	 * @return
 	 */
-	public Map<String, Object> getPasswd(String mercNo);
+	public MerchantInfo getPasswd(String mercNo);
 	
 	/**
 	 * 更新支付密码
-	 * @param param
+	 * @param mercNo
 	 * @return
 	 */
-	public int updatePasswd(Map<String, Object> param);
+	public int updatePasswd(String mercNo);
 	
 	/**
 	 * 通过登陆账号ID获取商户身份证后六位初始化支付密码
 	 * @param userId
 	 * @return
 	 */
-	public Map<String, Object> getMerchantInfoByUserId(String userId);
+	public MerchantInfo getMerchantInfoByUserId(String userId);
 	
 	
 	/**

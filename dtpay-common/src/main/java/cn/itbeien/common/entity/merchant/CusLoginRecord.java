@@ -1,7 +1,8 @@
-package cn.itbeien.merchant.mapper.common;
+package cn.itbeien.common.entity.merchant;
 
-import java.util.List;
-import java.util.Map;
+import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @author itbeien
@@ -11,8 +12,10 @@ import java.util.Map;
  * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
  * Copyright© 2025 itbeien
  */
-public interface IPayScenesDao {
-
-	public List<Map<String, Object>> getList(Map<String, Object> param);
-	
+@Data
+public class CusLoginRecord {
+    private Long id;
+    private Long userName;
+    private String loginIp;
+    private Date createTime;
 }

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itbeien.merchant.mapper.merchant.IMerchantInfoMapper">
+	<resultMap id="BaseResultMap" type="cn.itbeien.common.entity.merchant.MerchantInfo">
+    <id column="MERC_NO" jdbcType="VARCHAR" property="mercNo" />
+    <result column="MERC_NAME" jdbcType="VARCHAR" property="mercName" />
+    <result column="MERC_NICK_NAME" jdbcType="VARCHAR" property="mercNickName" />
+    <result column="PUBLIC_KEY_PATH" jdbcType="VARCHAR" property="publicKeyPath" />
+    <result column="UP_MERC_NO" jdbcType="VARCHAR" property="upMercNo" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="LINKMAN" jdbcType="VARCHAR" property="linkman" />
+    <result column="TELPHONE" jdbcType="VARCHAR" property="telphone" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="BUSI_FIRST_SCOPE" jdbcType="VARCHAR" property="busiFirstScope" />
+    <result column="BUSI_SECOND_SCOPE" jdbcType="VARCHAR" property="busiSecondScope" />
+    <result column="BUSI_THIRD_SCOPE" jdbcType="VARCHAR" property="busiThirdScope" />
+    <result column="CONTRACT_NO" jdbcType="VARCHAR" property="contractNo" />
+    <result column="CONTRACT_PATH" jdbcType="VARCHAR" property="contractPath" />
+    <result column="MERC_BUSI_LIC" jdbcType="VARCHAR" property="mercBusiLic" />
+    <result column="LIC_VALI_DATE" jdbcType="DATE" property="licValiDate" />
+    <result column="BUSI_LIC_FILE_NAME" jdbcType="VARCHAR" property="busiLicFileName" />
+    <result column="BUSI_LIC_PATH" jdbcType="VARCHAR" property="busiLicPath" />
+    <result column="MERC_ORG_CODE" jdbcType="VARCHAR" property="mercOrgCode" />
+    <result column="ORG_CODE_FILE_NAME" jdbcType="VARCHAR" property="orgCodeFileName" />
+    <result column="ORG_CODE_PATH" jdbcType="VARCHAR" property="orgCodePath" />
+    <result column="MERC_TAX_CODE" jdbcType="VARCHAR" property="mercTaxCode" />
+    <result column="TAX_CODE_FILE_NAME" jdbcType="VARCHAR" property="taxCodeFileName" />
+    <result column="TAX_CODE_PATH" jdbcType="VARCHAR" property="taxCodePath" />
+    <result column="MERC_TYPE" jdbcType="CHAR" property="mercType" />
+    <result column="CORP_REPT_NAME" jdbcType="VARCHAR" property="corpReptName" />
+    <result column="CORP_REPT_ID" jdbcType="VARCHAR" property="corpReptId" />
+    <result column="CORP_REPT_PATH" jdbcType="VARCHAR" property="corpReptPath" />
+    <result column="POST_CODE" jdbcType="VARCHAR" property="postCode" />
+    <result column="FIXED_PHONE" jdbcType="VARCHAR" property="fixedPhone" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="CORP_ADDR" jdbcType="VARCHAR" property="corpAddr" />
+    <result column="ORI_PASSWD" jdbcType="VARCHAR" property="oriPasswd" />
+    <result column="DEFAULT_FLAG" jdbcType="CHAR" property="defaultFlag" />
+    <result column="PASSWD" jdbcType="VARCHAR" property="passwd" />
+    <result column="PASSWD_FLAG" jdbcType="CHAR" property="passwdFlag" />
+    <result column="WRONG_COUNTS" jdbcType="INTEGER" property="wrongCounts" />
+    <result column="LOCKED_TIME" jdbcType="TIMESTAMP" property="lockedTime" />
+    <result column="SEND_BILL_FLAG" jdbcType="CHAR" property="sendBillFlag" />
+    <result column="SETTLE_TYPE" jdbcType="VARCHAR" property="settleType" />
+    <result column="MERC_PAY_ACCT_TYPE" jdbcType="CHAR" property="mercPayAcctType" />
+    <result column="MERC_PAY_ACCT" jdbcType="VARCHAR" property="mercPayAcct" />
+    <result column="MERC_PAY_ACCT_NM" jdbcType="VARCHAR" property="mercPayAcctNm" />
+    <result column="MERC_PAY_BANK" jdbcType="VARCHAR" property="mercPayBank" />
+    <result column="MERC_PAY_BANK_NM" jdbcType="VARCHAR" property="mercPayBankNm" />
+    <result column="MERC_PAY_BANK_PRO" jdbcType="VARCHAR" property="mercPayBankPro" />
+    <result column="MERC_PAY_BANK_CITY" jdbcType="VARCHAR" property="mercPayBankCity" />
+    <result column="MERC_SETT_ACCT_TYPE" jdbcType="CHAR" property="mercSettAcctType" />
+    <result column="MERC_SETT_ACCT" jdbcType="VARCHAR" property="mercSettAcct" />
+    <result column="MERC_SETT_ACCT_NM" jdbcType="VARCHAR" property="mercSettAcctNm" />
+    <result column="MERC_SETT_BANK" jdbcType="VARCHAR" property="mercSettBank" />
+    <result column="MERC_SETT_BANK_NM" jdbcType="VARCHAR" property="mercSettBankNm" />
+    <result column="MERC_SETT_BANK_PRO" jdbcType="VARCHAR" property="mercSettBankPro" />
+    <result column="MERC_SETT_BANK_CITY" jdbcType="VARCHAR" property="mercSettBankCity" />
+    <result column="CORE_PAY_ACCT" jdbcType="VARCHAR" property="corePayAcct" />
+    <result column="JS_TYPE" jdbcType="CHAR" property="jsType" />
+    <result column="CLEAR_CYCLE" jdbcType="CHAR" property="clearCycle" />
+    <result column="CLEAR_DATE" jdbcType="VARCHAR" property="clearDate" />
+    <result column="CLEAR_RATE" jdbcType="DECIMAL" property="clearRate" />
+    <result column="CLEAR_FLAG" jdbcType="CHAR" property="clearFlag" />
+    <result column="Agent_No" jdbcType="VARCHAR" property="agentNo" />
+    <result column="Manager" jdbcType="VARCHAR" property="manager" />
+    <result column="SERVICE_PHONE" jdbcType="VARCHAR" property="servicePhone" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="MERC_PICS_PATH" jdbcType="VARCHAR" property="mercPicsPath" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREDIT_AMT" jdbcType="DECIMAL" property="creditAmt" />
+    <result column="CUST_TYPE" jdbcType="CHAR" property="custType" />
+    <result column="MERC_PAY_BANK_INF" jdbcType="VARCHAR" property="mercPayBankInf" />
+    <result column="MERC_SETT_BANK_INF" jdbcType="VARCHAR" property="mercSettBankInf" />
+    <result column="SELLER" jdbcType="VARCHAR" property="seller" />
+    <result column="MERC_PRODUCT" jdbcType="VARCHAR" property="mercProduct" />
+    <result column="MERC_URL" jdbcType="VARCHAR" property="mercUrl" />
+    <result column="PAY_TYPE" property="payType" jdbcType="CHAR" />
+    <result column="MERC_SCALE_RATE" property="mercScaleRate" jdbcType="VARCHAR" />
+    <result column="ALLOW_AMT" property="allowAmt" jdbcType="DECIMAL" />
+    <result column="PAY_FLAG" property="payFlag" jdbcType="CHAR" />
+    <result column="PAY_FEE_FLAG" property="payFeeFlag" jdbcType="CHAR" />
+    <result column="PAY_FEE_VALUE" property="payFeeValue" jdbcType="DECIMAL" />
+    <result column="SINGLE_LIMIT_AMT" property="singleLimitAmt" jdbcType="DECIMAL" />
+    <result column="DAILY_LIMIT_AMT" property="dailyLimitAmt" jdbcType="DECIMAL" />
+    <result column="TRI_FLAG" property="triFlag" jdbcType="CHAR" />
+    <result column="APPROVERS" property="approvers" jdbcType="VARCHAR" />
+    <result column="RSFLD1" property="rsfld1" jdbcType="VARCHAR" />
+    <result column="RSFLD2" property="rsfld2" jdbcType="VARCHAR" />
+    <result column="RSFLD3" property="rsfld3" jdbcType="VARCHAR" /> 
+    <result column="MERC_SIGN_TYPE" property="mercSignType" jdbcType="VARCHAR" />
+    <result column="MERC_PRIVATE_KEY" property="mercPrivateKey" jdbcType="VARCHAR" />
+    <result column="SCENE_CODE" property="sceneCode" jdbcType="VARCHAR" />
+    <result column="SCENE_NAME" property="sceneName" jdbcType="VARCHAR" />
+    <result column="PAYWAY_NAME" property="paywayName" jdbcType="VARCHAR" />
+    <result column="MERC_FEE_VALUE" property="mercFeeValue" jdbcType="DECIMAL" /> 
+    <result column="rate" property="rate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+        MERC_NO, MERC_NAME, MERC_NICK_NAME, PUBLIC_KEY_PATH, UP_MERC_NO, STATUS, LINKMAN, 
+    TELPHONE, EMAIL, ADDRESS, busi_first_scope, busi_second_scope, busi_third_scope, 
+    contract_no, contract_path, MERC_BUSI_LIC, LIC_VALI_DATE, BUSI_LIC_FILE_NAME, BUSI_LIC_PATH, 
+    MERC_ORG_CODE, ORG_CODE_FILE_NAME, ORG_CODE_PATH, MERC_TAX_CODE, TAX_CODE_FILE_NAME, 
+    TAX_CODE_PATH, merc_type, CORP_REPT_NAME, CORP_REPT_ID, CORP_REPT_PATH, POST_CODE, 
+    FIXED_PHONE, province, city, CORP_ADDR, ORI_PASSWD, default_flag, PASSWD, PASSWD_FLAG, 
+    WRONG_COUNTS, LOCKED_TIME, SEND_BILL_FLAG, SETTLE_TYPE, MERC_PAY_ACCT_TYPE, MERC__PAY_ACCT, 
+    MERC_PAY_ACCT_NM, MERC_PAY_BANK, MERC_PAY_BANK_NM, MERC_PAY_BANK_PRO, MERC_PAY_BANK_CITY, 
+    MERC_SETT_ACCT_TYPE, MERC_SETT_ACCT, MERC_SETT_ACCT_NM, MERC_SETT_BANK, MERC_SETT_BANK_NM, 
+    MERC_SETT_BANK_PRO, MERC_SETT_BANK_CITY, core_PAY_ACCT, JS_TYPE, CLEAR_CYCLE, CLEAR_DATE, 
+    CLEAR_RATE, CLEAR_FLAG, Agent_No, Manager, SERVICE_PHONE, CREATE_TIME, CREATOR, UPDATE_TIME, 
+    UPDATER, MERC_PICS_PATH, remark, credit_amt, cust_type, MERC_PAY_BANK_INF, MERC_SETT_BANK_INF, 
+    seller, merc_product, merc_url, PAY_TYPE, MERC_SCALE_RATE, ALLOW_AMT, PAY_FLAG, PAY_FEE_FLAG, 
+    PAY_FEE_VALUE, SINGLE_LIMIT_AMT, DAILY_LIMIT_AMT, TRI_FLAG, APPROVERS, RSFLD1, RSFLD2, 
+    RSFLD3,MERC_SIGN_TYPE,MERC_PRIVATE_KEY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dt_merchant_info
+    where MERC_NO = #{mercNo,jdbcType=VARCHAR}
+  </select>
+	
+	<select id="getMerchantInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<trim suffixOverrides=",">
+			mi.MERC_NO,
+			mi.MERC_NAME,
+			mi.LINKMAN,
+			mi.TELPHONE,
+			mi.contract_no,
+		</trim>
+		FROM dt_merchant_info mi 
+		WHERE mi.MERC_NO=#{mercNo}
+	</select>
+	
+	<select id="getPasswd" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<trim suffixOverrides=",">
+			mi.PASSWD,
+			mi.DEFAULT_FLAG,
+		</trim>
+		FROM dt_merchant_info mi
+		<where>
+			<if test="_parameter != null">
+				AND mi.MERC_NO=#{mercNo}
+			</if>
+		</where>
+	</select>
+	
+	<update id="updatePasswd" parameterType="java.lang.String">
+		UPDATE dt_merchant_info 
+		<set>
+		    <if test="passwd != null">
+		      PASSWD = #{passwd},
+		    </if>
+		    <if test="defaultFlag != null">
+		      default_flag = #{defaultFlag},
+		    </if>
+		</set>
+		<where>
+		     <choose>
+				<when test="mercNo != null">
+					MERC_NO=#{mercNo}
+				</when>
+				<otherwise>
+					id = '0'
+				</otherwise>
+			</choose>
+		</where>
+	</update>
+	
+	<select id="getMerchantInfoByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<trim suffixOverrides=",">
+			mi.MERC_NO,
+			mi.CORP_REPT_ID,
+			RIGHT(mi.CORP_REPT_ID, 6) PASSWD,
+		</trim>
+		FROM dt_merchant_info mi
+		LEFT JOIN cus_merc_user cmu ON cmu.mercId=mi.MERC_NO WHERE cmu.userId=#{userId}
+	</select>
+
+</mapper>

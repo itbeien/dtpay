@@ -1,7 +1,9 @@
 package cn.itbeien.merchant.mapper.finance;
 
+import cn.itbeien.common.entity.merchant.MercAdjustDetail;
+import cn.itbeien.common.vo.merchant.MercAdjustDetailVO;
+
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author itbeien
@@ -13,7 +15,7 @@ import java.util.Map;
  */
 public interface IMercAdjustDetailMapper {
 
-	public List<Map<String, Object>> getMercAdjustDetailList(Map<String, Object> param);
+	public List<MercAdjustDetail> getMercAdjustDetailList(MercAdjustDetailVO param);
 	
 	
 }

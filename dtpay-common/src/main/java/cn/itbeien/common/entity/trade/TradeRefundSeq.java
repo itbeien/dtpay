@@ -1,9 +1,8 @@
-package cn.itbeien.common.entity;
+package cn.itbeien.common.entity.trade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-
 /**
  * @author itbeien
  * 项目网站：https://www.itbeien.cn
@@ -13,12 +12,9 @@ import java.util.Date;
  * Copyright© 2025 itbeien
  */
 public class TradeRefundSeq implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
     private String refundTradeSeq;
 
-    private String refundOrderId;
+    private String refundOrderId;   // 平台退款订单号
 
     private String mercNo;
 
@@ -26,7 +22,7 @@ public class TradeRefundSeq implements Serializable {
 
     private String orgMercOrderNo;
 
-    private String orgOrderId;
+    private String orgOrderId;  // 原平台订单流水号
 
     private Date orgTradeTime;
 
@@ -68,11 +64,11 @@ public class TradeRefundSeq implements Serializable {
 
     private String sceneCode;
     
-    private String noticeStr;
+    private String noticeStr;   // 随机数
     
-    private BigDecimal tradeAmt;
+    private BigDecimal tradeAmt; // 订单金额
 
-
+    private static final long serialVersionUID = 1L;
 
     public String getRefundTradeSeq() {
         return refundTradeSeq;

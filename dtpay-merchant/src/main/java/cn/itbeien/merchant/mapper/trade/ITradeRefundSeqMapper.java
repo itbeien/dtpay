@@ -1,7 +1,9 @@
 package cn.itbeien.merchant.mapper.trade;
 
+import cn.itbeien.common.entity.trade.TradeRefundSeq;
+import cn.itbeien.common.vo.trade.TradeOrderSeqVO;
+
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author itbeien
@@ -11,13 +13,13 @@ import java.util.Map;
  * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
  * Copyright© 2025 itbeien
  */
-public interface ITradeRefundSeqDao {
+public interface ITradeRefundSeqMapper {
 	
 	/**
 	 * 交易管理->退款订单
 	 * @param param
 	 * @return
 	 */
-	public List<Map<String, Object>> getTradeRefundSeqList(Map<String, Object> param);
+	public List<TradeRefundSeq> getTradeRefundSeqList(TradeOrderSeqVO param);
 	
 }

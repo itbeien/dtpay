@@ -1,5 +1,7 @@
 package cn.itbeien.merchant.mapper.common;
 
+import cn.itbeien.common.entity.pay.PayScenes;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,10 +13,8 @@ import java.util.Map;
  * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
  * Copyright© 2025 itbeien
  */
-public interface IUserLoginRecordDao {
+public interface IPayScenesMapper {
 
-	public int insertRecordOne(Map<String, Object> param);
-
-	public List<Map<String, Object>> getUserLoginRecordList(Map<String, Object> param);
+	public List<PayScenes> getList();
 	
 }

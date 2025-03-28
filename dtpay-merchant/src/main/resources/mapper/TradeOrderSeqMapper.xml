@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.merchant.mapper.trade.ITradeOrderSeqMapper">
+	
+  <resultMap id="BaseResultMap" type="cn.itbeien.common.entity.trade.TradeOrderSeq" >
+    <id column="TRADE_SEQ" property="tradeSeq" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="MERC_NO" property="mercNo" jdbcType="VARCHAR" />
+    <result column="MERC_ORDER_NO" property="mercOrderNo" jdbcType="VARCHAR" />
+    <result column="TRADE_TYPE" property="tradeType" jdbcType="CHAR" />
+    <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
+    <result column="BODY" property="body" jdbcType="VARCHAR" />
+    <result column="BANK_TRADE_SEQ" property="bankTradeSeq" jdbcType="VARCHAR" />
+    <result column="ORDER_IP" property="orderIp" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="DECIMAL" />
+    <result column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+    <result column="COMPLETE_TIME" property="completeTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="RET_CODE" property="retCode" jdbcType="VARCHAR" />
+    <result column="RET_DESC" property="retDesc" jdbcType="VARCHAR" />
+    <result column="RESP_CODE" property="respCode" jdbcType="VARCHAR" />
+    <result column="RESP_DESC" property="respDesc" jdbcType="VARCHAR" />
+    <result column="PAYWAY_CODE" property="paywayCode" jdbcType="CHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="PAYING_MERC_NO" property="payingMercNo" jdbcType="VARCHAR" />
+    <result column="PAYING_MERC_NAME" property="payingMercName" jdbcType="VARCHAR" />
+    <result column="CONNECT_SWITCH" property="connectSwitch" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="FEE_VALUE" property="feeValue" jdbcType="DECIMAL" />
+    <result column="SCENE_CODE" property="sceneCode" jdbcType="VARCHAR" />
+    <result column="PAYWAY_NAME" property="paywayName" jdbcType="VARCHAR" />
+    <result column="SCENE_NAME" property="sceneName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TRADE_SEQ, ORDER_ID, MERC_NO, MERC_ORDER_NO, TRADE_TYPE, SUBJECT, BODY, BANK_TRADE_SEQ, 
+    ORDER_IP, ORDER_AMOUNT, CHANNEL_CODE, COMPLETE_TIME, STATUS, RET_CODE, RET_DESC, 
+    RESP_CODE, RESP_DESC, PAYWAY_CODE, REMARK, PAYING_MERC_NO, PAYING_MERC_NAME, CONNECT_SWITCH, 
+    CREATE_TIME, FEE_VALUE, SCENE_CODE
+  </sql>
+
+	<select id="getTradeOrderSeqList" parameterType="cn.itbeien.common.vo.trade.TradeOrderSeqVO" resultMap="BaseResultMap">
+		SELECT
+		<trim suffixOverrides=",">
+			tos.TRADE_TYPE tradeType,
+			tos.MERC_ORDER_NO mercOrderNo,
+			tos.ORDER_ID orderId,
+			tos.ORDER_AMOUNT orderAmount,
+			tos.FEE_VALUE feeValue,
+			p.PAYWAY_NAME paywayName,
+			ps.SCENE_NAME sceneName,
+			tos.CREATE_TIME createTime,
+			tos.COMPLETE_TIME completeTime,
+			tos.STATUS status,
+			tos.NOTICE_STATUS noticeStatus 
+		</trim>
+		FROM dt_trade_order_seq tos
+		LEFT JOIN dt_payway p ON tos.PAYWAY_CODE=p.PAYWAY_CODE
+		LEFT JOIN dt_pay_scenes ps ON tos.SCENE_CODE=ps.SCENE_CODE
+		<where>
+			<if test="mercNo != null and mercNo != ''">
+				AND tos.MERC_NO=#{mercNo}
+			</if>
+			<if test="orderId != null and orderId != ''">
+				AND tos.ORDER_ID=#{orderId}
+			</if>
+			<if test="status != null and status != ''">
+				AND tos.STATUS=#{status}
+			</if>
+			<if test="paywayCode != null and paywayCode != ''">
+				AND tos.PAYWAY_CODE=#{paywayCode}
+			</if>
+			<if test="sceneCode != null and sceneCode != ''">
+				AND tos.SCENE_CODE=#{sceneCode}
+			</if>			
+		    <if test="startDate != null and startDate != ''" >
+		        AND tos.CREATE_TIME &gt;= str_to_date(#{startDate},'%Y-%m-%d %H:%i:%s')
+		    </if>
+		    <if test="endDate != null and endDate != ''" >
+		        AND tos.CREATE_TIME &lt; str_to_date(#{endDate},'%Y-%m-%d %H:%i:%s')
+		    </if>
+		</where>
+		ORDER BY tos.CREATE_TIME DESC
+	</select>
+	
+	
+	<select id="sumAmtAndCount"  resultType="cn.itbeien.common.vo.trade.TradeOrderSeqReportVO" parameterType="cn.itbeien.common.vo.trade.TradeOrderSeqVO" >
+        select IFNULL(count(ORDER_ID),0) count,IFNULL(sum(ORDER_AMOUNT),0) sumAmt
+        from dt_trade_order_seq t
+        <where>
+            <if test="orderId != null and orderId != ''">
+                AND t.ORDER_ID = #{orderId}
+            </if>
+            <if test="mercOrderNo != null and mercOrderNo != ''">
+                AND t.MERC_ORDER_NO = #{mercOrderNo} 
+            </if>
+            <if test="startDate != null and startDate !=''">
+                AND t.CREATE_TIME >= #{startDate}
+            </if>
+            <if test="endDate != null and endDate !=''">
+                AND t.CREATE_TIME &lt;= #{endDate}
+            </if>
+            <if test="status != null and status != ''">
+                AND t.STATUS = #{status}
+            </if>
+             <if test="mercNo != null and mercNo != ''">
+                AND t.MERC_NO = #{mercNo}
+            </if>
+             <if test="paywayCode != null and paywayCode != ''">
+                AND t.PAYWAY_CODE = #{paywayCode}
+            </if>
+            <if test="sceneCode != null and sceneCode != ''">
+                AND t.SCENE_CODE = #{sceneCode}
+            </if>
+        </where>
+    </select>
+    
+    <select id="selectTradeOrderSeqList" parameterType="cn.itbeien.common.vo.trade.TradeOrderSeqVO" resultMap="BaseResultMap">
+		SELECT
+		<trim suffixOverrides=",">
+			tos.MERC_ORDER_NO ,
+			tos.ORDER_ID ,
+			tos.MERC_NO ,
+			tos.ORDER_AMOUNT ,
+			tos.FEE_VALUE ,
+			p.PAYWAY_NAME ,
+			ps.SCENE_NAME ,
+			tos.CREATE_TIME ,
+			tos.COMPLETE_TIME ,
+			tos.STATUS 
+		</trim>
+		FROM dt_trade_order_seq tos
+		LEFT JOIN dt_payway p ON tos.PAYWAY_CODE=p.PAYWAY_CODE
+		LEFT JOIN dt_pay_scenes ps ON tos.SCENE_CODE=ps.SCENE_CODE
+		<where>
+			<if test="mercNo != null and mercNo != ''">
+				AND tos.MERC_NO=#{mercNo}
+			</if>
+			<if test="orderId != null and orderId != ''">
+				AND tos.ORDER_ID=#{orderId}
+			</if>
+			<if test="status != null and status != ''">
+				AND tos.STATUS=#{status}
+			</if>
+			<if test="paywayCode != null and paywayCode != ''">
+				AND tos.PAYWAY_CODE=#{paywayCode}
+			</if>
+			<if test="sceneCode != null and sceneCode != ''">
+				AND tos.SCENE_CODE=#{sceneCode}
+			</if>			
+		    <if test="startDate != null and startDate != ''" >
+		        AND tos.CREATE_TIME &gt;= str_to_date(#{startDate},'%Y-%m-%d %H:%i:%s')
+		    </if>
+		    <if test="endDate != null and endDate != ''" >
+		        AND tos.CREATE_TIME &lt; str_to_date(#{endDate},'%Y-%m-%d %H:%i:%s')
+		    </if>
+		</where>
+		ORDER BY tos.CREATE_TIME DESC
+	</select>
+
+</mapper>

@@ -1,36 +1,40 @@
-package cn.itbeien.common.entity;
+package cn.itbeien.common.vo.merchant;
 
-import java.io.Serializable;
+import cn.itbeien.common.vo.BaseBean;
+
 import java.util.Date;
-/**
- * @author itbeien
- * 项目网站：https://www.itbeien.cn
- * 公众号：贝恩聊架构
- * 全网同名，欢迎小伙伴们关注
- * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
- * Copyright© 2025 itbeien
- */
-public class MerchantAccountInfo implements Serializable {
+
+
+public class MerchantAccountInfoVo extends BaseBean {
 
     private String id;
 
+
     private String mercNo;
+
 
     private String mercNickName;
 
+
     private String fileName;
+
 
     private String filePath;
 
+
     private String fileSize;
+
 
     private Date startDate;
 
     private Date endDate;
 
+
     private Date createTime;
 
+
     private Date updateTime;
+
 
     private static final long serialVersionUID = 1L;
 
@@ -40,11 +44,10 @@ public class MerchantAccountInfo implements Serializable {
     }
 
 
-    public MerchantAccountInfo withId(String id) {
+    public MerchantAccountInfoVo withId(String id) {
         this.setId(id);
         return this;
     }
-
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
@@ -56,7 +59,7 @@ public class MerchantAccountInfo implements Serializable {
     }
 
 
-    public MerchantAccountInfo withMercNo(String mercNo) {
+    public MerchantAccountInfoVo withMercNo(String mercNo) {
         this.setMercNo(mercNo);
         return this;
     }
@@ -71,9 +74,8 @@ public class MerchantAccountInfo implements Serializable {
         return mercNickName;
     }
 
-    /**
-     */
-    public MerchantAccountInfo withMercNickName(String mercNickName) {
+
+    public MerchantAccountInfoVo withMercNickName(String mercNickName) {
         this.setMercNickName(mercNickName);
         return this;
     }
@@ -83,13 +85,13 @@ public class MerchantAccountInfo implements Serializable {
         this.mercNickName = mercNickName == null ? null : mercNickName.trim();
     }
 
+
     public String getFileName() {
         return fileName;
     }
 
-    /**
-     */
-    public MerchantAccountInfo withFileName(String fileName) {
+
+    public MerchantAccountInfoVo withFileName(String fileName) {
         this.setFileName(fileName);
         return this;
     }
@@ -105,7 +107,7 @@ public class MerchantAccountInfo implements Serializable {
     }
 
 
-    public MerchantAccountInfo withFilePath(String filePath) {
+    public MerchantAccountInfoVo withFilePath(String filePath) {
         this.setFilePath(filePath);
         return this;
     }
@@ -115,13 +117,12 @@ public class MerchantAccountInfo implements Serializable {
         this.filePath = filePath == null ? null : filePath.trim();
     }
 
-
     public String getFileSize() {
         return fileSize;
     }
 
 
-    public MerchantAccountInfo withFileSize(String fileSize) {
+    public MerchantAccountInfoVo withFileSize(String fileSize) {
         this.setFileSize(fileSize);
         return this;
     }
@@ -136,7 +137,9 @@ public class MerchantAccountInfo implements Serializable {
         return startDate;
     }
 
-    public MerchantAccountInfo withStartDate(Date startDate) {
+    /**
+     */
+    public MerchantAccountInfoVo withStartDate(Date startDate) {
         this.setStartDate(startDate);
         return this;
     }
@@ -151,9 +154,8 @@ public class MerchantAccountInfo implements Serializable {
         return endDate;
     }
 
-    /**
-     */
-    public MerchantAccountInfo withEndDate(Date endDate) {
+
+    public MerchantAccountInfoVo withEndDate(Date endDate) {
         this.setEndDate(endDate);
         return this;
     }
@@ -169,7 +171,7 @@ public class MerchantAccountInfo implements Serializable {
     }
 
 
-    public MerchantAccountInfo withCreateTime(Date createTime) {
+    public MerchantAccountInfoVo withCreateTime(Date createTime) {
         this.setCreateTime(createTime);
         return this;
     }
@@ -185,7 +187,7 @@ public class MerchantAccountInfo implements Serializable {
     }
 
 
-    public MerchantAccountInfo withUpdateTime(Date updateTime) {
+    public MerchantAccountInfoVo withUpdateTime(Date updateTime) {
         this.setUpdateTime(updateTime);
         return this;
     }
@@ -228,7 +230,7 @@ public class MerchantAccountInfo implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        MerchantAccountInfo other = (MerchantAccountInfo) that;
+        MerchantAccountInfoVo other = (MerchantAccountInfoVo) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getMercNo() == null ? other.getMercNo() == null : this.getMercNo().equals(other.getMercNo()))
             && (this.getMercNickName() == null ? other.getMercNickName() == null : this.getMercNickName().equals(other.getMercNickName()))

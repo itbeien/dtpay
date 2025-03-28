@@ -104,19 +104,19 @@ public class PlatPayDetailQryPar implements Serializable {
     private BigDecimal feeValue;
 
 
-	String mercName;
+	private String mercName;
 	
-	BigDecimal startTransAmt;
+	private BigDecimal startTransAmt;
 	
-	BigDecimal endTransAmt;
+	private BigDecimal endTransAmt;
 	
-	String  startDate;
+	private String  startDate;
 	
-	String  endDate;
+	private String  endDate;
 	
-	String jsStartDate;
+	private String jsStartDate;
 	
-	String  jsEndDate;
+	private String  jsEndDate;
 
 	private String stamDate;
 	private String stamDateEnd;

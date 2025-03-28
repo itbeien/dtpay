@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.merchant.mapper.finance.IMerchantChannelBalMapper" >
+  <resultMap id="BaseResultMap" type="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+    <id column="MERC_NO" property="mercNo" jdbcType="VARCHAR" />
+    <id column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+    <id column="PAYING_MERC_NO" property="payingMercNo" jdbcType="VARCHAR" />
+    <result column="PAYING_MERC_NAME" property="payingMercName" jdbcType="VARCHAR" />
+    <result column="CHN_BAL" property="chnBal" jdbcType="DECIMAL" />
+    <result column="CHN_AVAI_BAL" property="chnAvaiBal" jdbcType="DECIMAL" />
+    <result column="CHN_FREEZE_BAL" property="chnFreezeBal" jdbcType="DECIMAL" />
+    <result column="CCY" property="ccy" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CHN_FEE_BAL" property="chnFeeBal" jdbcType="DECIMAL" />
+    <result column="CHN_IN_AMT" property="chnInAmt" jdbcType="DECIMAL" />
+    <result column="CHN_OUT_AMT" property="chnOutAmt" jdbcType="DECIMAL" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MERC_NO, CHANNEL_CODE, PAYING_MERC_NO, PAYING_MERC_NAME, CHN_BAL, CHN_AVAI_BAL, CHN_FREEZE_BAL, 
+    CCY, CREATE_TIME, CHN_FEE_BAL, CHN_IN_AMT, CHN_OUT_AMT, SORT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBalKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from dt_merchant_channel_bal
+    where MERC_NO = #{mercNo,jdbcType=VARCHAR}
+      and CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+      and PAYING_MERC_NO = #{payingMercNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBalKey" >
+    delete from dt_merchant_channel_bal
+    where MERC_NO = #{mercNo,jdbcType=VARCHAR}
+      and CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+      and PAYING_MERC_NO = #{payingMercNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+    insert into dt_merchant_channel_bal (MERC_NO, CHANNEL_CODE, PAYING_MERC_NO, 
+      PAYING_MERC_NAME, CHN_BAL, CHN_AVAI_BAL, 
+      CHN_FREEZE_BAL, CCY, CREATE_TIME, 
+      CHN_FEE_BAL, CHN_IN_AMT, CHN_OUT_AMT, 
+      SORT)
+    values (#{mercNo,jdbcType=VARCHAR}, #{channelCode,jdbcType=VARCHAR}, #{payingMercNo,jdbcType=VARCHAR}, 
+      #{payingMercName,jdbcType=VARCHAR}, #{chnBal,jdbcType=DECIMAL}, #{chnAvaiBal,jdbcType=DECIMAL}, 
+      #{chnFreezeBal,jdbcType=DECIMAL}, #{ccy,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{chnFeeBal,jdbcType=DECIMAL}, #{chnInAmt,jdbcType=DECIMAL}, #{chnOutAmt,jdbcType=DECIMAL}, 
+      #{sort,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+    insert into dt_merchant_channel_bal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mercNo != null" >
+        MERC_NO,
+      </if>
+      <if test="channelCode != null" >
+        CHANNEL_CODE,
+      </if>
+      <if test="payingMercNo != null" >
+        PAYING_MERC_NO,
+      </if>
+      <if test="payingMercName != null" >
+        PAYING_MERC_NAME,
+      </if>
+      <if test="chnBal != null" >
+        CHN_BAL,
+      </if>
+      <if test="chnAvaiBal != null" >
+        CHN_AVAI_BAL,
+      </if>
+      <if test="chnFreezeBal != null" >
+        CHN_FREEZE_BAL,
+      </if>
+      <if test="ccy != null" >
+        CCY,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="chnFeeBal != null" >
+        CHN_FEE_BAL,
+      </if>
+      <if test="chnInAmt != null" >
+        CHN_IN_AMT,
+      </if>
+      <if test="chnOutAmt != null" >
+        CHN_OUT_AMT,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mercNo != null" >
+        #{mercNo,jdbcType=VARCHAR},
+      </if>
+      <if test="channelCode != null" >
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payingMercNo != null" >
+        #{payingMercNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payingMercName != null" >
+        #{payingMercName,jdbcType=VARCHAR},
+      </if>
+      <if test="chnBal != null" >
+        #{chnBal,jdbcType=DECIMAL},
+      </if>
+      <if test="chnAvaiBal != null" >
+        #{chnAvaiBal,jdbcType=DECIMAL},
+      </if>
+      <if test="chnFreezeBal != null" >
+        #{chnFreezeBal,jdbcType=DECIMAL},
+      </if>
+      <if test="ccy != null" >
+        #{ccy,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chnFeeBal != null" >
+        #{chnFeeBal,jdbcType=DECIMAL},
+      </if>
+      <if test="chnInAmt != null" >
+        #{chnInAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="chnOutAmt != null" >
+        #{chnOutAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+    update dt_merchant_channel_bal
+    <set >
+      <if test="payingMercName != null" >
+        PAYING_MERC_NAME = #{payingMercName,jdbcType=VARCHAR},
+      </if>
+      <if test="chnBal != null" >
+        CHN_BAL = #{chnBal,jdbcType=DECIMAL},
+      </if>
+      <if test="chnAvaiBal != null" >
+        CHN_AVAI_BAL = #{chnAvaiBal,jdbcType=DECIMAL},
+      </if>
+      <if test="chnFreezeBal != null" >
+        CHN_FREEZE_BAL = #{chnFreezeBal,jdbcType=DECIMAL},
+      </if>
+      <if test="ccy != null" >
+        CCY = #{ccy,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chnFeeBal != null" >
+        CHN_FEE_BAL = #{chnFeeBal,jdbcType=DECIMAL},
+      </if>
+      <if test="chnInAmt != null" >
+        CHN_IN_AMT = #{chnInAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="chnOutAmt != null" >
+        CHN_OUT_AMT = #{chnOutAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where MERC_NO = #{mercNo,jdbcType=VARCHAR}
+      and CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+      and PAYING_MERC_NO = #{payingMercNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+    update dt_merchant_channel_bal
+    set PAYING_MERC_NAME = #{payingMercName,jdbcType=VARCHAR},
+      CHN_BAL = #{chnBal,jdbcType=DECIMAL},
+      CHN_AVAI_BAL = #{chnAvaiBal,jdbcType=DECIMAL},
+      CHN_FREEZE_BAL = #{chnFreezeBal,jdbcType=DECIMAL},
+      CCY = #{ccy,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CHN_FEE_BAL = #{chnFeeBal,jdbcType=DECIMAL},
+      CHN_IN_AMT = #{chnInAmt,jdbcType=DECIMAL},
+      CHN_OUT_AMT = #{chnOutAmt,jdbcType=DECIMAL},
+      SORT = #{sort,jdbcType=INTEGER}
+    where MERC_NO = #{mercNo,jdbcType=VARCHAR}
+      and CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+      and PAYING_MERC_NO = #{payingMercNo,jdbcType=VARCHAR}
+  </update>
+  
+  
+   <resultMap id="BaseResultMap2" type="cn.itbeien.common.entity.finance.MerchantChannelBalExt" >
+    <id column="MERC_NO" property="mercNo" jdbcType="VARCHAR" />
+    <id column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+    <id column="PAYING_MERC_NO" property="payingMercNo" jdbcType="VARCHAR" />
+    <result column="PAYING_MERC_NAME" property="payingMercName" jdbcType="VARCHAR" />
+    <result column="CHN_BAL" property="chnBal" jdbcType="DECIMAL" />
+    <result column="CHN_AVAI_BAL" property="chnAvaiBal" jdbcType="DECIMAL" />
+    <result column="CHN_FREEZE_BAL" property="chnFreezeBal" jdbcType="DECIMAL" />
+    <result column="CCY" property="ccy" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CHN_FEE_BAL" property="chnFeeBal" jdbcType="DECIMAL" />
+    <result column="CHN_IN_AMT" property="chnInAmt" jdbcType="DECIMAL" />
+    <result column="CHN_OUT_AMT" property="chnOutAmt" jdbcType="DECIMAL" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="PAY_TYPE" property="payType" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <!-- 查询下游商户可进行代付的通道列表 -->
+  <select id="selectMerchantChannelBalExtList" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" resultMap="BaseResultMap2">
+    select 
+		a.MERC_NO, a.CHANNEL_CODE, a.PAYING_MERC_NO, a.PAYING_MERC_NAME, a.CHN_BAL, TRUNCATE(IFNULL(a.CHN_AVAI_BAL,0),2) CHN_AVAI_BAL, a.CHN_FREEZE_BAL, a.
+    	CCY, a.CREATE_TIME, a.CHN_FEE_BAL, a.CHN_IN_AMT, a.CHN_OUT_AMT, a.SORT
+	from dt_merchant_channel_bal a left join dt_ext_merchant_info b  on a.CHANNEL_CODE = b.CHANNEL_CODE
+	     left join dt_pay_channel c on a.CHANNEL_CODE = c.CHANNEL_CODE
+	where a.MERC_NO = #{mercNo,jdbcType=VARCHAR} and c.PAY_FLAG='1' AND (b.PAY_TYPE='1' or b.PAY_TYPE='2') and a.CHN_AVAI_BAL>0
+	 <if test="channelCode != null" >
+       AND a.CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+     </if>
+     <if test="payingMercNo != null" >
+       AND a.PAYING_MERC_NO = #{payingMercNo,jdbcType=VARCHAR}
+     </if>
+	order by a.CHN_AVAI_BAL desc,a.CREATE_TIME asc,b.PAY_TYPE desc
+  </select>
+  
+  <!-- 查询下游商户可进行代付的通道列表 -->
+  <select id="selectNoPayForMerchantChannelBalExtList" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" resultMap="BaseResultMap2">
+    select 
+		a.MERC_NO, a.CHANNEL_CODE, a.PAYING_MERC_NO, a.PAYING_MERC_NAME, a.CHN_BAL, a.CHN_AVAI_BAL, a.CHN_FREEZE_BAL, a.
+    	CCY, a.CREATE_TIME, a.CHN_FEE_BAL, a.CHN_IN_AMT, a.CHN_OUT_AMT, a.SORT
+	from dt_merchant_channel_bal a left join dt_ext_merchant_info b  on a.CHANNEL_CODE = b.CHANNEL_CODE
+	     left join dt_pay_channel c on a.CHANNEL_CODE = c.CHANNEL_CODE
+	where a.MERC_NO = #{mercNo,jdbcType=VARCHAR} and a.CHN_AVAI_BAL>0
+	 <if test="channelCode != null" >
+       AND a.CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+     </if>
+     <if test="payingMercNo != null" >
+       AND a.PAYING_MERC_NO = #{payingMercNo,jdbcType=VARCHAR}
+     </if>
+	order by a.CREATE_TIME asc
+  </select>
+  
+  <update id="updateFreezeAmtByPrimaryKey" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+    update dt_merchant_channel_bal
+    set
+      CHN_AVAI_BAL = CHN_AVAI_BAL - #{chnFreezeBal},
+      CHN_BAL = CHN_BAL - #{chnFeeBal} - #{chnFeeBal},
+      CHN_FREEZE_BAL = CHN_FREEZE_BAL + #{chnFreezeBal} + #{chnFeeBal},
+      CHN_FEE_BAL = CHN_FEE_BAL + #{chnFeeBal},
+      CHN_OUT_AMT = CHN_OUT_AMT + #{chnFreezeBal} + #{chnFeeBal}
+    where MERC_NO = #{mercNo,jdbcType=VARCHAR}
+      and CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+      and PAYING_MERC_NO = #{payingMercNo,jdbcType=VARCHAR}
+  </update>
+  
+   <!-- 批量更新，扣除对应通道金额 -->
+   <update id="batchUpdateAvaiBal" parameterType="java.util.List">
+        <!-- 接收list参数，循环着组装sql语句，注意for循环的写法
+             separator=";" 代表着每次循环完，在sql后面放一个分号
+             item="cus" 循环List的每条的结果集
+             collection="list" list 即为 map传过来的参数key -->
+        <foreach collection="list" separator=";" item="chooseChns">
+            update dt_merchant_channel_bal
+            set
+		      CHN_AVAI_BAL = CHN_AVAI_BAL - #{chooseChns.chnAvaiBal}-#{chooseChns.chnFeeBal},
+		      CHN_BAL = CHN_BAL-#{chooseChns.chnAvaiBal}-#{chooseChns.chnFeeBal},
+		      CHN_FEE_BAL = CHN_FEE_BAL + #{chooseChns.chnFeeBal},
+		      CHN_OUT_AMT = CHN_OUT_AMT + #{chooseChns.chnOutAmt}
+		    where MERC_NO = #{chooseChns.mercNo,jdbcType=VARCHAR}
+		      and CHANNEL_CODE = #{chooseChns.channelCode,jdbcType=VARCHAR}
+		      and PAYING_MERC_NO = #{chooseChns.payingMercNo,jdbcType=VARCHAR}
+        </foreach>
+   </update>
+</mapper>

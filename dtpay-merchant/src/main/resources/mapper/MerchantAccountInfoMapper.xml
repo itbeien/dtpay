@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itbeien.merchant.mapper.download.MerchantAccountInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.itbeien.common.entity.merchant.MerchantAccountInfo">
+    <id column="ID" jdbcType="CHAR" property="id" />
+    <result column="MERC_NO" jdbcType="VARCHAR" property="mercNo" />
+    <result column="MERC_NICK_NAME" jdbcType="VARCHAR" property="mercNickName" />
+    <result column="FILE_NAME" jdbcType="VARCHAR" property="fileName" />
+    <result column="FILE_PATH" jdbcType="VARCHAR" property="filePath" />
+    <result column="FILE_SIZE" jdbcType="VARCHAR" property="fileSize" />
+    <result column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MERC_NO, MERC_NICK_NAME, FILE_NAME, FILE_PATH, FILE_SIZE, START_DATE, END_DATE, 
+    CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dt_merchant_account_info
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  
+  <select id="selectAll" parameterType="cn.itbeien.common.vo.merchant.MerchantAccountInfoVo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dt_merchant_account_info
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=CHAR}
+      </if>
+      <if test="mercNo != null">
+         AND MERC_NO = #{mercNo,jdbcType=VARCHAR}
+      </if>
+      <if test="mercNickName != null">
+         AND MERC_NICK_NAME = #{mercNickName,jdbcType=VARCHAR}
+      </if>
+      <if test="fileName != null">
+         AND FILE_NAME = #{fileName,jdbcType=VARCHAR}
+      </if>
+      <if test="filePath != null">
+         AND FILE_PATH = #{filePath,jdbcType=VARCHAR}
+      </if>
+      <if test="fileSize != null">
+        AND  FILE_SIZE = #{fileSize,jdbcType=VARCHAR}
+      </if>
+      <if test="startDate != null">
+         AND START_DATE = #{startDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endDate != null">
+         AND END_DATE = #{endDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null">
+         AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+         AND UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dt_merchant_account_info
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.itbeien.common.entity.merchant.MerchantAccountInfo">
+    insert into dt_merchant_account_info (ID, MERC_NO, MERC_NICK_NAME, 
+      FILE_NAME, FILE_PATH, FILE_SIZE, 
+      START_DATE, END_DATE, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=CHAR}, #{mercNo,jdbcType=VARCHAR}, #{mercNickName,jdbcType=VARCHAR}, 
+      #{fileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{fileSize,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.itbeien.common.entity.merchant.MerchantAccountInfo">
+    insert into dt_merchant_account_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="mercNo != null">
+        MERC_NO,
+      </if>
+      <if test="mercNickName != null">
+        MERC_NICK_NAME,
+      </if>
+      <if test="fileName != null">
+        FILE_NAME,
+      </if>
+      <if test="filePath != null">
+        FILE_PATH,
+      </if>
+      <if test="fileSize != null">
+        FILE_SIZE,
+      </if>
+      <if test="startDate != null">
+        START_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="mercNo != null">
+        #{mercNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mercNickName != null">
+        #{mercNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itbeien.common.entity.merchant.MerchantAccountInfo">
+    update dt_merchant_account_info
+    <set>
+      <if test="mercNo != null">
+        MERC_NO = #{mercNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mercNickName != null">
+        MERC_NICK_NAME = #{mercNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        FILE_SIZE = #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.itbeien.common.entity.merchant.MerchantAccountInfo">
+    update dt_merchant_account_info
+    set MERC_NO = #{mercNo,jdbcType=VARCHAR},
+      MERC_NICK_NAME = #{mercNickName,jdbcType=VARCHAR},
+      FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      FILE_SIZE = #{fileSize,jdbcType=VARCHAR},
+      START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

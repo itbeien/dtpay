@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.merchant.mapper.finance.IMerchantAccRelMapper">
+
+	<select id="getMerchantAccRel" parameterType="java.lang.String" resultType="cn.itbeien.common.vo.merchant.MerchantAccRelVO">
+		SELECT
+		<trim suffixOverrides=",">
+			mar.MERC_NO,
+			TRUNCATE(IFNULL(mar.ACCT_bal,0),2) acctBal,
+			TRUNCATE(IFNULL(mar.Freeze_bal,0),2) freezeBal,
+			TRUNCATE(IFNULL(mar.AccT_avai_bal,0),2) acctAvaiBal,
+			TRUNCATE(IFNULL(mar.Freeze_bal,0)+IFNULL(mar.FREEZE_AMT,0),2) amountInWay,
+			mar.UPDATE_TIME updateTime,
+			<!-- mi.MERC_SETT_ACCT_NM mercSettAcctNm, -->
+			CONCAT('*',RIGHT(mi.MERC_SETT_ACCT_NM,CHAR_LENGTH(mi.MERC_SETT_ACCT_NM)-1)) mercSettAcctNm,<!-- 结算账户 -->
+			<!-- mi.MERC_SETT_ACCT mercSettAcct, -->
+			CONCAT('****',RIGHT(mi.MERC_SETT_ACCT,CHAR_LENGTH(mi.MERC_SETT_ACCT)-4)) mercSettAcct,<!-- 结算银行卡号 -->
+			mi.PAY_FEE_FLAG payFeeFlag,<!-- 1:按笔收费(代付时才按笔收费)固定值;2:按比例收费 -->
+			<!-- mi.PAY_FEE_VALUE payFeeValue, 当费率类型FEE_FLAG为1:固定值时,该值为手续费金额;当费率类型FLAG为 2:按比例时,该值为手续费比例 -->
+			TRUNCATE(IFNULL(mi.PAY_FEE_VALUE,0),2) payFeeValue,
+		</trim>
+		FROM dt_merchant_acc_rel mar
+		LEFT JOIN dt_merchant_info mi ON mar.MERC_NO=mi.MERC_NO
+		<where>
+			<if test="mercNo != null and mercNo != ''">
+				AND mar.MERC_NO=#{mercNo}
+			</if>
+		</where>
+		ORDER BY mar.UPDATE_TIME DESC
+	</select>
+	
+	<select id="getSettlementInfo" parameterType="java.lang.String" resultType="cn.itbeien.common.vo.merchant.MerchantAccRelVO">
+		SELECT
+		<trim suffixOverrides=",">
+			mar.ACCT_bal acctBal,
+			mar.Freeze_bal freezeBal,
+			mar.AccT_avai_bal acctAvaiBal,
+			mar.UPDATE_TIME updateTime,
+			mi.MERC_SETT_BANK mercSettBank,<!--  -->
+			mi.MERC_SETT_ACCT_NM mercSettAcctNm,<!-- 结算账户 -->
+			mi.MERC_SETT_ACCT mercSettAcct,<!-- 结算银行卡号 -->
+			mi.PAY_FEE_FLAG payFeeFlag,<!-- 1:按笔收费(代付时才按笔收费)固定值;2:按比例收费 -->
+			mi.PAY_FEE_VALUE payFeeValue,<!-- 当费率类型FEE_FLAG为1:固定值时,该值为手续费金额;当费率类型FLAG为 2:按比例时,该值为手续费比例 -->
+		</trim>
+		FROM dt_merchant_acc_rel mar
+		LEFT JOIN dt_merchant_info mi ON mar.MERC_NO=mi.MERC_NO
+		<where>
+		    1=1
+			<if test="mercNo != null and mercNo != ''">
+				AND mar.MERC_NO=#{mercNo}
+			</if>
+		</where>
+	</select>
+
+</mapper>

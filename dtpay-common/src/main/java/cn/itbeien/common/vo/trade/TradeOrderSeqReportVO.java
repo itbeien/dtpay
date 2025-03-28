@@ -1,7 +1,7 @@
-package cn.itbeien.merchant.mapper.trade;
+package cn.itbeien.common.vo.trade;
 
+import lombok.Data;
 
-import cn.itbeien.common.entity.trade.TradeOrder;
 /**
  * @author itbeien
  * 项目网站：https://www.itbeien.cn
@@ -10,8 +10,8 @@ import cn.itbeien.common.entity.trade.TradeOrder;
  * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
  * Copyright© 2025 itbeien
  */
-public interface ITradeOrderDao {
-
-    TradeOrder selectByPrimaryKey(String orderId);
-
+@Data
+public class TradeOrderSeqReportVO {
+    private Integer count;
+    private Double sumAmt;
 }

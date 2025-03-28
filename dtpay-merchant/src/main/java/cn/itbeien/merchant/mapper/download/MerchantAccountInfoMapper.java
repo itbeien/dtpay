@@ -1,8 +1,7 @@
 package cn.itbeien.merchant.mapper.download;
 
-
-import cn.itbeien.common.entity.MerchantAccountInfo;
-import cn.itbeien.common.vo.MerchantAccountInfoVo;
+import cn.itbeien.common.entity.merchant.MerchantAccountInfo;
+import cn.itbeien.common.vo.merchant.MerchantAccountInfoVo;
 
 import java.util.List;
 

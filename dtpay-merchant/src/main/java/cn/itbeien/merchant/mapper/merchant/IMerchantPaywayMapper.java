@@ -1,9 +1,8 @@
 package cn.itbeien.merchant.mapper.merchant;
 
-import org.springframework.stereotype.Repository;
+import cn.itbeien.common.entity.merchant.MerchantPaywayMapping;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author itbeien
@@ -17,9 +16,9 @@ public interface IMerchantPaywayMapper {
 	
 	/**
 	 * 获取商户对应上游的产品列表
-	 * @param param
+	 * @param mercNo
 	 * @return
 	 */
-	public List<Map<String, Object>> getMerchantPaywayList(Map<String, Object> param);
+	public List<MerchantPaywayMapping> getMerchantPaywayList(String mercNo);
 
 }

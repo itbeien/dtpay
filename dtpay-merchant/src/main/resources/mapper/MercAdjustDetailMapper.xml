@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.merchant.mapper.finance.IMercAdjustDetailMapper">
+
+	<select id="getMercAdjustDetailList" parameterType="cn.itbeien.common.vo.merchant.MercAdjustDetailVO" resultType="cn.itbeien.common.entity.merchant.MercAdjustDetail">
+		SELECT
+		<trim suffixOverrides=",">
+			mda.ID id,
+			mda.ORDER_ID orderId,
+			mda.UPDATE_TIME updateTime,
+			mda.adjust_AMT adjustAMT,
+			mda.DYNAMIC dynamic,
+		</trim>
+		FROM dt_merc_adjust_detail mda
+		<where>
+			<if test="mercNo != null and mercNo != ''">
+				AND mda.MERC_NO=#{mercNo}
+			</if>
+			<if test="id != null and id != ''">
+				AND mda.ID=#{id}
+			</if>
+			<if test="orderId != null and orderId != ''">
+				AND mda.ORDER_ID=#{orderId}
+			</if>
+			<if test="dynamic != null and dynamic != ''">
+				AND mda.DYNAMIC=#{dynamic}
+			</if>		
+		    <if test="startDate != null and startDate != ''" >
+		        AND mda.UPDATE_TIME &gt;= str_to_date(#{startDate},'%Y-%m-%d %H')
+		    </if>
+		     <if test="endDate != null and endDate != ''" >
+		        AND mda.UPDATE_TIME &lt; str_to_date(#{endDate},'%Y-%m-%d %H')
+		     </if>			
+		</where>
+		ORDER BY mda.UPDATE_TIME DESC
+	</select>
+
+</mapper>

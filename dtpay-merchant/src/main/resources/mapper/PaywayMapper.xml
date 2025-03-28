@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.merchant.mapper.common.IPaywayMapper">
+
+	<select id="getList"  resultType="cn.itbeien.common.entity.pay.Payway">
+		SELECT
+		<trim suffixOverrides=",">
+			p.PAYWAY_CODE paywayCode,
+			p.PAYWAY_NAME paywayName
+		</trim>
+		FROM dt_payway p 
+		<where>
+			<if test="paywayCode != null and paywayCode != ''">
+				AND p.PAYWAY_CODE = #{paywayCode}
+			</if>
+			<if test="paywayName != null and paywayName != ''">
+				AND p.PAYWAY_NAME = #{paywayName}
+			</if>
+		</where>
+	</select>
+
+</mapper>

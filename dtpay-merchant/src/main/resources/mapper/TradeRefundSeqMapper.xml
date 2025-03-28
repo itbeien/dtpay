@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.merchant.mapper.trade.ITradeRefundSeqMapper">
+
+	<select id="getTradeRefundSeqList" parameterType="cn.itbeien.common.vo.trade.TradeOrderSeqVO" resultType="cn.itbeien.common.entity.trade.TradeRefundSeq">
+		SELECT
+		<trim suffixOverrides=",">
+			trs.MERC_REFUND_NO mercRefundNo,
+			trs.ORG_MERC_ORDER_NO orgMercOrderNo,
+			trs.ORG_ORDER_ID orgOrderId,
+			FORMAT(IFNULL(trs.REFUND_AMOUNT,0),2) refundAmount,
+			p.PAYWAY_NAME paywayName,
+			ps.SCENE_NAME sceneName,
+			trs.CREATE_TIME createTime,
+			trs.REFUND_COMPLETE_TIME completeTime,
+			trs.REFUND_STATUS status,
+			trs.REFUND_REASON refundReason,
+		</trim>
+		FROM dt_trade_refund_seq trs
+		LEFT JOIN dt_payway p ON trs.PAYWAY_CODE=p.PAYWAY_CODE
+		LEFT JOIN dt_pay_scenes ps ON trs.SCENE_CODE=ps.SCENE_CODE
+		<where>
+		    1=1
+			<if test="mercNo != null and mercNo != ''">
+				AND trs.MERC_NO=#{mercNo}
+			</if>
+			<if test="orderId != null and orderId != ''">
+				AND trs.ORDER_ID=#{orderId}
+			</if>
+			<if test="status != null and status != ''">
+				AND trs.REFUND_STATUS=#{status}
+			</if>
+			<if test="paywayCode != null and paywayCode != ''">
+				AND trs.PAYWAY_CODE=#{paywayCode}
+			</if>
+			<if test="sceneCode != null and sceneCode != ''">
+				AND trs.SCENE_CODE=#{sceneCode}
+			</if>			
+		    <if test="startDate != null and startDate != ''" >
+		        AND trs.CREATE_TIME &gt;= str_to_date(#{startDate},'%Y-%m-%d %H:%i:%s')
+		    </if>
+		     <if test="endDate != null and endDate != ''" >
+		        AND trs.CREATE_TIME &lt; str_to_date(#{endDate},'%Y-%m-%d %H:%i:%s')
+		     </if>	
+		</where>
+		ORDER BY trs.CREATE_TIME DESC
+	</select>
+
+</mapper>

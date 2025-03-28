@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.merchant.mapper.trade.ITradeOrderMapper" >
+  <resultMap id="BaseResultMap" type="cn.itbeien.common.entity.trade.TradeOrder" >
+    <id column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="MERC_NO" property="mercNo" jdbcType="VARCHAR" />
+    <result column="MERC_ORDER_NO" property="mercOrderNo" jdbcType="VARCHAR" />
+    <result column="TRADE_TYPE" property="tradeType" jdbcType="VARCHAR" />
+    <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
+    <result column="BODY" property="body" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="DECIMAL" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="ORDER_IP" property="orderIp" jdbcType="VARCHAR" />
+    <result column="RETURN_URL" property="returnUrl" jdbcType="VARCHAR" />
+    <result column="NOTIFY_URL" property="notifyUrl" jdbcType="VARCHAR" />
+    <result column="REFERER_URL" property="refererUrl" jdbcType="VARCHAR" />
+    <result column="ORDER_PERIOD" property="orderPeriod" jdbcType="DECIMAL" />
+    <result column="EXPIRE_TIME" property="expireTime" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_STATUS" property="payStatus" jdbcType="CHAR" />
+    <result column="IS_REFUND" property="isRefund" jdbcType="CHAR" />
+    <result column="REFUND_TIMES" property="refundTimes" jdbcType="DECIMAL" />
+    <result column="SUCCESS_REFUND_AMOUNT" property="successRefundAmount" jdbcType="DECIMAL" />
+    <result column="TERM_TYPE" property="termType" jdbcType="CHAR" />
+    <result column="FEE_VALUE" property="feeValue" jdbcType="DECIMAL" />
+    <result column="SIGN_TYPE" property="signType" jdbcType="VARCHAR" />
+    <result column="CHARSET" property="charset" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="LOCALE" property="locale" jdbcType="VARCHAR" />
+    <result column="CURRENCY" property="currency" jdbcType="VARCHAR" />
+    <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="IS_STATIC" property="isStatic" jdbcType="CHAR" />
+    <result column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+    <result column="PAYWAY_CODE" property="paywayCode" jdbcType="VARCHAR" />
+    <result column="SCENE_CODE" property="sceneCode" jdbcType="VARCHAR" />
+    <result column="COMPLETE_TIME" property="completeTime" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+	    t.ORDER_ID, t.MERC_NO, t.MERC_ORDER_NO, t.TRADE_TYPE, t.SUBJECT, t.BODY, t.ORDER_AMOUNT, t.ORDER_TIME, 
+	    t.ORDER_IP, t.RETURN_URL, t.NOTIFY_URL, t.REFERER_URL, t.ORDER_PERIOD, t.EXPIRE_TIME, t.REMARK, 
+	    t.CREATE_TIME, t.PAY_STATUS, t.IS_REFUND, t.REFUND_TIMES, t.SUCCESS_REFUND_AMOUNT, t.TERM_TYPE, 
+	    t.FEE_VALUE, t.SIGN_TYPE, t.CHARSET, t.VERSION, t.LOCALE, t.CURRENCY, t.OPEN_ID, t.APP_ID, 
+	    t.CHANNEL_CODE, t.PAYWAY_CODE, t.SCENE_CODE,
+	    ts.COMPLETE_TIME,ts.`STATUS`
+    from dt_trade_order t inner join  dt_trade_order_seq ts on ts.ORDER_ID = t.ORDER_ID
+    where t.ORDER_ID = #{orderId,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

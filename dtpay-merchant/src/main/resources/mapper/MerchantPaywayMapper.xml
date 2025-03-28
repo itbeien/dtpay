@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.merchant.mapper.merchant.IMerchantPaywayMapper">
+
+	<select id="getMerchantPaywayList" parameterType="java.lang.String" resultType="cn.itbeien.common.entity.merchant.MerchantPaywayMapping">
+		SELECT
+		<trim suffixOverrides=",">
+			p.PAYWAY_NAME paywayName,
+			ps.SCENE_NAME sceneName,
+			mpm.MERC_FEE_VALUE mercFeeValue,
+			mpm.STATUS status,
+		</trim>
+		FROM dt_merchant_payway_mapping mpm
+		LEFT JOIN dt_payway p ON mpm.PAYWAY_CODE=p.PAYWAY_CODE
+		LEFT JOIN dt_pay_scenes ps ON mpm.SCENE_CODE= ps.SCENE_CODE
+		<where>
+			<if test="mercNo != null and mercNo != ''">
+				AND mpm.MERC_NO = #{mercNo}
+			</if>
+			<!-- AND mpm.STATUS!='09' -->
+			AND mpm.STATUS IN('01','02','03')
+		</where>
+	</select>
+
+</mapper>

@@ -1,5 +1,7 @@
 package cn.itbeien.merchant.mapper.common;
 
+import cn.itbeien.common.entity.merchant.CusLoginRecord;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,8 +13,10 @@ import java.util.Map;
  * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
  * Copyright© 2025 itbeien
  */
-public interface IPaywayDao {
+public interface IUserLoginRecordMapper {
 
-	public List<Map<String, Object>> getList(Map<String, Object> param);
+	public int insertRecordOne(CusLoginRecord param);
+
+	public List<CusLoginRecord> getUserLoginRecordList(CusLoginRecord param);
 	
 }

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.merchant.mapper.trade.IPlatPayDetailMapper">
+
+	<select id="getPlatPayDetailList" parameterType="cn.itbeien.common.vo.trade.PlatPayDetailQryPar" resultType="cn.itbeien.common.entity.trade.PlatPayDetail">
+		SELECT
+		<trim suffixOverrides=",">
+			ppd.PAY_ID orderId,
+			ppd.MERC_ORDER_NO mercOrderNo,
+			FORMAT(IFNULL(ppd.TRANS_AMT,0),2) orderAmount,
+			ppd.FEE_VALUE feeValue,
+			ppd.TRADE_TIME tradeTime,
+			ppd.SETTLE_TIME settleTime,
+			ppd.STATUS status,
+			ppd.PLAT_BATCH_NO platBatchNo,
+			ppd.MERC_BATCH_NO mercBatchNo,
+		</trim>
+		FROM dt_plat_pay_detail ppd
+		<where>
+		    1=1
+			<if test="mercNo != null and mercNo != ''">
+				AND ppd.MERC_NO=#{mercNo}
+			</if>
+			<if test="orderId != null and orderId != ''">
+				AND ppd.PAY_ID=#{orderId}
+			</if>
+			<if test="status != null and status != ''">
+				AND ppd.STATUS=#{status}
+			</if>
+			<if test="tradeType != null and tradeType != ''">
+				AND ppd.TRADE_TYPE=#{tradeType}
+			</if>
+		    <if test="startDate != null and startDate != ''" >
+		        AND ppd.TRADE_TIME &gt;= str_to_date(#{startDate},'%Y-%m-%d %H:%i:%s')
+		    </if>
+		     <if test="endDate != null and endDate != ''" >
+		        AND ppd.TRADE_TIME &lt; str_to_date(#{endDate},'%Y-%m-%d %H:%i:%s')
+		     </if>	
+		     ORDER BY ppd.TRADE_TIME DESC	
+		</where>
+	</select>
+	
+	<select id="getSettlementList" parameterType="cn.itbeien.common.vo.trade.PlatPayDetailQryPar" resultType="cn.itbeien.common.entity.trade.PlatPayDetail">
+		SELECT
+		<trim suffixOverrides=",">
+			ppd.PAY_ID payId,
+			ppd.TO_ACCT_NAME toAcctName,
+			ppd.TO_ACCT_NO toAcctNo,
+			FORMAT(IFNULL(ppd.TRANS_AMT,0),2) transAmt,
+			FORMAT(IFNULL(ppd.FEE_VALUE,0),2)  feeValue,
+			ppd.TRADE_TIME tradeTime,
+			ppd.SETTLE_TIME settleTime,
+			ppd.STATUS status,
+		</trim>
+		FROM dt_plat_pay_detail ppd
+		<where>
+		    1=1
+			<if test="mercNo != null and mercNo != ''">
+				AND ppd.MERC_NO=#{mercNo}
+			</if>
+			<if test="trandType != null and trandType != ''">
+				AND ppd.TRADE_TYPE=#{trandType}
+			</if>
+		</where>
+		ORDER BY ppd.TRADE_TIME DESC
+	</select>	
+	
+	<select id="getMerchantCapitalChangeList" parameterType="cn.itbeien.common.vo.trade.PlatPayDetailQryPar" resultType="cn.itbeien.common.entity.trade.TradeOrderSeq">
+		SELECT t.* FROM
+		(
+		SELECT
+		<trim suffixOverrides=",">
+			tos.TRADE_SEQ serialOrderId,
+			tos.MERC_ORDER_NO merchantOrderId,
+			tos.ORDER_ID platOrderId,
+			tos.COMPLETE_TIME varyTime,
+			FORMAT(IFNULL(tos.ORDER_AMOUNT,0),2) varyAmount,
+			tos.TRADE_TYPE tradeType,
+		</trim>
+		FROM dt_trade_order_seq tos
+		<where>
+			<if test="mercNo != null and mercNo != ''">
+				AND tos.MERC_NO=#{mercNo}
+			</if>
+		</where>
+		UNION ALL
+		SELECT
+		<trim suffixOverrides=",">
+			trs.REFUND_TRADE_SEQ serialOrderId,
+			trs.ORG_MERC_ORDER_NO merchantOrderId,
+			trs.ORG_ORDER_ID platOrderId,
+			trs.REFUND_COMPLETE_TIME varyTime,
+			trs.REFUND_AMOUNT varyAmount,
+			'00' tradeType,
+		</trim>
+		FROM dt_trade_refund_seq trs
+		<where>
+			<if test="mercNo != null and mercNo != ''">
+				AND trs.MERC_NO=#{mercNo}
+			</if>
+		</where>
+		UNION ALL
+		SELECT
+		<trim suffixOverrides=",">
+			ppd.RSFLD2 serialOrderId,
+			ppd.MERC_ORDER_NO merchantOrderId,
+			ppd.PAY_ID platOrderId,
+			ppd.SETTLE_TIME varyTime,
+			ppd.TRANS_AMT varyAmount,
+			ppd.TRADE_TYPE tradeType,
+		</trim>
+		FROM dt_plat_pay_detail ppd
+		<where>
+			<if test="tradeType != null and tradeType != ''">
+				AND ppd.TRADE_TYPE=#{tradeType}
+			</if>
+			<if test="mercNo != null and mercNo != ''">
+				AND ppd.MERC_NO=#{mercNo}
+			</if>
+		</where>
+		)t
+		<where>
+			<if test="tradeType != null and tradeType != ''">
+				AND t.tradeType=#{tradeType}
+			</if>
+			<if test="serialOrderId != null and serialOrderId != ''">
+				AND t.serialOrderId=#{serialOrderId}
+			</if>
+			<if test="merchantOrderId != null and merchantOrderId != ''">
+				AND t.merchantOrderId=#{merchantOrderId}
+			</if>
+			<if test="platOrderId != null and platOrderId != ''">
+				AND t.platOrderId=#{platOrderId}
+			</if>
+			<if test="startDate != null and startDate != ''" >
+		        AND t.varyTime &gt;= str_to_date(#{startDate},'%Y-%m-%d %H:%i:%s')
+		    </if>
+		     <if test="endDate != null and endDate != ''" >
+		        AND t.varyTime &lt; str_to_date(#{endDate},'%Y-%m-%d %H:%i:%s')
+		     </if>
+		</where>
+		ORDER BY t.varyTime DESC
+	</select>
+	
+	<insert id="saveSettlementInfo" parameterType="cn.itbeien.common.entity.trade.PlatPayDetail">
+		INSERT INTO dt_plat_pay_detail (
+		<trim suffixOverrides=",">
+			CREATE_TIME,
+			 TRADE_TIME,
+			<if test="payId != null and payId != ''">
+		      PAY_ID,
+		    </if>
+			<if test="mercNo != null and mercNo != ''">
+		      MERC_NO,
+		    </if>
+			<if test="payingMercNo != null and payingMercNo != ''">
+		      PAYING_MERC_NO,
+		    </if>
+			<if test="payingMercName != null and payingMercName != ''">
+		      PAYING_MERC_NAME,
+		    </if>
+			<if test="tradeType != null and tradeType != ''">
+		      TRADE_TYPE,
+		    </if>
+			<if test="service != null and service != ''">
+		      SERVICE,
+		    </if>
+			<if test="subMercNo != null and subMercNo != ''">
+		      SUB_MERC_NO,
+		    </if>
+			<if test="mercOrderNo != null and mercOrderNo != ''">
+		      MERC_ORDER_NO,
+		    </if>
+			<if test="toBankNo != null and toBankNo != ''">
+		      TO_BANK_NO,
+		    </if>
+		    <if test="toBankName != null and toBankName != ''">
+		      TO_BANK_NAME,
+		    </if>
+		    <if test="toAcctNo != null and toAcctNo != ''">
+		      TO_ACCT_NO,
+		    </if>
+		    <if test="toAcctName != null and toAcctName != ''">
+		      TO_ACCT_NAME,
+		    </if>
+		    <if test="acctType != null and acctType != ''">
+		      ACCT_TYPE,
+		    </if>
+		    <if test="transAmt != null and transAmt != ''">
+		      TRANS_AMT,
+		    </if>
+		    <if test="transUsage != null and transUsage != ''">
+		      TRANS_USAGE,
+		    </if>
+		    <if test="creator != null and creator != ''">
+		      CREATOR,
+		    </if>
+		    <if test="signType != null and signType != ''">
+		      SIGN_TYPE,
+		    </if>
+		    <if test="charset != null and charset != ''">
+		      CHARSET,
+		    </if>
+		    <if test="version != null and version != ''">
+		      VERSION,
+		    </if>
+		    <if test="locale != null and locale != ''">
+		      LOCALE,
+		    </if>
+		    <if test="currency != null and currency != ''">
+		      CURRENCY,
+		    </if>
+		    <if test="status != null and status != ''">
+		      STATUS,
+		    </if>
+		    <if test="interfaceCode != null and interfaceCode != ''">
+		      INTERFACE_CODE,
+		    </if>	
+		    <if test="retCode != null and retCode != ''">
+		      RET_CODE,
+		    </if>
+		    <if test="retDesc != null and retDesc != ''">
+		      RET_DESC,
+		    </if>
+		    <if test="respCode != null and respCode != ''">
+		      RESP_CODE,
+		    </if>
+		    <if test="respDesc != null and respDesc != ''">
+		      RESP_DESC,
+		    </if>
+		    <if test="apprStatus != null and apprStatus != ''">
+		      APPR_STATUS,
+		    </if>
+		    <if test="checkFlag != null and checkFlag != ''">
+		      CHECK_FLAG,
+		    </if>
+		   	<if test="feeValue != null and feeValue != ''">
+		      FEE_VALUE,
+		    </if>
+		</trim>   
+		)VALUES(
+		<trim suffixOverrides=",">
+			#{createTime},
+			#{createTime},
+			<if test="payId != null and payId != ''">
+		      #{payId},
+		    </if>
+			<if test="mercNo != null and mercNo != ''">
+		      #{mercNo},
+		    </if>
+			<if test="payingMercNo != null and payingMercNo != ''">
+		      #{payingMercNo},
+		    </if>
+			<if test="payingMercName != null and payingMercName != ''">
+		      #{payingMercName},
+		    </if>
+			<if test="tradeType != null and tradeType != ''">
+		      #{tradeType},
+		    </if>
+			<if test="service != null and service != ''">
+		      #{service},
+		    </if>
+			<if test="subMercNo != null and subMercNo != ''">
+		      #{subMercNo},
+		    </if>
+			<if test="mercOrderNo != null and mercOrderNo != ''">
+		      #{mercOrderNo},
+		    </if>
+			<if test="toBankNo != null and toBankNo != ''">
+		      #{toBankNo},
+		    </if>
+		    <if test="toBankName != null and toBankName != ''">
+		      #{toBankName},
+		    </if>
+		    <if test="toAcctNo != null and toAcctNo != ''">
+		      #{toAcctNo},
+		    </if>
+		    <if test="toAcctName != null and toAcctName != ''">
+		      #{toAcctName},
+		    </if>
+		    <if test="acctType != null and acctType != ''">
+		      #{acctType},
+		    </if>
+		    <if test="transAmt != null and transAmt != ''">
+		      #{transAmt},
+		    </if>
+		    <if test="transUsage != null and transUsage != ''">
+		      #{transUsage},
+		    </if>
+		    <if test="creator != null and creator != ''">
+		      #{creator},
+		    </if>
+		    <if test="signType != null and signType != ''">
+		      #{signType},
+		    </if>
+		    <if test="charset != null and charset != ''">
+		      #{charset},
+		    </if>
+		    <if test="version != null and version != ''">
+		      #{version},
+		    </if>
+		    <if test="locale != null and locale != ''">
+		      #{locale},
+		    </if>
+		    <if test="currency != null and currency != ''">
+		      #{currency},
+		    </if>
+		    <if test="status != null and status != ''">
+		      #{status},
+		    </if>
+		    <if test="interfaceCode != null and interfaceCode != ''">
+		      #{interfaceCode},
+		    </if>	
+		    <if test="retCode != null and retCode != ''">
+		      #{retCode},
+		    </if>
+		    <if test="retDesc != null and retDesc != ''">
+		     #{retDesc},
+		    </if>
+		    <if test="respCode != null and respCode != ''">
+		      #{respCode},
+		    </if>
+		    <if test="respDesc != null and respDesc != ''">
+		      #{respDesc},
+		    </if>
+		    <if test="apprStatus != null and apprStatus != ''">
+		      #{apprStatus},
+		    </if>
+		    <if test="checkFlag != null and checkFlag != ''">
+		      #{checkFlag},
+		    </if>
+		    <if test="feeValue != null and feeValue != ''">
+		      #{feeValue},
+		    </if>
+		</trim>
+		)
+	</insert>
+	
+	<!-- 查询代付汇总笔数和金额 -->
+   <select id="getpayForSumAmtAndCount" parameterType="cn.itbeien.common.vo.trade.PlatPayDetailQryPar" resultType="cn.itbeien.common.vo.trade.TradeOrderSeqReportVO">
+  	select 
+	     count(1) count,IFNULL(sum(a.TRANS_AMT),0) sumAmt
+	from dt_plat_pay_detail a 
+    <where>   
+      <if test="mercNo != null and mercNo !=''" >
+        AND a.MERC_NO = #{mercNo,jdbcType=VARCHAR}
+      </if>
+      <if test="mercOrderNo != null and mercOrderNo !=''" >
+        AND a.MERC_ORDER_NO = #{mercOrderNo,jdbcType=CHAR}
+      </if>
+      <if test="status != null and status !=''" >
+        AND a.STATUS = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="payId != null and payId !=''" >
+        AND a.PAY_ID = #{payId,jdbcType=VARCHAR}
+      </if>
+      <if test="startDate != null and startDate != ''" >
+        AND a.TRADE_TIME &gt;= str_to_date(#{startDate},'%Y-%m-%d %H:%i:%s')
+     </if>
+      <if test="endDate != null and endDate != ''" >
+        AND a.TRADE_TIME &lt; str_to_date(#{endDate},'%Y-%m-%d %H:%i:%s')
+      </if>	
+      <if test="tradeType != null and tradeType != ''">
+			AND ppd.TRADE_TYPE=#{tradeType}
+		</if>
+    </where>
+  </select>
+	
+</mapper>

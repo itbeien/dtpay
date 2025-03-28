@@ -1,6 +1,6 @@
 package cn.itbeien.merchant.mapper.finance;
 
-import java.util.Map;
+import cn.itbeien.common.vo.merchant.MerchantAccRelVO;
 
 /**
  * @author itbeien
@@ -14,17 +14,17 @@ public interface IMerchantAccRelMapper {
 	
 	/**
 	 * 查询商户资金
-	 * @param param
+	 * @param mercNo
 	 * @return
 	 */
-	public Map<String, Object> getMerchantAccRel(Map<String, Object> param);
+	public MerchantAccRelVO getMerchantAccRel(String mercNo);
 	
 	/**
 	 * 获取结算信息核对用户提交的申请结算方便保存数据到平台代付明细表
-	 * @param param
+	 * @param mercNo
 	 * @return
 	 */
-	public Map<String, Object> getSettlementInfo(Map<String, Object> param);
+	public MerchantAccRelVO getSettlementInfo(String mercNo);
 	
 	
 }
