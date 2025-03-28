@@ -62,16 +62,16 @@ dtpay服务端基于JDK17/21开发，开发工具IDEA2024.3.5，使用Maven3.9.9
 
 ## 6 服务端模块介绍
 
-| 子模块名称     | 模块描述             | 端口 |
-| :------------- | :------------------- | :--- |
-| dtpay-core     | 核心工具类           |      |
-| dtpay-service  | 公共服务类           |      |
-| dtpay-payment  | 支付交易系统         | 9028 |
-| dtpay-admin    | 运营平台             | 9029 |
-| dtpay-merchant | 商户平台             | 9030 |
-| dtpay-task     | 定时任务(佣金，对账) | 9031 |
-| dtpay-bi       | 报表系统             | 9032 |
-| dtpay-ewallet  | 电子钱包             | 9033 |
+| 子模块名称     | 模块描述               | 端口 |
+| :------------- | :--------------------- | :--- |
+| dtpay-common   | 核心工具、各模块通用类 |      |
+| dtpay-service  | 公共服务类             |      |
+| dtpay-payment  | 支付交易系统           | 9028 |
+| dtpay-admin    | 运营平台               | 9029 |
+| dtpay-merchant | 商户平台               | 9030 |
+| dtpay-task     | 定时任务(佣金，对账)   | 9031 |
+| dtpay-bi       | 报表系统               | 9032 |
+| dtpay-ewallet  | 电子钱包               | 9033 |
 
 ## 7 加入我的社群
 
