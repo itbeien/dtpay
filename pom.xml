@@ -11,6 +11,7 @@
         <module>dtpay-merchant</module>
         <module>dtpay-payment</module>
         <module>dtpay-admin</module>
+        <module>dtpay-common</module>
     </modules>
     <version>${revision}</version>
     <packaging>pom</packaging>
@@ -124,6 +125,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itbeien</groupId>
+                <artifactId>dtpay-common</artifactId>
+                <version>${revision}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

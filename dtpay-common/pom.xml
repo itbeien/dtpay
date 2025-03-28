@@ -9,13 +9,8 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>dtpay-admin</artifactId>
+    <artifactId>dtpay-common</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    </dependencies>
+
 
 </project>
