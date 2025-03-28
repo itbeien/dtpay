@@ -52,7 +52,7 @@ dtpay服务端基于JDK17/21开发，开发工具IDEA2024.3.5，使用Maven3.9.9
 | ShardingJDBC        | 分库分表框架                | Latest   | https://shardingsphere.apache.org/index_zh.html              |
 | Mockito             | Java Mock框架               | Latest   | https://github.com/mockito/mockito                           |
 | MyBatis             | 持久层框架                  | 3.5.19   | https://github.com/mybatis/mybatis-3                         |
-| Spring Data Redis   | redis客户端框架             | 3.4.4    | https://spring.io/projects/spring-data-redis                 |
+| Spring Data Redis   | Redis客户端框架             | 3.4.4    | https://spring.io/projects/spring-data-redis                 |
 | JWT                 | JWT是用于创建令牌的开放标准 | Latest   | https://jwt.io/ \| https://github.com/jwtk/jjwt              |
 | Seata               | 分布式事务框架              | Latest   | https://seata.apache.org/zh-cn/                              |
 | Sentinel            | 限流框架                    | Latest   | https://sentinelguard.io/zh-cn/index.html                    |
