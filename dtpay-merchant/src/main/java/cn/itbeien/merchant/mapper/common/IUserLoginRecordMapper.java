@@ -3,7 +3,6 @@ package cn.itbeien.merchant.mapper.common;
 import cn.itbeien.common.entity.merchant.CusLoginRecord;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author itbeien
