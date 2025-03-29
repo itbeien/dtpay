@@ -1,7 +1,6 @@
 package cn.itbeien.merchant.service.download.impl;
 
 import cn.itbeien.common.entity.merchant.MerchantAccountInfo;
-import cn.itbeien.common.vo.BootTable;
 import cn.itbeien.common.vo.merchant.MerchantAccountInfoVo;
 import cn.itbeien.merchant.mapper.download.MerchantAccountInfoMapper;
 import cn.itbeien.merchant.service.download.MerchantAccountInfoService;
@@ -56,9 +55,9 @@ public class MerchantAccountInfoServiceImpl implements MerchantAccountInfoServic
 	}
 	
 	@Override
-	public BootTable<MerchantAccountInfo> qryMerchantAccountByPage(MerchantAccountInfoVo param) throws DataAccessException {
+	public List<MerchantAccountInfo> qryMerchantAccountByPage(MerchantAccountInfoVo param) throws DataAccessException {
 		List<MerchantAccountInfo> list = this.selectAll(param);
-		return new BootTable<MerchantAccountInfo>(list);
+		return list;
 	}
 
 	@Override

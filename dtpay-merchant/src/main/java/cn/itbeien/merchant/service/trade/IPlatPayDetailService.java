@@ -7,6 +7,8 @@ import cn.itbeien.common.vo.trade.PlatPayDetailQryPar;
 import cn.itbeien.common.vo.trade.TradeOrderSeqReportVO;
 import org.springframework.dao.DataAccessException;
 
+import java.util.List;
+
 /**
  * @author itbeien
  * 项目网站：https://www.itbeien.cn
@@ -24,7 +26,7 @@ public interface IPlatPayDetailService {
 	 * @param param
 	 * @return
 	 */
-	public BootTable<PlatPayDetail> getPlatPayDetailList(PlatPayDetailQryPar param);
+	public List<PlatPayDetail> getPlatPayDetailList(PlatPayDetailQryPar param);
 	
 	/**
 	 * 商户资金变动表

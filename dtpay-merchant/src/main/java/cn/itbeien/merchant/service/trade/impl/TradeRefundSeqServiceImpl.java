@@ -25,9 +25,9 @@ public class TradeRefundSeqServiceImpl implements ITradeRefundSeqService {
 	private final ITradeRefundSeqMapper tradeRefundSeqMapper;
 
 	@Override
-	public BootTable<TradeRefundSeq> getTradeRefundSeqList(TradeOrderSeqVO param) {
+	public List<TradeRefundSeq> getTradeRefundSeqList(TradeOrderSeqVO param) {
 		List<TradeRefundSeq> list = tradeRefundSeqMapper.getTradeRefundSeqList(param);
-		return new BootTable<TradeRefundSeq>(list);
+		return list;
 	}
 
 }

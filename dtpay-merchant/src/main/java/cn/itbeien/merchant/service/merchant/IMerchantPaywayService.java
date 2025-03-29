@@ -2,7 +2,7 @@ package cn.itbeien.merchant.service.merchant;
 
 
 import cn.itbeien.common.entity.merchant.MerchantPaywayMapping;
-import cn.itbeien.common.vo.BootTable;
+import java.util.List;
 
 public interface IMerchantPaywayService {
 	
@@ -11,6 +11,6 @@ public interface IMerchantPaywayService {
 	 * @param param
 	 * @return
 	 */
-	public BootTable<MerchantPaywayMapping> getMerchantPaywayListByPage(String param) throws Exception;
+	public List<MerchantPaywayMapping> getMerchantPaywayListByPage(String param) throws Exception;
 	
 }

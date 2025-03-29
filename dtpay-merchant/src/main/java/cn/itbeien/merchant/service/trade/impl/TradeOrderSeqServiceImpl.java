@@ -26,9 +26,9 @@ public class TradeOrderSeqServiceImpl implements ITradeOrderSeqService {
 	private final ITradeOrderSeqMapper tradeOrderSeqMapper;
 
 	@Override
-	public BootTable<TradeOrderSeq> getTradeOrderSeqList(TradeOrderSeqVO param) {
+	public List<TradeOrderSeq> getTradeOrderSeqList(TradeOrderSeqVO param) {
 		List<TradeOrderSeq> list = tradeOrderSeqMapper.getTradeOrderSeqList(param);
-		return new BootTable<TradeOrderSeq>(list);
+		return list;
 	}
 
 	@Override

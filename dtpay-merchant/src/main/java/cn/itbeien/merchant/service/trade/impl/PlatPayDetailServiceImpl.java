@@ -30,9 +30,9 @@ public class PlatPayDetailServiceImpl implements IPlatPayDetailService {
 	private final IPlatPayDetailMapper platPayDetailMapper;
 
 	@Override
-	public BootTable<PlatPayDetail> getPlatPayDetailList(PlatPayDetailQryPar param) {
+	public List<PlatPayDetail> getPlatPayDetailList(PlatPayDetailQryPar param) {
 		List<PlatPayDetail> list = platPayDetailMapper.getPlatPayDetailList(param);
-		return new BootTable<PlatPayDetail>(list);
+		return list;
 	}
 
 	@Override

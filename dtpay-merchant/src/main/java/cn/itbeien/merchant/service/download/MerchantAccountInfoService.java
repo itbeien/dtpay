@@ -2,7 +2,6 @@ package cn.itbeien.merchant.service.download;
 
 
 import cn.itbeien.common.entity.merchant.MerchantAccountInfo;
-import cn.itbeien.common.vo.BootTable;
 import cn.itbeien.common.vo.merchant.MerchantAccountInfoVo;
 
 import java.util.List;
@@ -42,5 +41,5 @@ public interface MerchantAccountInfoService {
     
     List<MerchantAccountInfo> selectAll(MerchantAccountInfoVo record);
     
-    BootTable<MerchantAccountInfo> qryMerchantAccountByPage(MerchantAccountInfoVo param) ;
+    List<MerchantAccountInfo> qryMerchantAccountByPage(MerchantAccountInfoVo param) ;
 }

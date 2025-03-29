@@ -4,6 +4,8 @@ import cn.itbeien.common.entity.trade.TradeRefundSeq;
 import cn.itbeien.common.vo.BootTable;
 import cn.itbeien.common.vo.trade.TradeOrderSeqVO;
 
+import java.util.List;
+
 /**
  * @author itbeien
  * 项目网站：https://www.itbeien.cn
@@ -19,6 +21,6 @@ public interface ITradeRefundSeqService {
 	 * @param param
 	 * @return
 	 */
-	public BootTable<TradeRefundSeq> getTradeRefundSeqList(TradeOrderSeqVO param) throws Exception;
+	public List<TradeRefundSeq> getTradeRefundSeqList(TradeOrderSeqVO param) throws Exception;
 	
 }

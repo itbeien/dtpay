@@ -19,7 +19,7 @@ import java.util.List;
 public interface ITradeOrderSeqService {
 
 
-	public BootTable<TradeOrderSeq> getTradeOrderSeqList(TradeOrderSeqVO param);
+	public List<TradeOrderSeq> getTradeOrderSeqList(TradeOrderSeqVO param);
 	
 	
 	List<TradeOrderSeq> getTradeOrderList(TradeOrderSeqVO param);
