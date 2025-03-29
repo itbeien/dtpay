@@ -1,7 +1,10 @@
 package cn.itbeien.merchant.controller.account;
 
+import cn.itbeien.common.annotation.Anonymous;
+import cn.itbeien.common.controller.BaseController;
 import cn.itbeien.common.entity.merchant.CusLoginRecord;
-import cn.itbeien.common.vo.BootTable;
+import cn.itbeien.common.page.TableDataInfo;
+import cn.itbeien.common.vo.AjaxResult;
 import cn.itbeien.merchant.service.common.IUserLoginRecordService;
 import cn.itbeien.merchant.service.merchant.IMerchantInfoService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  * @author itbeien
@@ -26,7 +28,7 @@ import java.util.Map;
 @RequestMapping("/account")
 @RequiredArgsConstructor
 @Slf4j
-public class AccountController {
+public class AccountController extends BaseController {
 	
 	private final IUserLoginRecordService userLoginRecordServiceImpl;
 
@@ -37,27 +39,21 @@ public class AccountController {
 	 * @param request
 	 * @return
 	 */
+	@Anonymous
 	@RequestMapping("/accountInfo")
-	public String accountInfo(HttpServletRequest request) {
-		return "account/accountInfo";
+	public AjaxResult accountInfo(HttpServletRequest request) {
+		return success();
 	}
 	
 	/**
 	 * 账号登陆记录
-	 * @param pageNumber
-	 * @param pageSize
 	 * @return
 	 */
 	@RequestMapping("/accountList")
-	public Object accountList(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
-			@RequestParam(value = "pageSize", required = false) Integer pageSize) {
-		int pageNumber1 = null != pageNumber ?  pageNumber.intValue() : 1;
-		int pageSize1 = null != pageSize ? pageSize.intValue() : 10;
-		Map<String, Object> param = new HashMap<>();
-		param.put("pageNumber", pageNumber1);
-		param.put("pageSize", pageSize1);
-		BootTable<CusLoginRecord> bootTable = userLoginRecordServiceImpl.getUserLoginRecordList(null);
-		return bootTable;
+	public TableDataInfo accountList() {
+		startPage();
+		List<CusLoginRecord> list = userLoginRecordServiceImpl.getUserLoginRecordList(null);
+		return getDataTable(list);
 	}
 	
 	/**

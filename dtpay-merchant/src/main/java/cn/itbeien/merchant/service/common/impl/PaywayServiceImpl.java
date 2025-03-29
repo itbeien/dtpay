@@ -4,7 +4,6 @@ import cn.itbeien.common.entity.pay.Payway;
 import cn.itbeien.merchant.mapper.common.IPaywayMapper;
 import cn.itbeien.merchant.service.common.IPaywayService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

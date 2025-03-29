@@ -29,9 +29,9 @@ public class UserLoginRecordServiceImpl implements IUserLoginRecordService {
 	}
 
 	@Override
-	public BootTable<CusLoginRecord> getUserLoginRecordList(CusLoginRecord param) {
+	public List<CusLoginRecord> getUserLoginRecordList(CusLoginRecord param) {
 		List<CusLoginRecord> list = userLoginRecordMapper.getUserLoginRecordList(param);
-		return new BootTable<CusLoginRecord>(list);
+		return list;
 	}
 	
 

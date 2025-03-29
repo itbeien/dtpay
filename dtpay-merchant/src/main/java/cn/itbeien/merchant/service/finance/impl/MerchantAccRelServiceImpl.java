@@ -1,13 +1,12 @@
 package cn.itbeien.merchant.service.finance.impl;
 
 import cn.itbeien.common.entity.trade.PlatPayDetail;
-import cn.itbeien.common.util.UUID;
+import cn.itbeien.common.util.uuid.UUID;
 import cn.itbeien.common.vo.merchant.MerchantAccRelVO;
 import cn.itbeien.merchant.mapper.finance.IMerchantAccRelMapper;
 import cn.itbeien.merchant.mapper.trade.IPlatPayDetailMapper;
 import cn.itbeien.merchant.service.finance.IMerchantAccRelService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**

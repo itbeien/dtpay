@@ -3,6 +3,8 @@ package cn.itbeien.merchant.service.common;
 import cn.itbeien.common.entity.merchant.CusLoginRecord;
 import cn.itbeien.common.vo.BootTable;
 
+import java.util.List;
+
 /**
  * @author itbeien
  * 项目网站：https://www.itbeien.cn
@@ -15,6 +17,6 @@ public interface IUserLoginRecordService {
 
 	public boolean insertRecordOne(CusLoginRecord param);
 
-	public BootTable<CusLoginRecord> getUserLoginRecordList(CusLoginRecord param);
+	public List<CusLoginRecord> getUserLoginRecordList(CusLoginRecord param);
 
 }
