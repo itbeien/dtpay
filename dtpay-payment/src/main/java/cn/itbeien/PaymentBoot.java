@@ -1,5 +1,6 @@
-package cn.itbeien.payment;
+package cn.itbeien;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Copyright© 2025 itbeien
  */
 @SpringBootApplication
+@MapperScan
 public class PaymentBoot {
     public static void main(String[] args) {
         SpringApplication.run(PaymentBoot.class, args);
