@@ -1,4 +1,4 @@
-package cn.itbeien.common.mapper.trade;
+package cn.itbeien.payment.mapper.trade;
 
 import cn.itbeien.common.entity.trade.TradeOrder;
 import org.apache.ibatis.annotations.Param;

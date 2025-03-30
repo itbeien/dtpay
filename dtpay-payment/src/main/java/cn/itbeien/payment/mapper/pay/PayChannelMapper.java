@@ -1,4 +1,4 @@
-package cn.itbeien.common.mapper.pay;
+package cn.itbeien.payment.mapper.pay;
 
 
 import cn.itbeien.common.entity.pay.PayChannel;
