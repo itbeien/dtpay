@@ -2,8 +2,8 @@ package cn.itbeien.merchant.controller.finance;
 
 
 import cn.itbeien.common.controller.BaseController;
-import cn.itbeien.common.entity.finance.MerchantChannelBal;
-import cn.itbeien.common.entity.finance.MerchantChannelBalExt;
+import cn.itbeien.common.entity.merchant.MerchantChannelBal;
+import cn.itbeien.common.entity.merchant.MerchantChannelBalExt;
 import cn.itbeien.common.entity.merchant.MerchantInfo;
 import cn.itbeien.common.entity.trade.PlatPayDetail;
 import cn.itbeien.common.entity.trade.TradeOrderSeq;
@@ -11,14 +11,12 @@ import cn.itbeien.common.enums.TradeType;
 import cn.itbeien.common.enums.ZeroOneEnum;
 import cn.itbeien.common.page.TableDataInfo;
 import cn.itbeien.common.vo.AjaxResult;
-import cn.itbeien.common.vo.BootTable;
 import cn.itbeien.common.vo.merchant.MerchantAccRelVO;
 import cn.itbeien.common.vo.trade.PlatPayDetailQryPar;
 import cn.itbeien.merchant.service.finance.IMerchantAccRelService;
 import cn.itbeien.merchant.service.finance.IMerchantChannelBalService;
 import cn.itbeien.merchant.service.merchant.IMerchantInfoService;
 import cn.itbeien.merchant.service.trade.IPlatPayDetailService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

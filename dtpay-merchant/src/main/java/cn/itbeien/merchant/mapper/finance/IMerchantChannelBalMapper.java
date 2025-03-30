@@ -1,9 +1,9 @@
 package cn.itbeien.merchant.mapper.finance;
 
 
-import cn.itbeien.common.entity.finance.MerchantChannelBal;
-import cn.itbeien.common.entity.finance.MerchantChannelBalExt;
-import cn.itbeien.common.entity.finance.MerchantChannelBalKey;
+import cn.itbeien.common.entity.merchant.MerchantChannelBal;
+import cn.itbeien.common.entity.merchant.MerchantChannelBalExt;
+import cn.itbeien.common.entity.merchant.MerchantChannelBalKey;
 
 import java.util.List;
 /**

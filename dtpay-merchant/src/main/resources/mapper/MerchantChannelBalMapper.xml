@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.itbeien.merchant.mapper.finance.IMerchantChannelBalMapper" >
-  <resultMap id="BaseResultMap" type="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+  <resultMap id="BaseResultMap" type="cn.itbeien.common.entity.merchant.MerchantChannelBal" >
     <id column="MERC_NO" property="mercNo" jdbcType="VARCHAR" />
     <id column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
     <id column="PAYING_MERC_NO" property="payingMercNo" jdbcType="VARCHAR" />
@@ -20,7 +20,7 @@
     MERC_NO, CHANNEL_CODE, PAYING_MERC_NO, PAYING_MERC_NAME, CHN_BAL, CHN_AVAI_BAL, CHN_FREEZE_BAL, 
     CCY, CREATE_TIME, CHN_FEE_BAL, CHN_IN_AMT, CHN_OUT_AMT, SORT
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBalKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="cn.itbeien.common.entity.merchant.MerchantChannelBalKey" >
     select 
     <include refid="Base_Column_List" />
     from dt_merchant_channel_bal
@@ -28,13 +28,13 @@
       and CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
       and PAYING_MERC_NO = #{payingMercNo,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBalKey" >
+  <delete id="deleteByPrimaryKey" parameterType="cn.itbeien.common.entity.merchant.MerchantChannelBalKey" >
     delete from dt_merchant_channel_bal
     where MERC_NO = #{mercNo,jdbcType=VARCHAR}
       and CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
       and PAYING_MERC_NO = #{payingMercNo,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+  <insert id="insert" parameterType="cn.itbeien.common.entity.merchant.MerchantChannelBal" >
     insert into dt_merchant_channel_bal (MERC_NO, CHANNEL_CODE, PAYING_MERC_NO, 
       PAYING_MERC_NAME, CHN_BAL, CHN_AVAI_BAL, 
       CHN_FREEZE_BAL, CCY, CREATE_TIME, 
@@ -46,7 +46,7 @@
       #{chnFeeBal,jdbcType=DECIMAL}, #{chnInAmt,jdbcType=DECIMAL}, #{chnOutAmt,jdbcType=DECIMAL}, 
       #{sort,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+  <insert id="insertSelective" parameterType="cn.itbeien.common.entity.merchant.MerchantChannelBal" >
     insert into dt_merchant_channel_bal
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="mercNo != null" >
@@ -131,7 +131,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itbeien.common.entity.merchant.MerchantChannelBal" >
     update dt_merchant_channel_bal
     <set >
       <if test="payingMercName != null" >
@@ -169,7 +169,7 @@
       and CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
       and PAYING_MERC_NO = #{payingMercNo,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+  <update id="updateByPrimaryKey" parameterType="cn.itbeien.common.entity.merchant.MerchantChannelBal" >
     update dt_merchant_channel_bal
     set PAYING_MERC_NAME = #{payingMercName,jdbcType=VARCHAR},
       CHN_BAL = #{chnBal,jdbcType=DECIMAL},
@@ -187,7 +187,7 @@
   </update>
   
   
-   <resultMap id="BaseResultMap2" type="cn.itbeien.common.entity.finance.MerchantChannelBalExt" >
+   <resultMap id="BaseResultMap2" type="cn.itbeien.common.entity.merchant.MerchantChannelBalExt" >
     <id column="MERC_NO" property="mercNo" jdbcType="VARCHAR" />
     <id column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
     <id column="PAYING_MERC_NO" property="payingMercNo" jdbcType="VARCHAR" />
@@ -205,7 +205,7 @@
   </resultMap>
   
   <!-- 查询下游商户可进行代付的通道列表 -->
-  <select id="selectMerchantChannelBalExtList" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" resultMap="BaseResultMap2">
+  <select id="selectMerchantChannelBalExtList" parameterType="cn.itbeien.common.entity.merchant.MerchantChannelBal" resultMap="BaseResultMap2">
     select 
 		a.MERC_NO, a.CHANNEL_CODE, a.PAYING_MERC_NO, a.PAYING_MERC_NAME, a.CHN_BAL, TRUNCATE(IFNULL(a.CHN_AVAI_BAL,0),2) CHN_AVAI_BAL, a.CHN_FREEZE_BAL, a.
     	CCY, a.CREATE_TIME, a.CHN_FEE_BAL, a.CHN_IN_AMT, a.CHN_OUT_AMT, a.SORT
@@ -222,7 +222,7 @@
   </select>
   
   <!-- 查询下游商户可进行代付的通道列表 -->
-  <select id="selectNoPayForMerchantChannelBalExtList" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" resultMap="BaseResultMap2">
+  <select id="selectNoPayForMerchantChannelBalExtList" parameterType="cn.itbeien.common.entity.merchant.MerchantChannelBal" resultMap="BaseResultMap2">
     select 
 		a.MERC_NO, a.CHANNEL_CODE, a.PAYING_MERC_NO, a.PAYING_MERC_NAME, a.CHN_BAL, a.CHN_AVAI_BAL, a.CHN_FREEZE_BAL, a.
     	CCY, a.CREATE_TIME, a.CHN_FEE_BAL, a.CHN_IN_AMT, a.CHN_OUT_AMT, a.SORT
@@ -238,7 +238,7 @@
 	order by a.CREATE_TIME asc
   </select>
   
-  <update id="updateFreezeAmtByPrimaryKey" parameterType="cn.itbeien.common.entity.finance.MerchantChannelBal" >
+  <update id="updateFreezeAmtByPrimaryKey" parameterType="cn.itbeien.common.entity.merchant.MerchantChannelBal" >
     update dt_merchant_channel_bal
     set
       CHN_AVAI_BAL = CHN_AVAI_BAL - #{chnFreezeBal},

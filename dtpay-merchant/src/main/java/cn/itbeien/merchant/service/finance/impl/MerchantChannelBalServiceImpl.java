@@ -1,9 +1,9 @@
 package cn.itbeien.merchant.service.finance.impl;
 
 
-import cn.itbeien.common.entity.finance.MerchantChannelBal;
-import cn.itbeien.common.entity.finance.MerchantChannelBalExt;
-import cn.itbeien.common.entity.finance.MerchantChannelBalKey;
+import cn.itbeien.common.entity.merchant.MerchantChannelBal;
+import cn.itbeien.common.entity.merchant.MerchantChannelBalExt;
+import cn.itbeien.common.entity.merchant.MerchantChannelBalKey;
 import cn.itbeien.merchant.mapper.finance.IMerchantChannelBalMapper;
 import cn.itbeien.merchant.service.finance.IMerchantChannelBalService;
 import lombok.RequiredArgsConstructor;
