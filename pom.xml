@@ -12,6 +12,7 @@
         <module>dtpay-payment</module>
         <module>dtpay-admin</module>
         <module>dtpay-common</module>
+        <module>dtpay-task</module>
     </modules>
     <version>${revision}</version>
     <packaging>pom</packaging>
