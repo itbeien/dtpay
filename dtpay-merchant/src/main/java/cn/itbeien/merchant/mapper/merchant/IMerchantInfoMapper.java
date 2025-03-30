@@ -1,6 +1,7 @@
 package cn.itbeien.merchant.mapper.merchant;
 
 import cn.itbeien.common.entity.merchant.MerchantInfo;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author itbeien
@@ -31,7 +32,7 @@ public interface IMerchantInfoMapper {
 	 * @param mercNo
 	 * @return
 	 */
-	public int updatePasswd(String mercNo);
+	public int updatePasswd(@Param("mercNo") String mercNo, @Param("passwd") String passwd,@Param("defaultFlag")String defaultFlag);
 	
 	/**
 	 * 通过登陆账号ID获取商户身份证后六位初始化支付密码

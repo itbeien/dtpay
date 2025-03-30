@@ -11,6 +11,8 @@ import cn.itbeien.merchant.service.common.IUserLoginRecordService;
 import cn.itbeien.merchant.service.merchant.IMerchantInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +35,9 @@ public class AccountController extends BaseController {
 	private final IUserLoginRecordService userLoginRecordServiceImpl;
 
 	private final IMerchantInfoService merchantInfoServiceImpl;
-	
+
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	/**
 	 * 账号对应商户号信息
 	 * @param
@@ -70,9 +74,11 @@ public class AccountController extends BaseController {
 	 */
 	@Anonymous
 	@RequestMapping("/updatePass")
+	@PreAuthorize("@dss.hasPermi('dt:agent:list')")
 	public String updatePass(@Validated @RequestBody UserPwdVO userPwdVO) {
 		try{
-			merchantInfoServiceImpl.updatePasswd(null);
+			bCryptPasswordEncoder.matches(userPwdVO.getOldPass(), userPwdVO.getPassword());
+			merchantInfoServiceImpl.updatePasswd(null,null);
 		}catch(Exception e){
 			log.error("修改密码异常：", e);
 		}

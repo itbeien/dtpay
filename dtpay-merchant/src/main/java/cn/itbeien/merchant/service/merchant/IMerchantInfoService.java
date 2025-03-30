@@ -32,7 +32,7 @@ public interface IMerchantInfoService {
 	 * @param mercNo
 	 * @return
 	 */
-	public boolean updatePasswd(String mercNo) throws Exception;
+	public boolean updatePasswd(String mercNo,String passwd) throws Exception;
 	
 	/**
 	 * 通过登陆账号ID获取商户身份证后六位初始化支付密码

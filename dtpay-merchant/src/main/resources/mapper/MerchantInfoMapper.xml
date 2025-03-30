@@ -167,9 +167,6 @@
 				<when test="mercNo != null">
 					MERC_NO=#{mercNo}
 				</when>
-				<otherwise>
-					id = '0'
-				</otherwise>
 			</choose>
 		</where>
 	</update>

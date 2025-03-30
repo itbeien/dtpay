@@ -33,8 +33,8 @@ public class MerchantInfoServiceImpl implements IMerchantInfoService {
 	}
 
 	@Override
-	public boolean updatePasswd(String mercNo) {
-		return merchantInfoMapper.updatePasswd(mercNo) > 0;
+	public boolean updatePasswd(String mercNo,String passwd) {
+		return merchantInfoMapper.updatePasswd(mercNo,passwd,null) > 0;
 	}
 
 	@Override
