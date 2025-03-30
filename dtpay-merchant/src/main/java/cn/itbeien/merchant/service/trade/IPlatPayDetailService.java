@@ -19,7 +19,7 @@ import java.util.List;
  */
 public interface IPlatPayDetailService {
 	
-	public BootTable<PlatPayDetail> getSettlementListByPage(PlatPayDetailQryPar param);
+	public List<PlatPayDetail> getSettlementListByPage(PlatPayDetailQryPar param);
 
 	/**
 	 * 订单支付列表
@@ -33,7 +33,7 @@ public interface IPlatPayDetailService {
 	 * @param param
 	 * @return
 	 */
-	public BootTable<TradeOrderSeq> getMerchantCapitalChangeList(PlatPayDetailQryPar param);
+	public List<TradeOrderSeq> getMerchantCapitalChangeList(PlatPayDetailQryPar param);
 	
 	/**
 	 * @Title: getSumAmtAndCount

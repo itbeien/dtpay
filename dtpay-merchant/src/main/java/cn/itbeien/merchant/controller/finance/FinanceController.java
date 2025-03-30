@@ -1,6 +1,7 @@
 package cn.itbeien.merchant.controller.finance;
 
 
+import cn.itbeien.common.controller.BaseController;
 import cn.itbeien.common.entity.finance.MerchantChannelBal;
 import cn.itbeien.common.entity.finance.MerchantChannelBalExt;
 import cn.itbeien.common.entity.merchant.MerchantInfo;
@@ -8,6 +9,8 @@ import cn.itbeien.common.entity.trade.PlatPayDetail;
 import cn.itbeien.common.entity.trade.TradeOrderSeq;
 import cn.itbeien.common.enums.TradeType;
 import cn.itbeien.common.enums.ZeroOneEnum;
+import cn.itbeien.common.page.TableDataInfo;
+import cn.itbeien.common.vo.AjaxResult;
 import cn.itbeien.common.vo.BootTable;
 import cn.itbeien.common.vo.merchant.MerchantAccRelVO;
 import cn.itbeien.common.vo.trade.PlatPayDetailQryPar;
@@ -19,10 +22,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -41,7 +41,7 @@ import java.util.Map;
 @RequestMapping("/finance")
 @RequiredArgsConstructor
 @Slf4j
-public class FinanceController {
+public class FinanceController extends BaseController {
 	
 	private final IMerchantAccRelService merchantAccRelServiceImpl;
 
@@ -55,22 +55,22 @@ public class FinanceController {
 	private String gatewayUrl;
 	
 	/**
-	 * 商户账号资金
-	 * @param request
-	 * @return
+	 * @author itbeien
+	 * 项目网站：https://www.itbeien.cn
+	 * 公众号：贝恩聊架构
+	 * 全网同名，欢迎小伙伴们关注
+	 * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
+	 * 根据商户号获取 商户账号资金
+	 * Copyright© 2025 itbeien
 	 */
 	@RequestMapping("/settlementRecord")
-	public String settlementRecord(HttpServletRequest request){
-		Map<String, Object> param = new HashMap<>();
+	public AjaxResult settlementRecord(){
 		MerchantAccRelVO merchantAccRel = merchantAccRelServiceImpl.getMerchantAccRel(null);
-		request.setAttribute("merchantAccRel", merchantAccRel);
-		return "finance/settlementRecord";
+		return AjaxResult.success(merchantAccRel);
 	}
 	
 	/**
 	 * 账户可提金额
-	 * @param
-	 * @return
 	 */
 	@RequestMapping("/cashoutList")
 	@ResponseBody
@@ -138,26 +138,20 @@ public class FinanceController {
 	 * @return
 	 */
 	@RequestMapping("/settlementList")
-	public Object settlementList(PlatPayDetailQryPar platPayDetailQryPar) {
-		Map<String, Object> param = new HashMap<>();
-		param.put("trandType", TradeType.WITHDRAWALS.getCode());// 交易业务类型  ：01-支付 11-充值  02-代付  03-提现
-		BootTable<PlatPayDetail> bootTable = platPayDetailServiceImpl.getSettlementListByPage(platPayDetailQryPar);
-		return bootTable;
+	public TableDataInfo settlementList(@RequestBody PlatPayDetailQryPar platPayDetailQryPar) {
+		platPayDetailQryPar.setTradeType(TradeType.WITHDRAWALS.getCode());
+		List<PlatPayDetail> list = platPayDetailServiceImpl.getSettlementListByPage(platPayDetailQryPar);
+		return getDataTable(list);
 	}
-
-	@RequestMapping("/fundRecord")
-	public String fundRecord(){
-		return "finance/fundRecord";
-	}
-	
 	/**
 	 * 商户资金记录（提现|代付、支付、退款）
 	 * @return
 	 */
 	@RequestMapping("/fundList")
-	public Object fundList(PlatPayDetailQryPar platPayDetailQryPar) {
-		BootTable<TradeOrderSeq> bootTable = platPayDetailServiceImpl.getMerchantCapitalChangeList(platPayDetailQryPar);
-		return bootTable;
+	public TableDataInfo fundList(@RequestBody PlatPayDetailQryPar platPayDetailQryPar) {
+		startPage(platPayDetailQryPar);
+		List<TradeOrderSeq> list = platPayDetailServiceImpl.getMerchantCapitalChangeList(platPayDetailQryPar);
+		return getDataTable(list);
 	}
 	
 }

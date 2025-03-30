@@ -36,15 +36,15 @@ public class PlatPayDetailServiceImpl implements IPlatPayDetailService {
 	}
 
 	@Override
-	public BootTable<PlatPayDetail> getSettlementListByPage(PlatPayDetailQryPar param) {
+	public List<PlatPayDetail> getSettlementListByPage(PlatPayDetailQryPar param) {
 		List<PlatPayDetail> list = platPayDetailMapper.getSettlementList(param);
-		return new BootTable<PlatPayDetail>(list);
+		return list;
 	}
 
 	@Override
-	public BootTable<TradeOrderSeq> getMerchantCapitalChangeList(PlatPayDetailQryPar param) {
+	public List<TradeOrderSeq> getMerchantCapitalChangeList(PlatPayDetailQryPar param) {
 		List<TradeOrderSeq> list = platPayDetailMapper.getMerchantCapitalChangeList(param);
-		return new BootTable<TradeOrderSeq>(list);
+		return list;
 	}
 	
 	public TradeOrderSeqReportVO getpayForSumAmtAndCount(PlatPayDetailQryPar param) throws DataAccessException {

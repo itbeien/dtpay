@@ -1,5 +1,7 @@
 package cn.itbeien.common.vo.trade;
 
+import cn.itbeien.common.page.PageDomain;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -11,10 +13,8 @@ import java.util.Date;
  * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
  * Copyright© 2025 itbeien
  */
-public class PlatPayDetailQryPar implements Serializable {
+public class PlatPayDetailQryPar extends PageDomain {
 
-	private static final long serialVersionUID = 1L;
-	
 	private String payId;
 
     private String mercNo;
@@ -182,23 +182,6 @@ public class PlatPayDetailQryPar implements Serializable {
 	}
 	public void setSellerName(String sellerName) {
 		this.sellerName = sellerName;
-	}
-
-
-	private int pageNum;	// 第几页
-	private int pageSize;   // 每页显示几条
-	
-	public int getPageNum() {
-		return pageNum;
-	}
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
-	}
-	public int getPageSize() {
-		return pageSize;
-	}
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
 	}
 
 	public String getStamDate() {

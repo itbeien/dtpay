@@ -9,7 +9,7 @@ package cn.itbeien.common.enums;
  * Copyright© 2025 itbeien
  */
 public enum TradeType {
-	
+	//交易业务类型  ：01-支付 11-充值  02-代付  03-提现
 	PAYMENT("01", "支付"), RECHARGE("11", "充值"), PAY("02", "代付"),
 	WITHDRAWALS("03", "提现");
 
