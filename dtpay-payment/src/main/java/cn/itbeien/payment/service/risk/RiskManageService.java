@@ -2,7 +2,7 @@ package cn.itbeien.payment.service.risk;
 
 import cn.itbeien.common.enums.MercStatusEnum;
 import cn.itbeien.common.mapper.IpWhiteListMapper;
-import cn.itbeien.common.mapper.MerchantAccessRightMapper;
+import cn.itbeien.common.mapper.merchant.MerchantAccessRightMapper;
 import cn.itbeien.payment.enums.RespEnum;
 import cn.itbeien.payment.exception.TradeException;
 import jakarta.servlet.http.HttpServletRequest;
