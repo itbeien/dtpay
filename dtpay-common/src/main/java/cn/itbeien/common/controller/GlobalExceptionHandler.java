@@ -1,4 +1,4 @@
-package cn.itbeien.merchant.exception;
+package cn.itbeien.common.controller;
 
 import cn.itbeien.common.constant.HttpStatus;
 import cn.itbeien.common.exception.DemoModeException;
