@@ -1,4 +1,4 @@
-package cn.itbeien.common.mapper;
+package cn.itbeien.common.mapper.merchant;
 
 import cn.itbeien.common.entity.merchant.MerchantAccessRight;
 
