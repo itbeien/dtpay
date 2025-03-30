@@ -22,7 +22,7 @@ import cn.itbeien.common.util.SpringUtils;
 import cn.itbeien.common.util.StringUtils;
 import cn.itbeien.payment.channel.vo.ChnPayForResponse;
 import cn.itbeien.payment.channel.vo.ChnRefundQueryResponse;
-import cn.itbeien.payment.component.cache.RedisLock;
+import cn.itbeien.common.redis.RedisLock;
 import cn.itbeien.payment.core.vo.request.PayForQueryRequest;
 import cn.itbeien.payment.core.vo.request.RefundQueryRequest;
 import cn.itbeien.payment.core.vo.response.PayForQueryResponse;

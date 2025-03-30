@@ -18,7 +18,7 @@ import cn.itbeien.common.util.DateUtils;
 import cn.itbeien.common.util.StringUtils;
 import cn.itbeien.payment.channel.vo.ChnBatchPayForNotifyResponse;
 import cn.itbeien.payment.channel.vo.ChnPayForNotifyResponse;
-import cn.itbeien.payment.component.cache.RedisLock;
+import cn.itbeien.common.redis.RedisLock;
 import cn.itbeien.payment.core.vo.mq.MchPayForNotifyMqContent;
 import cn.itbeien.payment.core.vo.response.PayForNotifyResponse;
 import cn.itbeien.payment.enums.RespEnum;

@@ -21,7 +21,7 @@ import cn.itbeien.common.util.uuid.UUID;
 import cn.itbeien.payment.channel.vo.ChannelVo;
 import cn.itbeien.payment.channel.vo.ChnBatchPayForResponse;
 import cn.itbeien.payment.channel.vo.ChnPayForResponse;
-import cn.itbeien.payment.component.cache.RedisLock;
+import cn.itbeien.common.redis.RedisLock;
 import cn.itbeien.payment.core.vo.request.BatchPayForRequest;
 import cn.itbeien.payment.core.vo.request.PayForRequest;
 import cn.itbeien.payment.core.vo.response.BatchPayForResponse;

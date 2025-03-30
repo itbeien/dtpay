@@ -20,7 +20,7 @@ import cn.itbeien.common.util.SnowflakeIdFactory;
 import cn.itbeien.common.util.SpringUtils;
 import cn.itbeien.payment.channel.vo.PayBackBean;
 import cn.itbeien.payment.channel.vo.PayInfoBean;
-import cn.itbeien.payment.component.cache.RedisLock;
+import cn.itbeien.common.redis.RedisLock;
 import cn.itbeien.payment.core.vo.mq.MchNotifyMqContent;
 import cn.itbeien.payment.core.vo.request.PayQueryRequest;
 import cn.itbeien.payment.core.vo.request.PayRequest;
