@@ -1,5 +1,6 @@
-package cn.itbeien.admin;
+package cn.itbeien;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Copyright© 2025 itbeien
  */
 @SpringBootApplication
+@MapperScan
 public class DaBoot {
     public static void main(String[] args) {
         SpringApplication.run(DaBoot.class, args);
