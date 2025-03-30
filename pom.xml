@@ -13,6 +13,7 @@
         <module>dtpay-admin</module>
         <module>dtpay-common</module>
         <module>dtpay-task</module>
+        <module>dtpay-auth</module>
     </modules>
     <version>${revision}</version>
     <packaging>pom</packaging>
@@ -132,6 +133,11 @@
             <dependency>
                 <groupId>cn.itbeien</groupId>
                 <artifactId>dtpay-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.itbeien</groupId>
+                <artifactId>dtpay-auth</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
