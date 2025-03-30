@@ -5,12 +5,12 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Collections;
@@ -20,6 +20,7 @@ import java.util.Map;
 /**
  * 客户端工具类
  */
+@Slf4j
 public class ServletUtils
 {
     /**
@@ -145,7 +146,7 @@ public class ServletUtils
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            log.error("renderString error:{}", e);
         }
     }
 

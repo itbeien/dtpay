@@ -3,16 +3,16 @@ package cn.itbeien.merchant.controller.account;
 import cn.itbeien.common.annotation.Anonymous;
 import cn.itbeien.common.controller.BaseController;
 import cn.itbeien.common.entity.merchant.CusLoginRecord;
+import cn.itbeien.common.exception.ServiceException;
 import cn.itbeien.common.page.TableDataInfo;
 import cn.itbeien.common.vo.AjaxResult;
+import cn.itbeien.common.vo.UserPwdVO;
 import cn.itbeien.merchant.service.common.IUserLoginRecordService;
 import cn.itbeien.merchant.service.merchant.IMerchantInfoService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,12 +36,12 @@ public class AccountController extends BaseController {
 	
 	/**
 	 * 账号对应商户号信息
-	 * @param request
+	 * @param
 	 * @return
 	 */
 	@Anonymous
 	@RequestMapping("/accountInfo")
-	public AjaxResult accountInfo(HttpServletRequest request) {
+	public AjaxResult accountInfo() {
 		return success();
 	}
 	
@@ -49,26 +49,28 @@ public class AccountController extends BaseController {
 	 * 账号登陆记录
 	 * @return
 	 */
-	@RequestMapping("/accountList")
-	public TableDataInfo accountList() {
-		startPage();
-		List<CusLoginRecord> list = userLoginRecordServiceImpl.getUserLoginRecordList(null);
+	@Anonymous
+	@PostMapping("/accountList")
+	public TableDataInfo accountList(@Validated @RequestBody CusLoginRecord cusLoginRecord) {
+		startPage(cusLoginRecord);
+		List<CusLoginRecord> list = null;
+		try {
+			list = userLoginRecordServiceImpl.getUserLoginRecordList(cusLoginRecord);
+		} catch (Exception e) {
+			log.error("获取账号登陆记录异常：", e);
+			throw new ServiceException("获取账号登陆记录异常");
+		}
 		return getDataTable(list);
 	}
 	
 	/**
 	 * 修改支付密码
-	 * @param oldPass
-	 * @param password
+	 * @param userPwdVO
 	 * @return
 	 */
+	@Anonymous
 	@RequestMapping("/updatePass")
-	public String updatePass(@RequestParam("oldPass") String oldPass, @RequestParam("password") String password) {
-		String regex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$";// 校验字符串为8到16位数字和字母组成
-		if(!password.matches(regex)) {// 密码由8到16位数字和字母组成
-			return "passwordError";
-		}
-
+	public String updatePass(@Validated @RequestBody UserPwdVO userPwdVO) {
 		try{
 			merchantInfoServiceImpl.updatePasswd(null);
 		}catch(Exception e){

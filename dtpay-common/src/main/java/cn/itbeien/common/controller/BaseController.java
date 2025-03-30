@@ -54,6 +54,10 @@ public class BaseController
         PageUtils.startPage();
     }
 
+    protected void startPage(PageDomain pageDomain)
+    {
+        PageUtils.startPage(pageDomain);
+    }
     /**
      * 设置请求排序数据
      */

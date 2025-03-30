@@ -1,5 +1,7 @@
 package cn.itbeien.common.entity.merchant;
 
+import cn.itbeien.common.page.PageDomain;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.util.Date;
@@ -13,9 +15,10 @@ import java.util.Date;
  * Copyright© 2025 itbeien
  */
 @Data
-public class CusLoginRecord {
+public class CusLoginRecord extends PageDomain {
     private Long id;
-    private Long userName;
+    @NotBlank(message = "用户名不能为空")
+    private String userName;
     private String loginIp;
     private Date createTime;
 }

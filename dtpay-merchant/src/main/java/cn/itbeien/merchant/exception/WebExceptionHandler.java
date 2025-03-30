@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
  * Copyright© 2025 itbeien
  */
-@ControllerAdvice
+//@ControllerAdvice
 @Slf4j
 public class WebExceptionHandler {
 
