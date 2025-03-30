@@ -18,18 +18,24 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * web层通用数据处理
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
+ *  web层通用数据处理
+ * Copyright© 2025 itbeien
  */
 @Slf4j
 public class BaseController
 {
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型
+     * Date 类型转换
      */
     @InitBinder
     public void initBinder(WebDataBinder binder)
     {
-        // Date 类型转换
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport()
         {
             @Override
