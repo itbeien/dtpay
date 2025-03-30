@@ -1,6 +1,6 @@
 package cn.itbeien.merchant.controller.trade;
 
-import cn.itbeien.common.controller.BaseController;
+import cn.itbeien.auth.controller.BaseController;
 import cn.itbeien.common.entity.pay.PayScenes;
 import cn.itbeien.common.entity.pay.Payway;
 import cn.itbeien.common.entity.trade.PlatPayDetail;

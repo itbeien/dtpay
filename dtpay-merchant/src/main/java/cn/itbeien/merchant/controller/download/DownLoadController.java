@@ -1,7 +1,7 @@
 
 
 package cn.itbeien.merchant.controller.download;
-import cn.itbeien.common.controller.BaseController;
+import cn.itbeien.auth.controller.BaseController;
 import cn.itbeien.common.entity.merchant.MerchantAccountInfo;
 import cn.itbeien.common.page.TableDataInfo;
 import cn.itbeien.merchant.service.download.MerchantAccountInfoService;

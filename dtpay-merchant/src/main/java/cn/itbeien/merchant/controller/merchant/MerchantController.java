@@ -1,6 +1,6 @@
 package cn.itbeien.merchant.controller.merchant;
 
-import cn.itbeien.common.controller.BaseController;
+import cn.itbeien.auth.controller.BaseController;
 import cn.itbeien.common.entity.merchant.MerchantInfo;
 import cn.itbeien.common.entity.merchant.MerchantPaywayMapping;
 import cn.itbeien.common.page.TableDataInfo;

@@ -1,7 +1,7 @@
 package cn.itbeien.merchant.controller.finance;
 
 
-import cn.itbeien.common.controller.BaseController;
+import cn.itbeien.auth.controller.BaseController;
 import cn.itbeien.common.entity.merchant.MerchantChannelBal;
 import cn.itbeien.common.entity.merchant.MerchantChannelBalExt;
 import cn.itbeien.common.entity.merchant.MerchantInfo;

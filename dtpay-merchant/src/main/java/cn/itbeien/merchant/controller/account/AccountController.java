@@ -1,7 +1,7 @@
 package cn.itbeien.merchant.controller.account;
 
 import cn.itbeien.common.annotation.Anonymous;
-import cn.itbeien.common.controller.BaseController;
+import cn.itbeien.auth.controller.BaseController;
 import cn.itbeien.common.entity.merchant.CusLoginRecord;
 import cn.itbeien.common.exception.ServiceException;
 import cn.itbeien.common.page.TableDataInfo;
