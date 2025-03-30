@@ -6,9 +6,6 @@ import cn.itbeien.common.vo.BaseBean;
 public class TradeRefundQryPar extends BaseBean {
 	
 	private static final long serialVersionUID = 1L;
-	/**
-	 * 退款订单号
-	 */
 	private String refundOrderId;
 	private String mercRefundNo;//商户退款订单号
 	private String start;

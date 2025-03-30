@@ -6,9 +6,6 @@ import cn.itbeien.common.vo.BaseBean;
 public class TradeOrderQryPar extends BaseBean {
 	
 	private static final long serialVersionUID = 1L;
-	/**
-	 * 支付订单号
-	 */
 	private String orderId;
 	private String mercOrderNo;
 	private String start;

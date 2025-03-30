@@ -6,6 +6,7 @@ import cn.itbeien.admin.vo.order.TradeOrderQryPar;
 import cn.itbeien.common.controller.BaseController;
 import cn.itbeien.common.entity.trade.TradeOrder;
 import cn.itbeien.common.page.TableDataInfo;
+import cn.itbeien.common.vo.AjaxResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +14,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * @author itbeien
+ * 项目网站：https://www.itbeien.cn
+ * 公众号：贝恩聊架构
+ * 全网同名，欢迎小伙伴们关注
+ * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
+ * Copyright© 2025 itbeien
+ */
 @Controller
 @RequestMapping("/tradeorder")
 @Slf4j
@@ -66,10 +72,8 @@ public class TradeOrderController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/detail")
-	public Object detail(@RequestParam("orderId") String orderId){
+	public AjaxResult detail(@RequestParam("orderId") String orderId){
 		TradeOrder tradeOrder = this.tradeOrderServiceImpl.selectByPrimaryKey(orderId);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("tradeOrder", tradeOrder);
-		return map;
+		return success(tradeOrder);
 	}
 }
