@@ -3,14 +3,7 @@ package cn.itbeien.common.entity.merchant;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-/**
- * @author itbeien
- * 项目网站：https://www.itbeien.cn
- * 公众号：贝恩聊架构
- * 全网同名，欢迎小伙伴们关注
- * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
- * Copyright© 2025 itbeien
- */
+
 public class MerchantInfo implements Serializable {
     private String mercNo;
 
@@ -209,12 +202,8 @@ public class MerchantInfo implements Serializable {
     private String paywayCode;
     private String sceneCode;
     
-    private String staFlag;
-    private String mercNoFlag;
-    
-    private String proId;
-    
-    private String cusUserName;
+    private BigDecimal paySingleLimitAmt;
+    private BigDecimal payDailyLimitAmt;
     
     private static final long serialVersionUID = 1L;
 
@@ -1050,36 +1039,20 @@ public class MerchantInfo implements Serializable {
 		this.mercPrivateKey = mercPrivateKey;
 	}
 
-	public String getStaFlag() {
-		return staFlag;
+	public BigDecimal getPaySingleLimitAmt() {
+		return paySingleLimitAmt;
 	}
 
-	public void setStaFlag(String staFlag) {
-		this.staFlag = staFlag;
+	public void setPaySingleLimitAmt(BigDecimal paySingleLimitAmt) {
+		this.paySingleLimitAmt = paySingleLimitAmt;
 	}
 
-	public String getMercNoFlag() {
-		return mercNoFlag;
+	public BigDecimal getPayDailyLimitAmt() {
+		return payDailyLimitAmt;
 	}
 
-	public void setMercNoFlag(String mercNoFlag) {
-		this.mercNoFlag = mercNoFlag;
-	}
-
-	public String getProId() {
-		return proId;
-	}
-
-	public void setProId(String proId) {
-		this.proId = proId;
-	}
-
-	public String getCusUserName() {
-		return cusUserName;
-	}
-
-	public void setCusUserName(String cusUserName) {
-		this.cusUserName = cusUserName;
+	public void setPayDailyLimitAmt(BigDecimal payDailyLimitAmt) {
+		this.payDailyLimitAmt = payDailyLimitAmt;
 	}
 
 }

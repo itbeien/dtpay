@@ -62,53 +62,23 @@ public class TradeOrderSeq implements Serializable {
 
     private String sceneCode;
     
-    private String sceneName;
-    
-    private String paywayName;
-    
-    private String startDate;
-    
-    private String endDate;
+    private String noticeStatus;
 
+    private BigDecimal costValue;
+
+    private BigDecimal costRatio;
+
+    private BigDecimal feeRatio;
+
+    private String extField;
+    
     private static final long serialVersionUID = 1L;
 
     public String getTradeSeq() {
         return tradeSeq;
     }
 
-    public String getSceneName() {
-		return sceneName;
-	}
-
-	public void setSceneName(String sceneName) {
-		this.sceneName = sceneName;
-	}
-
-	public String getPaywayName() {
-		return paywayName;
-	}
-
-	public void setPaywayName(String paywayName) {
-		this.paywayName = paywayName;
-	}
-
-	public String getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-
-	public String getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
-
-	public void setTradeSeq(String tradeSeq) {
+    public void setTradeSeq(String tradeSeq) {
         this.tradeSeq = tradeSeq == null ? null : tradeSeq.trim();
     }
 
@@ -302,5 +272,45 @@ public class TradeOrderSeq implements Serializable {
 
     public void setSceneCode(String sceneCode) {
         this.sceneCode = sceneCode == null ? null : sceneCode.trim();
+    }
+
+	public String getNoticeStatus() {
+		return noticeStatus;
+	}
+
+	public void setNoticeStatus(String noticeStatus) {
+		this.noticeStatus = noticeStatus == null ? null : noticeStatus.trim();
+	}
+
+    public BigDecimal getCostValue() {
+        return costValue;
+    }
+
+    public void setCostValue(BigDecimal costValue) {
+        this.costValue = costValue;
+    }
+
+    public BigDecimal getCostRatio() {
+        return costRatio;
+    }
+
+    public void setCostRatio(BigDecimal costRatio) {
+        this.costRatio = costRatio;
+    }
+
+    public BigDecimal getFeeRatio() {
+        return feeRatio;
+    }
+
+    public void setFeeRatio(BigDecimal feeRatio) {
+        this.feeRatio = feeRatio;
+    }
+
+    public String getExtField() {
+        return extField;
+    }
+
+    public void setExtField(String extField) {
+        this.extField = extField;
     }
 }

@@ -55,6 +55,23 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
     }
 
     /**
+     * 左边补零
+     * @param seqStr
+     * @param num
+     * @param charStr
+     * @return
+     */
+    public static String leftPadding(String seqStr,int num,String charStr){
+        StringBuffer returnStr = new StringBuffer();
+        int len = seqStr.length();
+        for(int i=1;i<=num-len;i++){
+            returnStr.append(charStr);
+        }
+        returnStr.append(seqStr);
+        return returnStr.toString();
+    }
+
+    /**
      * * 判断一个对象数组是否为空
      * 
      * @param objects 要判断的对象数组

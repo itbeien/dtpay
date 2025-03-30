@@ -262,4 +262,15 @@ public class RedisCache
     {
         return redisTemplate.keys(pattern);
     }
+
+    /**
+     * 方法用途: 判断缓存中是否有对应的value <br>
+     *
+     * @param key
+     * @return
+     */
+    public boolean exists(final String key) {
+        return redisTemplate.hasKey(key);
+    }
+
 }

@@ -3,6 +3,7 @@ package cn.itbeien.common.entity.trade;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 /**
  * @author itbeien
  * 项目网站：https://www.itbeien.cn
@@ -12,74 +13,46 @@ import java.util.Date;
  * Copyright© 2025 itbeien
  */
 public class TradeOrder implements Serializable {
-	
-    private String orderId;
-
+	private String orderId;
     private String mercNo;
-
     private String mercOrderNo;
-
     private String tradeType;
-
     private String subject;
-
     private String body;
-
     private BigDecimal orderAmount;
-
     private Date orderTime;
-
     private String orderIp;
-
     private String returnUrl;
-
     private String notifyUrl;
-
     private String refererUrl;
-
     private Integer orderPeriod;
-
     private Date expireTime;
-
     private String remark;
-
     private Date createTime;
-
     private String payStatus;
-
     private String isRefund;
-
     private Integer refundTimes;
-
     private BigDecimal successRefundAmount;
-
     private String termType;
-
     private BigDecimal feeValue;
-
     private String signType;
-
     private String charset;
-
     private String version;
-
     private String locale;
-
     private String currency;
-
     private String openId;
-
     private String appId;
-
     private String isStatic;
-
     private String channelCode;
-
     private String paywayCode;
-
     private String sceneCode;
-    
-    private Date completeTime;
+    private String interfaceCode;
+    private Date callBackTime;
+    private long timeDifference;
+    private BigDecimal costValue;
+    private BigDecimal costRatio;
+    private BigDecimal feeRatio;
+    private String extField;
 
     private static final long serialVersionUID = 1L;
 
@@ -347,12 +320,60 @@ public class TradeOrder implements Serializable {
         this.sceneCode = sceneCode == null ? null : sceneCode.trim();
     }
 
-	public Date getCompleteTime() {
-		return completeTime;
+	public String getInterfaceCode() {
+		return interfaceCode;
 	}
 
-	public void setCompleteTime(Date completeTime) {
-		this.completeTime = completeTime;
+	public void setInterfaceCode(String interfaceCode) {
+		this.interfaceCode = interfaceCode;
 	}
-    
+
+    public Date getCallBackTime() {
+        return callBackTime;
+    }
+
+    public void setCallBackTime(Date callBackTime) {
+        this.callBackTime = callBackTime;
+    }
+
+    public long getTimeDifference() {
+        return timeDifference;
+    }
+
+    public void setTimeDifference(long timeDifference) {
+        this.timeDifference = timeDifference;
+    }
+
+    public BigDecimal getCostRatio() {
+        return costRatio;
+    }
+
+    public void setCostRatio(BigDecimal costRatio) {
+        this.costRatio = costRatio;
+    }
+
+    public BigDecimal getFeeRatio() {
+        return feeRatio;
+    }
+
+    public void setFeeRatio(BigDecimal feeRatio) {
+        this.feeRatio = feeRatio;
+    }
+
+    public String getExtField() {
+        return extField;
+    }
+
+    public void setExtField(String extField) {
+        this.extField = extField;
+    }
+
+    public BigDecimal getCostValue() {
+        return costValue;
+    }
+
+    public void setCostValue(BigDecimal costValue) {
+        this.costValue = costValue;
+    }
+
 }

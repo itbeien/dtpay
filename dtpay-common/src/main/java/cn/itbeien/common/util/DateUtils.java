@@ -3,6 +3,7 @@ package cn.itbeien.common.util;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.lang.management.ManagementFactory;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
@@ -27,6 +28,72 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils
             "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM", 
             "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
             "yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
+
+
+    /**
+     * 功能:两个日期相隔时间(秒)
+     *
+     * @param startDate
+     *          开始日期
+     * @param endDate
+     *          结束日期
+     * @return 返回相减后的日期
+     */
+    public static long diffDateTime(Date startDate, Date endDate) {
+        long endMillis = endDate.getTime();
+        long startMillis = startDate.getTime();
+        long s = (endMillis - startMillis) /  1000;
+        return  s;
+    }
+
+    public static String formatTime(Date date) {
+        return new SimpleDateFormat("yyyyMMddHHmmss").format(date);
+    }
+
+    /**
+     * 功能：传入时间按所需格式返回时间字符串
+     *
+     * @param date
+     *          java.util.Date格式
+     * @param format
+     *          yyyy-MM-dd HH:mm:ss | yyyy年MM月dd日 HH时mm分ss秒
+     * @return
+     */
+    public static String format(Date date, String format) {
+        String result = "";
+        try {
+            if (date == null) {
+                date = new Date();// 如果时间为空,则默认为当前时间
+            }
+            if (StringUtils.isBlank(format)) {// 默认格式化形式
+                format = "yyyy-MM-dd";
+            }
+            DateFormat df = new SimpleDateFormat(format);
+            result = df.format(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 取出一个指定长度大小的随机正整数.
+     *
+     * @param length int 设定所取出随机数的长度。length小于11
+     * @return int 返回生成的随机数。
+     */
+    public static int getRandom(int length) {
+        int num = 1;
+        double random = Math.random();
+        if (random < 0.1) {
+            random = random + 0.1;
+        }
+        for (int i = 0; i < length; i++) {
+            num = num * 10;
+        }
+        return (int) ((random * num));
+    }
+
 
     /**
      * 获取当前Date型日期
@@ -101,6 +168,43 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils
     {
         Date now = new Date();
         return DateFormatUtils.format(now, "yyyyMMdd");
+    }
+
+
+    /**
+     *
+     * 功能：解析数据库中的时间字符串 格式:yyyy-MM-dd HH:mm:ss
+     *
+     * @param dateTimeStr
+     * @return
+     */
+    public static Date parseDateTime(String dateTimeStr) {
+        SimpleDateFormat dataTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = dataTimeFormat.parse(dateTimeStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    /**
+     *
+     * 功能：解析数据库中的时间字符串 格式:yyyyMMddHHmmss
+     *
+     * @param dateTimeStr
+     * @return
+     */
+    public static Date parseTime(String dateTimeStr) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = null;
+        try {
+            date = timeFormat.parse(dateTimeStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
     /**
