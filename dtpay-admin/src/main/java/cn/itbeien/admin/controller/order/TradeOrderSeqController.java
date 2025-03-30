@@ -2,7 +2,7 @@ package cn.itbeien.admin.controller.order;
 
 
 import cn.itbeien.admin.service.order.ITradeOrderSeqService;
-import cn.itbeien.common.controller.BaseController;
+import cn.itbeien.auth.controller.BaseController;
 import cn.itbeien.common.page.TableDataInfo;
 import cn.itbeien.common.vo.AjaxResult;
 import lombok.extern.slf4j.Slf4j;

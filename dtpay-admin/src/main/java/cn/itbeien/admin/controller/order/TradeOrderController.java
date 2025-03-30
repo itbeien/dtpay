@@ -3,7 +3,7 @@ package cn.itbeien.admin.controller.order;
 
 import cn.itbeien.admin.service.order.ITradeOrderService;
 import cn.itbeien.admin.vo.order.TradeOrderQryPar;
-import cn.itbeien.common.controller.BaseController;
+import cn.itbeien.auth.controller.BaseController;
 import cn.itbeien.common.entity.trade.TradeOrder;
 import cn.itbeien.common.page.TableDataInfo;
 import cn.itbeien.common.vo.AjaxResult;

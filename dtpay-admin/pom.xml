@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>cn.itbeien</groupId>
-            <artifactId>dtpay-common</artifactId>
+            <artifactId>dtpay-auth</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

@@ -3,7 +3,7 @@ package cn.itbeien.admin.controller.report;
 import cn.itbeien.admin.service.report.ITradeReportDetailService;
 import cn.itbeien.admin.service.report.ITradeReportService;
 import cn.itbeien.admin.vo.report.TradeReportQryPar;
-import cn.itbeien.common.controller.BaseController;
+import cn.itbeien.auth.controller.BaseController;
 import cn.itbeien.common.entity.trade.TradeReport;
 import cn.itbeien.common.entity.trade.TradeReportDetail;
 import cn.itbeien.common.page.TableDataInfo;
@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
