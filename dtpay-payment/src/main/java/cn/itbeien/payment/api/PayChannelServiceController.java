@@ -122,18 +122,18 @@ public class PayChannelServiceController {
 			PayInfoBean payInfoBean =(PayInfoBean) method.invoke(clazz, new Object[] {request,channelType });// 上游支付异步通知结果
 			TradeOrder tradeOrder = this.tradeOrderMapper.selectByPrimaryKey(payInfoBean.getOutTradeNo());//根据订单号获取支付订单表
 			if(tradeOrder == null) {
-				log.info("支付回调返回上游结果为:" + result +",平台订单号:" + payInfoBean.getOutTradeNo());
+				log.info("支付回调返回上游结果为:{},平台订单号{}:", result,payInfoBean.getOutTradeNo());
 				return result;
 			}
 			if(!(PayStatus.p0000.getCode().equals(tradeOrder.getPayStatus()))){
 				this.payChannelService.notifyInfo(payInfoBean);
 			}
 			result = payInfoBean.getResult();
-			log.info("支付回调返回上游结果为:" + result +",平台订单号:" + tradeOrder.getOrderId());
+			log.info("支付回调返回上游结果为:{},平台订单号:{}",result,tradeOrder.getOrderId());
 			return result;
 		} catch (Exception e) {
 			result = "fail";
-			log.error("上游渠道支付结果通知回调API接口:"+e.getMessage() ,e);
+			log.error("上游渠道支付结果通知回调API接口:{0}",e);
 			return result;
 		}
 	}
@@ -159,7 +159,7 @@ public class PayChannelServiceController {
 			PlatPayDetail payDetail = platPayDetailMapper.selectByPrimaryKey(notifyResponse.getPayId());
 			if(!StringUtils.isNotNull(payDetail)) {
 				result = "fail";
-				log.info("代付回调返回上游结果为:" + result +",平台代付订单号:" + notifyResponse.getPayId() + "不存在！");
+				log.info("代付回调返回上游结果为:{},平台代付订单号:{} 不存在！",result,notifyResponse.getPayId());
 				return result;
 			}
 			
@@ -172,7 +172,7 @@ public class PayChannelServiceController {
 				}
 			}
 			result = notifyResponse.getResult();
-			log.info("代付回调返回上游结果为:" + result +",平台代付订单号:" + payDetail.getPayId());
+			log.info("代付回调返回上游结果为:{},平台代付订单号:{}" , result , payDetail.getPayId());
 			return result;
 		} catch (Exception e) {
 			result = "fail";
@@ -203,7 +203,7 @@ public class PayChannelServiceController {
 			
 			if(!StringUtils.isNotNull(tradeBatchInfo)) {
 				result = "fail";
-				log.info("批量代付回调返回上游结果为:" + result +",平台批次号:" + notifyResponse.getPlatBatchNo() + "不存在！");
+				log.info("批量代付回调返回上游结果为:{},平台批次号:{} 不存在！",result,notifyResponse.getPlatBatchNo());
 				return result;
 			}
 			
@@ -211,11 +211,11 @@ public class PayChannelServiceController {
 				this.payForChannelService.batchPayForNotify(notifyResponse);
 			}
 			result = notifyResponse.getResult();
-			log.info("批量代付回调返回上游结果为:" + result +",平台批次号:" + tradeBatchInfo.getPlatBatchNo());
+			log.info("批量代付回调返回上游结果为:{},平台批次号:{}" , result , tradeBatchInfo.getPlatBatchNo());
 			return result;
 		} catch (Exception e) {
 			result = "fail";
-			log.error("上游渠道代付结果通知回调API接口:"+e.getMessage() ,e);
+			log.error("上游渠道代付结果通知回调API接口:{0}",e);
 			return result;
 		}
 	}
