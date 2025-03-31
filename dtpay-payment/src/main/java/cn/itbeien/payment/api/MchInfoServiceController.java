@@ -7,7 +7,6 @@ import cn.itbeien.common.entity.merchant.MerchantInfo;
 import cn.itbeien.common.entity.merchant.MerchantPaywayMapping;
 import cn.itbeien.common.entity.pay.PayChannel;
 import cn.itbeien.common.entity.pay.PayChannelScenes;
-import cn.itbeien.common.entity.trade.TradeOrder;
 import cn.itbeien.common.enums.DefaultFlagEnum;
 import cn.itbeien.common.mapper.RouterPolicyMapper;
 import cn.itbeien.common.mapper.merchant.ExtMerchantInfoMapper;
