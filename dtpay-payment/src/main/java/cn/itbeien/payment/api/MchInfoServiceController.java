@@ -17,6 +17,7 @@ import cn.itbeien.common.redis.RedisCache;
 import cn.itbeien.payment.mapper.pay.PayChannelMapper;
 import cn.itbeien.payment.mapper.pay.PayChannelScenesMapper;
 import cn.itbeien.payment.service.pay.PayOrderNotifyService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,30 +37,26 @@ import java.util.List;
  */
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class MchInfoServiceController {
     
-    @Autowired
-    private PayOrderNotifyService payOrderNotifyService;
+    private final PayOrderNotifyService payOrderNotifyService;
     
-    @Autowired
-	private RedisCache redisCache;
+	private final RedisCache redisCache;
     
-    
-    @Autowired
-	private MerchantPaywayMappingMapper merchantPaywayMappingMapper;
-	
-	@Autowired
-	private MerchantInfoMapper merchantInfoMapper;
-	@Autowired
-	private PayChannelMapper payChannelMapper;
-	@Autowired
-	private PayChannelScenesMapper payChannelScenesMapper;
-	@Autowired
-	private MerchantChannelMappingMapper merchantChannelMappingMapper;
-	@Autowired
-	private RouterPolicyMapper routerPolicyMapper;
-	@Autowired
-	private ExtMerchantInfoMapper extMerchantInfoMapper;
+	private final MerchantPaywayMappingMapper merchantPaywayMappingMapper;
+
+	private final MerchantInfoMapper merchantInfoMapper;
+
+	private final PayChannelMapper payChannelMapper;
+
+	private final PayChannelScenesMapper payChannelScenesMapper;
+
+	private final MerchantChannelMappingMapper merchantChannelMappingMapper;
+
+	private final RouterPolicyMapper routerPolicyMapper;
+
+	private final ExtMerchantInfoMapper extMerchantInfoMapper;
 
     @RequestMapping(value = "/mch_info/select")
     public String selectMchInfo(@RequestParam String jsonParam) {
