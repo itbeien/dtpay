@@ -1,4 +1,4 @@
-package cn.itbeien.common.entity;
+package cn.itbeien.common.entity.common;
 
 import java.io.Serializable;
 import java.util.Date;

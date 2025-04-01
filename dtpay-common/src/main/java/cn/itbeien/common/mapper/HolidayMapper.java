@@ -1,7 +1,7 @@
 package cn.itbeien.common.mapper;
 
 
-import cn.itbeien.common.entity.Holiday;
+import cn.itbeien.common.entity.common.Holiday;
 
 import java.util.Date;
 
