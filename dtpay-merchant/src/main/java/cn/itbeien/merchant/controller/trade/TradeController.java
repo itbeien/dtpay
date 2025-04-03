@@ -76,7 +76,7 @@ public class TradeController extends BaseController {
 	 */
 	@RequestMapping("/payOrderList")
 	@ResponseBody
-	public Object payOrderList() {
+	public TableDataInfo payOrderList() {
 		startPage();
 		List<TradeOrderSeq> list = tradeOrderSeqServiceImpl.getTradeOrderSeqList(null);
 		return getDataTable(list);
@@ -151,14 +151,14 @@ public class TradeController extends BaseController {
 	 * 获取总额及总笔数
 	 */
 	@RequestMapping("/sumAmtAndCount")
-	public Object sumAmtAndCount(){
+	public AjaxResult sumAmtAndCount(){
 		TradeOrderSeqReportVO tradeOrderSeqReportVO = null;
 		try{
 			tradeOrderSeqReportVO = this.tradeOrderSeqServiceImpl.sumAmtAndCount(null);
 		}catch(Exception e){
 			log.error("获取总额及总笔数异常", e);
 		}
-		return tradeOrderSeqReportVO;
+		return success(tradeOrderSeqReportVO);
 	}
 	
 	/**

@@ -55,6 +55,7 @@ public class AccountController extends BaseController {
 	 */
 	@Anonymous
 	@PostMapping("/accountList")
+	@PreAuthorize("@dss.hasPermi('dt:agent:list')")
 	public TableDataInfo accountList(@Validated @RequestBody CusLoginRecord cusLoginRecord) {
 		startPage(cusLoginRecord);
 		List<CusLoginRecord> list = null;
