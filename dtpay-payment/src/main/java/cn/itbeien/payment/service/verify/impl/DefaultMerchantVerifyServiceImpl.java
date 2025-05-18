@@ -46,7 +46,7 @@ import java.util.*;
 public class DefaultMerchantVerifyServiceImpl implements MerchantVerifyService {
 	
 	@Autowired
-	private RedisCache redisCacheUtils;
+	private RedisCache redisCache;
 	
 	private static PrivateKey GATEWAY_PRIVATE_KEY = null;
 	
@@ -371,12 +371,12 @@ public class DefaultMerchantVerifyServiceImpl implements MerchantVerifyService {
 	public void verifySign(Map<String, Object> reqMap) {
 		boolean verifySignResult = false;
 		try {
-            if(!redisCacheUtils.exists((String)reqMap.get("mercNo"))){
+            if(!redisCache.exists((String)reqMap.get("mercNo"))){
             	log.info("缓存中商户{}不存在",reqMap.get("mercNo"));
             	throw new InvalidParamException(RespEnum.E00031.getCode(), RespEnum.E00031.getDesc());
             }
             	
-			MerchantInfo merchantInfo = (MerchantInfo)redisCacheUtils.getCacheObject((String)reqMap.get("mercNo"));
+			MerchantInfo merchantInfo = (MerchantInfo)redisCache.getCacheObject((String)reqMap.get("mercNo"));
 			if("01".equals(merchantInfo.getMercSignType())){
 				verifySignResult = MD5Signature.doCheck(SignUtils.generateParamStr(reqMap),(String)reqMap.get("signature"),merchantInfo.getMercPrivateKey());
 			}else if("02".equals(merchantInfo.getMercSignType())){
@@ -459,12 +459,12 @@ public class DefaultMerchantVerifyServiceImpl implements MerchantVerifyService {
 			return jsonStr;
 		}
 		try {
-		 	if(!redisCacheUtils.exists((String)responseTreeMap.get("mercNo"))){
+		 	if(!redisCache.exists((String)responseTreeMap.get("mercNo"))){
 				log.info("缓存中商户{}不存在，不加签",responseTreeMap.get("mercNo"));
             	throw new InvalidParamException(RespEnum.E00031.getCode(), RespEnum.E00031.getDesc());
             }
 			//缓存中读取商户公钥
-			MerchantInfo merchantInfo = (MerchantInfo)redisCacheUtils.getCacheObject((String)responseTreeMap.get("mercNo"));
+			MerchantInfo merchantInfo = (MerchantInfo)redisCache.getCacheObject((String)responseTreeMap.get("mercNo"));
 			log.info("商户号:{},获取为商户信息为{}",(String)responseTreeMap.get("mercNo"),merchantInfo);
 			if("01".equals(merchantInfo.getMercSignType())){
 				log.info("对返回商户参数加签:reqMap="+JSONObject.toJSONString(responseTreeMap)+" 商户加签类型：{}"+merchantInfo.getMercSignType());

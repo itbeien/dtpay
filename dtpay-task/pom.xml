@@ -13,28 +13,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>cn.itbeien</groupId>
+            <artifactId>itbeien-mt-system</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>cn.itbeien</groupId>
+                    <artifactId>itbeien-mt-common</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>cn.itbeien</groupId>
             <artifactId>dtpay-common</artifactId>
         </dependency>
-
     </dependencies>
 
 </project>

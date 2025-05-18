@@ -30,7 +30,7 @@ public class PayOrderNotifyService {
     @Autowired
 	private MerchantVerifyService merchantVerifyService;
 	@Autowired
-	private RedisCache redisCacheUtils;
+	private RedisCache redisCache;
 	@Autowired
 	private TradeOrderSeqMapper tradeOrderSeqMapper;
 	
@@ -48,7 +48,6 @@ public class PayOrderNotifyService {
     /*
      * 异步通知下游商户支付结果
      */
-    @SuppressWarnings("unchecked")
 	public void notifyInformMch(PayNotifyResponse payNotifyResponse){
     	Map<String,Object> map = new HashMap<String,Object>();
     	try {
@@ -68,24 +67,24 @@ public class PayOrderNotifyService {
         	// 如果不是在商户后台点击的补发通知，即 即 交易系统 接口回调
 			if(!REISSUE.equals(noticeFlag)) {
 				// 如果不存在，设置默认的通知次数为5次
-	        	if(!redisCacheUtils.exists(payNotifyResponse.getOrderId())) {
-	        		redisCacheUtils.setCacheObject(payNotifyResponse.getOrderId(), 5);
+	        	if(!redisCache.exists(payNotifyResponse.getOrderId())) {
+	        		redisCache.setCacheObject(payNotifyResponse.getOrderId(), 5);
 	        	}
 			}
         	mchResult = HttpClient.send(postURL, requestBody, UTF8, UTF8,5);
 			
 			// 如果不是在商户后台点击的补发通知，即 交易系统 接口回调
 			if(!REISSUE.equals(noticeFlag)) {
-				int notifyCount = (int)redisCacheUtils.getCacheObject(payNotifyResponse.getOrderId());
+				int notifyCount = (int)redisCache.getCacheObject(payNotifyResponse.getOrderId());
 				if(notifyCount == 0) { // 次数为0 的时候，说明通知的5次都没有成功，将次数在缓存中移除
-					redisCacheUtils.deleteObject(payNotifyResponse.getOrderId());
+					redisCache.deleteObject(payNotifyResponse.getOrderId());
 				}
 				if(NotifyEnum.success.name().equals(mchResult)){
 					// 收到下游的success 则修改数据库通知状态 为成功
 					tradeOrderSeqMapper.updateOrderByOrderId(payNotifyResponse.getOrderId(), "01");
 					// 直接将次数 remove
-					if(redisCacheUtils.exists(payNotifyResponse.getOrderId())) {
-						redisCacheUtils.deleteObject(payNotifyResponse.getOrderId());
+					if(redisCache.exists(payNotifyResponse.getOrderId())) {
+						redisCache.deleteObject(payNotifyResponse.getOrderId());
 					}
 				} else if(notifyCount > 0) {
 					//发起异步通知,补单机制(通知频率为10/10/10/10/10，单位：秒),5次
@@ -95,8 +94,8 @@ public class PayOrderNotifyService {
 					BeanUtils.copyProperties(payNotifyResponse,mchNotifyMqContent);
 					//rxRocketMqProducer.mqNotifyMch(mchNotifyMqContent);
 					// 缓存中存在，且次数大于0，则将原来的次数 减去1
-					if(redisCacheUtils.exists(payNotifyResponse.getOrderId())) {
-						redisCacheUtils.setCacheObject(payNotifyResponse.getOrderId(), notifyCount - 1);
+					if(redisCache.exists(payNotifyResponse.getOrderId())) {
+						redisCache.setCacheObject(payNotifyResponse.getOrderId(), notifyCount - 1);
 					}
 				}
 			} else {  //  在商户后台点击的补发通知

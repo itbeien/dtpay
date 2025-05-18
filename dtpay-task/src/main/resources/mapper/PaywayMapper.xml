@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itbeien.task.mapper.pay.PaywayMapper" >
+  <resultMap id="BaseResultMap" type="cn.itbeien.common.entity.pay.Payway" >
+    <id column="PAYWAY_CODE" property="paywayCode" jdbcType="VARCHAR" />
+    <result column="PAYWAY_NAME" property="paywayName" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATER" property="updater" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PAYWAY_CODE, PAYWAY_NAME, SORT, CREATE_TIME, CREATOR, UPDATE_TIME, UPDATER
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dt_payway
+    where PAYWAY_CODE = #{paywayCode,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPaywayName" resultType="java.lang.String">
+    select PAYWAY_CODE
+    from dt_payway
+    where PAYWAY_NAME = #{paywayName}
+     <if test="null != paywayCode and '' != paywayCode">
+            AND PAYWAY_CODE != #{paywayCode}
+     </if>
+  </select>
+  
+  <select id="selectByPaywayCode" resultType="java.lang.String" parameterType="java.lang.String" >
+    select PAYWAY_CODE
+    from dt_payway
+    where PAYWAY_CODE = #{paywayCode}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dt_payway
+    where PAYWAY_CODE = #{paywayCode,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="cn.itbeien.common.entity.pay.Payway" >
+    insert into dt_payway (PAYWAY_CODE, PAYWAY_NAME, SORT, 
+      CREATE_TIME, CREATOR, UPDATE_TIME, 
+      UPDATER)
+    values (#{paywayCode,jdbcType=VARCHAR}, #{paywayName,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+     now(), #{creator,jdbcType=VARCHAR}, now(), 
+      #{updater,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="cn.itbeien.common.entity.pay.Payway" >
+    insert into dt_payway
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paywayCode != null" >
+        PAYWAY_CODE,
+      </if>
+      <if test="paywayName != null" >
+        PAYWAY_NAME,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updater != null" >
+        UPDATER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paywayCode != null" >
+        #{paywayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paywayName != null" >
+        #{paywayName,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itbeien.common.entity.pay.Payway" >
+    update dt_payway
+    <set >
+      <if test="paywayName != null" >
+        PAYWAY_NAME = #{paywayName,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PAYWAY_CODE = #{paywayCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.itbeien.common.entity.pay.Payway" >
+    update dt_payway
+    set PAYWAY_NAME = #{paywayName,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR}
+    where PAYWAY_CODE = #{paywayCode,jdbcType=VARCHAR}
+  </update>
+  
+   <select id="getList" resultType="map">
+        SELECT PAYWAY_CODE paywayCode, PAYWAY_NAME paywayName, SORT sort, CREATE_TIME createTime  from dt_payway
+        <where>
+			<if test="param.paywayName != null and param.paywayName != ''">
+		      AND PAYWAY_NAME = #{param.paywayName}
+		    </if>
+			<if test="param.paywayCode != null and param.paywayCode != ''">
+		      AND PAYWAY_CODE = #{param.paywayCode}
+		    </if>
+		</where>
+		ORDER BY CREATE_TIME DESC
+    </select>
+</mapper>

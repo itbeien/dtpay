@@ -14,7 +14,6 @@ import cn.itbeien.common.mapper.merchant.MerchantAccRelMapper;
 import cn.itbeien.common.mapper.merchant.MerchantChannelBalMapper;
 import cn.itbeien.common.redis.RedisCache;
 import cn.itbeien.common.util.Arith;
-import cn.itbeien.common.util.DateUtils;
 import cn.itbeien.common.util.StringUtils;
 import cn.itbeien.payment.channel.vo.ChnBatchPayForNotifyResponse;
 import cn.itbeien.payment.channel.vo.ChnPayForNotifyResponse;
@@ -24,6 +23,7 @@ import cn.itbeien.payment.core.vo.response.PayForNotifyResponse;
 import cn.itbeien.payment.enums.RespEnum;
 import cn.itbeien.payment.exception.TradeException;
 import cn.itbeien.payment.mapper.trade.TradeBatchInfoMapper;
+import cn.itbeien.common.util.DateUtils;
 import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -225,7 +225,7 @@ public class PayForChannelService {
 				payNotifyResponse.setTradeAmt(String.valueOf(notifyResponse.getTradeAmt()));
 				payNotifyResponse.setPayId(notifyResponse.getPayId());
 				payNotifyResponse.setStatus(record.getStatus());   // 支付状态
-				payNotifyResponse.setTradeTime(cn.itbeien.common.util.DateUtils.formatTime(platPayDetail.getTradeTime()));  // 代付发起时间
+				payNotifyResponse.setTradeTime(DateUtils.formatTime(platPayDetail.getTradeTime()));  // 代付发起时间
 				if(platPayDetail.getSettleTime() != null) {
 					payNotifyResponse.setTradeEndTime(DateUtils.formatTime(platPayDetail.getSettleTime()));  // 代付完成时间
 				}
