@@ -19,7 +19,6 @@
         <module>dtpay-admin</module>
         <module>dtpay-common</module>
         <module>dtpay-task</module>
-        <!--<module>dtpay-auth</module>-->
     </modules>
     <packaging>pom</packaging>
     <url>https://www.itbeien.cn</url>
