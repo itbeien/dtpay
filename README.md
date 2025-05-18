@@ -28,7 +28,7 @@
 | dtpay-admin    | 运营管理后台                   | 未开始 | 高     |
 | dtpay-payment  | 支付交易系统                   | 进行中 | 高     |
 | dtpay-task     | 定时任务(佣金，对账)、报表系统 | 未开始 | 高     |
-| dtpay-auth     | 安全、权限认证模块             | 进行中 | 高     |
+| itbeien-mt     | 安全、权限认证、系统管理模块   | 进行中 | 高     |
 
 ## 5 技术栈介绍
 
@@ -37,9 +37,9 @@ dtpay服务端基于JDK17/21开发，开发工具IDEA2024.3.5，使用Maven3.9.9
 | 框架                | 描述                        | 版本     | 官方网站                                                     |
 | :------------------ | :-------------------------- | :------- | ------------------------------------------------------------ |
 | JDK                 | 基础环境                    | 17/21    | https://bell-sw.com/pages/downloads/#jdk-17-lts \| https://bell-sw.com/pages/downloads/#jdk-21-lts |
-| SpringBoot          | 基础环境                    | 3.4.4    | https://spring.io/projects/spring-boot                       |
-| SpringSecurity      | 安全权限框架                | 6.4.4    | https://spring.io/projects/spring-security                   |
-| SpringFramework     | 基础环境                    | 6.2.5    | https://spring.io/projects/spring-framework                  |
+| SpringBoot          | 基础环境                    | 3.4.5    | https://spring.io/projects/spring-boot                       |
+| SpringSecurity      | 安全权限框架                | 6.4.5    | https://spring.io/projects/spring-security                   |
+| SpringFramework     | 基础环境                    | 6.2.7    | https://spring.io/projects/spring-framework                  |
 | SpringCloud         | 微服务版本基础环境          | 2024.0.1 | https://spring.io/projects/spring-cloud                      |
 | Redis               | 分布式缓存                  | Latest   | https://redis.io/                                            |
 | Nacos               | 注册中心/配置中心           | Latest   | https://nacos.io/                                            |
