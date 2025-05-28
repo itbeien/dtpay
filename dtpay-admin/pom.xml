@@ -15,12 +15,12 @@
         <dependency>
             <groupId>cn.itbeien</groupId>
             <artifactId>itbeien-mt-system</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>cn.itbeien</groupId>
-                    <artifactId>itbeien-mt-common</artifactId>
-                </exclusion>
-            </exclusions>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>cn.itbeien</groupId>-->
+<!--                    <artifactId>itbeien-mt-common</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
         <dependency>
             <groupId>cn.itbeien</groupId>

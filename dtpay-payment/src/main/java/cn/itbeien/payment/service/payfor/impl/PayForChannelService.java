@@ -13,7 +13,7 @@ import cn.itbeien.common.mapper.PlatPayDetailMapper;
 import cn.itbeien.common.mapper.merchant.MerchantAccRelMapper;
 import cn.itbeien.common.mapper.merchant.MerchantChannelBalMapper;
 import cn.itbeien.common.redis.RedisCache;
-import cn.itbeien.common.util.Arith;
+import cn.itbeien.common.util.ArithUtil;
 import cn.itbeien.common.util.StringUtils;
 import cn.itbeien.payment.channel.vo.ChnBatchPayForNotifyResponse;
 import cn.itbeien.payment.channel.vo.ChnPayForNotifyResponse;
@@ -125,16 +125,16 @@ public class PayForChannelService {
 				// 手续费
 				BigDecimal feeBal = merchantInfo.getPayFeeValue();
 				// 要减去 或者 加上的金额
-				BigDecimal subAmt = Arith.add(tradeAmt, feeBal);
+				BigDecimal subAmt = ArithUtil.add(tradeAmt, feeBal);
 				log.info("上游异步通知 --平台代付订单号:" + payDetail.getPayId() + ",商户" + merchantInfo.getMercNo() + "对应虚户表中的的原总金额为:" + merchantAccRel.getAcctBal() + ",冻结金额为:" +  merchantAccRel.getFreezeBal() + ",出账总金额为:" + merchantAccRel.getOutAmt() + ",手续费为:"+ merchantAccRel.getFeeBal());
 				// 总余额 
-				merchantAccRel.setAcctBal(Arith.sub(merchantAccRel.getAcctBal() == null ? new BigDecimal("0") : merchantAccRel.getAcctBal(), subAmt));
+				merchantAccRel.setAcctBal(ArithUtil.sub(merchantAccRel.getAcctBal() == null ? new BigDecimal("0") : merchantAccRel.getAcctBal(), subAmt));
 				// 冻结金额
-				merchantAccRel.setFreezeBal(Arith.sub(merchantAccRel.getFreezeBal() == null ? new BigDecimal("0") : merchantAccRel.getFreezeBal(), subAmt));
+				merchantAccRel.setFreezeBal(ArithUtil.sub(merchantAccRel.getFreezeBal() == null ? new BigDecimal("0") : merchantAccRel.getFreezeBal(), subAmt));
 				// 出账总金额
-				merchantAccRel.setOutAmt(Arith.add(merchantAccRel.getOutAmt() == null ? new BigDecimal("0") : merchantAccRel.getOutAmt(), subAmt));
+				merchantAccRel.setOutAmt(ArithUtil.add(merchantAccRel.getOutAmt() == null ? new BigDecimal("0") : merchantAccRel.getOutAmt(), subAmt));
 				// 手续费
-				merchantAccRel.setFeeBal(Arith.add(merchantAccRel.getFeeBal() == null ? new BigDecimal("0") : merchantAccRel.getFeeBal(), feeBal));
+				merchantAccRel.setFeeBal(ArithUtil.add(merchantAccRel.getFeeBal() == null ? new BigDecimal("0") : merchantAccRel.getFeeBal(), feeBal));
 				merchantAccRel.setUpdateTime(new Date());
 				//更新商户虚拟账户表
 				this.merchantAccRelMapper.updateBymercNoSelective(merchantAccRel);	
@@ -144,13 +144,13 @@ public class PayForChannelService {
 				if(merchantChannelBal != null){
 					log.info("上游异步通知 --平台代付订单号:" + payDetail.getPayId() + ",商户" + merchantInfo.getMercNo() + "--" + keyMap.get("channelCode") + "--" + keyMap.get("payingMercNo") + "对应渠道余额表中原总金额为:" + merchantChannelBal.getChnBal() + ",冻结金额为:" + merchantChannelBal.getChnFreezeBal() + ",出账总金额为:" + merchantChannelBal.getChnOutAmt() + ",手续费为"+ merchantChannelBal.getChnFeeBal());
 					// 总余额 
-					merchantChannelBal.setChnBal(Arith.sub(merchantChannelBal.getChnBal() == null ? new BigDecimal("0") : merchantChannelBal.getChnBal(), subAmt));
+					merchantChannelBal.setChnBal(ArithUtil.sub(merchantChannelBal.getChnBal() == null ? new BigDecimal("0") : merchantChannelBal.getChnBal(), subAmt));
 					// 冻结金额
-					merchantChannelBal.setChnFreezeBal(Arith.sub(merchantChannelBal.getChnFreezeBal() == null ? new BigDecimal("0") : merchantChannelBal.getChnFreezeBal(), subAmt));
+					merchantChannelBal.setChnFreezeBal(ArithUtil.sub(merchantChannelBal.getChnFreezeBal() == null ? new BigDecimal("0") : merchantChannelBal.getChnFreezeBal(), subAmt));
 					// 出账总金额
-					merchantChannelBal.setChnOutAmt(Arith.add(merchantChannelBal.getChnOutAmt() == null ? new BigDecimal("0") : merchantChannelBal.getChnOutAmt(), subAmt));
+					merchantChannelBal.setChnOutAmt(ArithUtil.add(merchantChannelBal.getChnOutAmt() == null ? new BigDecimal("0") : merchantChannelBal.getChnOutAmt(), subAmt));
 					// 手续费
-					merchantChannelBal.setChnFeeBal(Arith.add(merchantChannelBal.getChnFeeBal() == null ? new BigDecimal("0") : merchantChannelBal.getChnFeeBal(), feeBal));
+					merchantChannelBal.setChnFeeBal(ArithUtil.add(merchantChannelBal.getChnFeeBal() == null ? new BigDecimal("0") : merchantChannelBal.getChnFeeBal(), feeBal));
 					this.merchantChannelBalMapper.updateByPrimaryKey(merchantChannelBal);
 					log.info("上游异步通知 --平台代付订单号:" + payDetail.getPayId() + ",商户" + merchantInfo.getMercNo() + "--" + keyMap.get("channelCode") + "--" + keyMap.get("payingMercNo") +  "对应渠道余额表中更新后的总金额为:" + merchantChannelBal.getChnBal() + ",冻结金额为:" + merchantChannelBal.getChnFreezeBal() + ",出账总金额为:" + merchantChannelBal.getChnOutAmt() + ",手续费为:"+ merchantChannelBal.getChnFeeBal());
 				}
@@ -178,13 +178,13 @@ public class PayForChannelService {
 				// 失败 则 重新获取 代付金额
 				tradeAmt = payDetail.getTransAmt();
 				// 要减去 或者 加上的金额
-				BigDecimal subAmt = Arith.add(tradeAmt, feeBal);
+				BigDecimal subAmt = ArithUtil.add(tradeAmt, feeBal);
 				
 				log.info("上游异步通知 --平台代付订单号:" + payDetail.getPayId() + ",商户" + merchantAccRel.getMercNo() + "对应虚户表中原可提现金额为:" + merchantAccRel.getAcctAvaiBal() + ",冻结金额为:" + merchantAccRel.getFreezeBal());
 				// 支付失败则 将原来虚户 和 对应渠道  中 冻结的资金还原
 				// 虚户中 总金额 加 代付金额， 冻结金额 减 代付金额
-				merchantAccRel.setAcctAvaiBal(Arith.add(merchantAccRel.getAcctAvaiBal() == null ? new BigDecimal("0") : merchantAccRel.getAcctAvaiBal(), subAmt));
-				merchantAccRel.setFreezeBal(Arith.sub(merchantAccRel.getFreezeBal() == null ? new BigDecimal("0") : merchantAccRel.getFreezeBal(), subAmt));
+				merchantAccRel.setAcctAvaiBal(ArithUtil.add(merchantAccRel.getAcctAvaiBal() == null ? new BigDecimal("0") : merchantAccRel.getAcctAvaiBal(), subAmt));
+				merchantAccRel.setFreezeBal(ArithUtil.sub(merchantAccRel.getFreezeBal() == null ? new BigDecimal("0") : merchantAccRel.getFreezeBal(), subAmt));
 				merchantAccRel.setUpdateTime(new Date());
 				// 更新商户虚拟账户表
 				this.merchantAccRelMapper.updateBymercNoSelective(merchantAccRel);
@@ -193,8 +193,8 @@ public class PayForChannelService {
 				// 更新对应渠道表
 				if(merchantChannelBal != null){
 					log.info("上游异步通知 --平台代付订单号:" + payDetail.getPayId() + ",商户" + merchantChannelBal.getMercNo() + "--" + keyMap.get("channelCode") + "--" + keyMap.get("payingMercNo") + "对应渠道余额表中原可用金额为:" + merchantChannelBal.getChnAvaiBal() + ",冻结金额为:" + merchantChannelBal.getChnFreezeBal());
-					merchantChannelBal.setChnAvaiBal(Arith.add(merchantChannelBal.getChnAvaiBal() == null ? new BigDecimal("0") : merchantChannelBal.getChnAvaiBal(), subAmt));
-					merchantChannelBal.setChnFreezeBal(Arith.sub(merchantChannelBal.getChnFreezeBal() == null ? new BigDecimal("0") : merchantChannelBal.getChnFreezeBal(), subAmt));
+					merchantChannelBal.setChnAvaiBal(ArithUtil.add(merchantChannelBal.getChnAvaiBal() == null ? new BigDecimal("0") : merchantChannelBal.getChnAvaiBal(), subAmt));
+					merchantChannelBal.setChnFreezeBal(ArithUtil.sub(merchantChannelBal.getChnFreezeBal() == null ? new BigDecimal("0") : merchantChannelBal.getChnFreezeBal(), subAmt));
 					this.merchantChannelBalMapper.updateByPrimaryKey(merchantChannelBal);
 					log.info("上游异步通知 --平台代付订单号:" + payDetail.getPayId() + ",商户" + merchantChannelBal.getMercNo() + "--" + keyMap.get("channelCode") + "--" + keyMap.get("payingMercNo") + "对应渠道余额表中更新后可用金额为:" + merchantChannelBal.getChnAvaiBal() + ",冻结金额为:" + merchantChannelBal.getChnFreezeBal());
 				}
@@ -357,15 +357,15 @@ public class PayForChannelService {
   				if("0".equals(payFor.getStatus())){
   					record.setStatus(PayForStatusEnum.pf0000.getCode()); 
   					// 要减去 或者 加上的金额
-  					BigDecimal subAmt = Arith.add(tradeAmt, feeBal);
+  					BigDecimal subAmt = ArithUtil.add(tradeAmt, feeBal);
   					// 总余额 
-  					successAcctBal = Arith.add(successAcctBal, subAmt);
+  					successAcctBal = ArithUtil.add(successAcctBal, subAmt);
   					// 冻结金额
-  					successFreezeBal = Arith.add(successFreezeBal, subAmt);
+  					successFreezeBal = ArithUtil.add(successFreezeBal, subAmt);
   					// 出账总金额
-  					successOutAmt = Arith.add(successOutAmt, subAmt);
+  					successOutAmt = ArithUtil.add(successOutAmt, subAmt);
   					// 手续费
-  					successFeeBal =  Arith.add(successFeeBal, feeBal);
+  					successFeeBal =  ArithUtil.add(successFeeBal, feeBal);
   					
 					// 商户对应渠道 总余额 
 					merchantChannelBal.setChnBal(subAmt);
@@ -393,12 +393,12 @@ public class PayForChannelService {
   					// 失败 则 重新获取 代付金额
   					tradeAmt = payDetail.getTransAmt();
   					// 要减去 或者 加上的金额
-  					BigDecimal subAmt = Arith.add(tradeAmt, feeBal);
+  					BigDecimal subAmt = ArithUtil.add(tradeAmt, feeBal);
   					
   					// 支付失败则 将原来虚户 和 对应渠道  中 冻结的资金还原
   					// 虚户中 可用金额 加 代付金额， 冻结金额 减 代付金额
-  					failAcctAvaiBal = Arith.add(failAcctAvaiBal, subAmt);
-  					failFreezeBal = Arith.add(failFreezeBal, subAmt);
+  					failAcctAvaiBal = ArithUtil.add(failAcctAvaiBal, subAmt);
+  					failFreezeBal = ArithUtil.add(failFreezeBal, subAmt);
   					
   					// 更新对应渠道表
 					merchantChannelBal.setFailChnAvaiBal(subAmt);
@@ -415,8 +415,8 @@ public class PayForChannelService {
   				payDetails.add(record);
 			}
 			
-			BigDecimal freezeBal = Arith.add(successFreezeBal, failFreezeBal); // 冻结金额
-			BigDecimal mfeeBal = Arith.sub(successFeeBal, failFeeBal);  // 手续费
+			BigDecimal freezeBal = ArithUtil.add(successFreezeBal, failFreezeBal); // 冻结金额
+			BigDecimal mfeeBal = ArithUtil.sub(successFeeBal, failFeeBal);  // 手续费
 			
 			merchantAccRel = new MerchantAccRel();
 			merchantAccRel.setUpdateTime(new Date());

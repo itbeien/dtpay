@@ -10,11 +10,11 @@ import java.math.BigDecimal;
  * Java/AI/支付系统/SAAS多租户基础技术平台学习社群
  * Copyright© 2025 itbeien
  */
-public class Arith { 
+public class ArithUtil {
 	// 默认除法运算精度
 	private static final int DEF_DIV_SCALE = 10; 
 
-	private Arith() {// 这个类不能实例化
+	private ArithUtil() {// 这个类不能实例化
 	}
 
 	/**

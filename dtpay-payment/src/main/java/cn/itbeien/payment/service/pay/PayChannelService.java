@@ -15,7 +15,7 @@ import cn.itbeien.common.mapper.merchant.MerchantAccRelMapper;
 import cn.itbeien.common.mapper.merchant.MerchantChannelBalMapper;
 import cn.itbeien.common.mapper.merchant.MerchantPaywayMappingMapper;
 import cn.itbeien.common.redis.RedisCache;
-import cn.itbeien.common.util.Arith;
+import cn.itbeien.common.util.ArithUtil;
 import cn.itbeien.common.util.SnowflakeIdFactory;
 import cn.itbeien.common.util.SpringUtils;
 import cn.itbeien.payment.channel.vo.PayBackBean;
@@ -245,7 +245,7 @@ public class PayChannelService<T> {
 				//this.redisCacheUtils.set("dailyLimitAmt"+payRequest.getMercNo(),orderAmont);//第一次缓存商户订单金额
 			}else {
 				BigDecimal cacheAmount = BigDecimal.valueOf(Double.valueOf(String.valueOf(obj)));
-				orderAmont =  Arith.add(cacheAmount, BigDecimal.valueOf(Double.valueOf(payRequest.getTradeAmt())));
+				orderAmont =  ArithUtil.add(cacheAmount, BigDecimal.valueOf(Double.valueOf(payRequest.getTradeAmt())));
 				//this.redisCacheUtils.set("dailyLimitAmt"+payRequest.getMercNo(), orderAmont);//缓存累加后的订单金额
 			}
 			
@@ -457,7 +457,7 @@ public class PayChannelService<T> {
 							this.redisCache.setCacheObject("dailyLimitAmt"+tradeOrder.getMercNo(),orderAmont);//第一次缓存商户订单金额
 						}else {
 							BigDecimal cacheAmount = BigDecimal.valueOf(Double.valueOf(String.valueOf(obj)));
-							orderAmont =  Arith.add(cacheAmount, tradeOrder.getOrderAmount());
+							orderAmont =  ArithUtil.add(cacheAmount, tradeOrder.getOrderAmount());
 							this.redisCache.setCacheObject("dailyLimitAmt"+tradeOrder.getMercNo(), orderAmont);//缓存累加后的订单金额
 						}
 
@@ -465,7 +465,7 @@ public class PayChannelService<T> {
 						BigDecimal mercFeeValue =merchantPaywayMapping.getMercFeeValue();//统计商户手续费的比例(千分比)，已经按照千分比计算
 						//MathContext mc = new MathContext(3,RoundingMode.HALF_UP);//精度两位，四舍五入
 						BigDecimal feeValue = mercFeeValue.multiply(tradeOrder.getOrderAmount());//商户手续费=订单金额*商户手续费比例
-                        feeValue = Arith.round(feeValue, 2);//保留两位小数
+                        feeValue = ArithUtil.round(feeValue, 2);//保留两位小数
 						BigDecimal minFeeThreshold = payChannel.getMinFeeThreshold();//支付渠道保底支付手续费
 
 						if(minFeeThreshold == null){
@@ -484,7 +484,7 @@ public class PayChannelService<T> {
 						}
 
 						BigDecimal costValue = tradeOrder.getOrderAmount().multiply(tradeOrder.getCostRatio()); //渠道成本手续费=订单交易金额*渠道成本比例
-						costValue = Arith.round(costValue, 2);//保留两位小数
+						costValue = ArithUtil.round(costValue, 2);//保留两位小数
 						tradeOrder.setCostValue(costValue);//更新渠道成本手续费
 						tradeOrderSeq.setCostValue(costValue);//更新渠道成本手续费
 						tradeOrder.setFeeRatio(mercFeeValue);//商户手续费比例
@@ -497,15 +497,15 @@ public class PayChannelService<T> {
 						merchantAccRel = this.merchantAccRelMapper.selectByMercAcct(tradeOrder.getMercNo(), "00");// 根据账号类型及商户编号查询商户虚拟账户表
 
 						log.info("上游支付异步通知 --平台订单号:" + tradeOrder.getOrderId() + ",商户" + merchantAccRel.getMercNo() + "对应虚户表中的原总金额为:"
-								+ Arith.round(merchantAccRel.getAcctBal(), 2) + ",冻结金额为:" +  Arith.round(merchantAccRel.getFreezeBal(), 2) + ",可用金额为:" +  Arith.round(merchantAccRel.getAcctAvaiBal(),2 )
-								+ ",入账总金额为:" + Arith.round(merchantAccRel.getInAmt(),2) + ",手续费为:"+ Arith.round(merchantAccRel.getFeeBal(),2) + ",手工已冻结金额:" + Arith.round(merchantAccRel.getFreezeAmt(),2) + ",手工冻结总额:" + Arith.round(merchantAccRel.getFreezeTotalAmt(), 2));
+								+ ArithUtil.round(merchantAccRel.getAcctBal(), 2) + ",冻结金额为:" +  ArithUtil.round(merchantAccRel.getFreezeBal(), 2) + ",可用金额为:" +  ArithUtil.round(merchantAccRel.getAcctAvaiBal(),2 )
+								+ ",入账总金额为:" + ArithUtil.round(merchantAccRel.getInAmt(),2) + ",手续费为:"+ ArithUtil.round(merchantAccRel.getFeeBal(),2) + ",手工已冻结金额:" + ArithUtil.round(merchantAccRel.getFreezeAmt(),2) + ",手工冻结总额:" + ArithUtil.round(merchantAccRel.getFreezeTotalAmt(), 2));
 						//mercAdjustDetail.setBankTradeSeq(tradeOrderSeq.getBankTradeSeq());// 上游流水号
 						merchantAccRel.setMercNo(tradeOrder.getMercNo());// 下游商户号
 						BigDecimal feeBal = merchantAccRel.getFeeBal();// 手续费金额
 						if (feeBal == null) {
 							feeBal = BigDecimal.valueOf(0);
 						}
-						merchantAccRel.setFeeBal(Arith.add(tradeOrder.getFeeValue(), feeBal));// 手续费金额（每次累加）
+						merchantAccRel.setFeeBal(ArithUtil.add(tradeOrder.getFeeValue(), feeBal));// 手续费金额（每次累加）
 
 						// 计算统计冻结金额，记录到商户冻结明细表.通过节假日表获取当天交易日是否为节假日及周末(T0,T1).如果不为节假日T1，D1进行当天冻结，如果第二天为节假日及周末T1需要继续冻结.解冻功能通过定时任务进行处理
 						// 从缓存中获取商户信息表结算比例字段（merc_scale_rate）
@@ -519,19 +519,19 @@ public class PayChannelService<T> {
 						if (freezeAmt == null) {
 							freezeAmt = BigDecimal.valueOf(0);
 						}
-						BigDecimal gpfdFreeze = Arith.sub(freezeTotalAmt, freezeAmt);// 手工还需要冻结金额
+						BigDecimal gpfdFreeze = ArithUtil.sub(freezeTotalAmt, freezeAmt);// 手工还需要冻结金额
 						BigDecimal freezeBal = BigDecimal.valueOf(0);
 						BigDecimal orderAmount = tradeOrder.getOrderAmount();// 订单支付金额
-						BigDecimal num = Arith.sub(Arith.sub(gpfdFreeze, orderAmount), feeBal);// 手工需要冻结金额-当前订单金额-手续费
+						BigDecimal num = ArithUtil.sub(ArithUtil.sub(gpfdFreeze, orderAmount), feeBal);// 手工需要冻结金额-当前订单金额-手续费
 						int compareValue = gpfdFreeze.compareTo(BigDecimal.valueOf(0));// compareValue=-1,表示gpfdFreeze小于0;
 						// compareValue=0,表示gpfdFreeze等于0;compareValue=1,表示gpfdFreeze大于0;
 						int compare = num.compareTo(BigDecimal.valueOf(0));
 						if (compareValue > 0) {// -1,表示compareValue小于0;
 							// 0,表示compareValue等于0;
 							// 1,表示compareValue大于0;
-							BigDecimal amount = Arith.sub(orderAmount, tradeOrder.getFeeValue());// 当前交易金额
+							BigDecimal amount = ArithUtil.sub(orderAmount, tradeOrder.getFeeValue());// 当前交易金额
 							freezeBal = amount;// 冻结金额为当前支付金额-支付手续费
-							merchantAccRel.setFreezeAmt(Arith.add(freezeBal, merchantAccRel.getFreezeAmt()));// 手工已冻结金额
+							merchantAccRel.setFreezeAmt(ArithUtil.add(freezeBal, merchantAccRel.getFreezeAmt()));// 手工已冻结金额
 							if (compare > 0) {// -1,表示compare小于0;  0,表示compare等于0;1,表示compare大于0;
 								tradeOrder.setOrderAmount(num);
 								freezeBal = this.statisticsSum(merchantInfo, tradeOrder, tradeOrderSeq.getPayingMercNo());// 统计冻结金额
@@ -539,17 +539,17 @@ public class PayChannelService<T> {
 						} else {
 							freezeBal = this.statisticsSum(merchantInfo, tradeOrder, tradeOrderSeq.getPayingMercNo());// 统计冻结金额
 						}
-						BigDecimal acctAvaiBal = Arith.sub(Arith.sub(tradeOrder.getOrderAmount(), tradeOrder.getFeeValue()),freezeBal);// 当前支付订单扣除冻结金额后的可用余额
-						merchantAccRel.setAcctAvaiBal(Arith.add(acctAvaiBal, merchantAccRel.getAcctAvaiBal()));// 可用余额，扣除手续费后的金额
-						merchantAccRel.setAcctBal(Arith.add(Arith.add(freezeBal, acctAvaiBal), merchantAccRel.getAcctBal()));// 总余额(扣除手续费后的金额
+						BigDecimal acctAvaiBal = ArithUtil.sub(ArithUtil.sub(tradeOrder.getOrderAmount(), tradeOrder.getFeeValue()),freezeBal);// 当前支付订单扣除冻结金额后的可用余额
+						merchantAccRel.setAcctAvaiBal(ArithUtil.add(acctAvaiBal, merchantAccRel.getAcctAvaiBal()));// 可用余额，扣除手续费后的金额
+						merchantAccRel.setAcctBal(ArithUtil.add(ArithUtil.add(freezeBal, acctAvaiBal), merchantAccRel.getAcctBal()));// 总余额(扣除手续费后的金额
 						// 总金额=可用余额+冻结金额),扣除手续费后
-						merchantAccRel.setInAmt(Arith.add(Arith.sub(tradeOrder.getOrderAmount(), tradeOrder.getFeeValue()), merchantAccRel.getInAmt()));// 入账总金额（扣除手续费后的金额）,历史金额+当前金额
-						merchantAccRel.setFreezeBal(Arith.add(merchantAccRel.getFreezeBal(), freezeBal));// 冻结金额，扣除手续费后的金额
+						merchantAccRel.setInAmt(ArithUtil.add(ArithUtil.sub(tradeOrder.getOrderAmount(), tradeOrder.getFeeValue()), merchantAccRel.getInAmt()));// 入账总金额（扣除手续费后的金额）,历史金额+当前金额
+						merchantAccRel.setFreezeBal(ArithUtil.add(merchantAccRel.getFreezeBal(), freezeBal));// 冻结金额，扣除手续费后的金额
 						merchantAccRel.setUpdateTime(new Date());//更新虚户时间
 						this.merchantAccRelMapper.updateBymercNoSelective(merchantAccRel);// 更新商户虚拟账户表
 						log.info("上游支付异步通知 --平台订单号:" + tradeOrder.getOrderId() + ",商户" + merchantAccRel.getMercNo() + "对应虚户表中的更新后总金额为:"
-								+ Arith.round(merchantAccRel.getAcctBal(),2) + ",冻结金额为:" +  Arith.round(merchantAccRel.getFreezeBal(),2) + ",可用金额为:" +  Arith.round(merchantAccRel.getAcctAvaiBal(),2)
-								+ ",入账总金额为:" + Arith.round(merchantAccRel.getInAmt(),2) + ",手续费为:"+ Arith.round(merchantAccRel.getFeeBal(),2) + ",手工已冻结金额:" + Arith.round(merchantAccRel.getFreezeAmt(),2) + ",手工冻结总额:" + Arith.round(merchantAccRel.getFreezeTotalAmt(),2));
+								+ ArithUtil.round(merchantAccRel.getAcctBal(),2) + ",冻结金额为:" +  ArithUtil.round(merchantAccRel.getFreezeBal(),2) + ",可用金额为:" +  ArithUtil.round(merchantAccRel.getAcctAvaiBal(),2)
+								+ ",入账总金额为:" + ArithUtil.round(merchantAccRel.getInAmt(),2) + ",手续费为:"+ ArithUtil.round(merchantAccRel.getFeeBal(),2) + ",手工已冻结金额:" + ArithUtil.round(merchantAccRel.getFreezeAmt(),2) + ",手工冻结总额:" + ArithUtil.round(merchantAccRel.getFreezeTotalAmt(),2));
 						// this.merchantAdjustDetailMapper.insert(mercAdjustDetail);//新增商户资金调整明细表，支付交易不记录商户资金调整明细表，对账模块(支付订单对账、代付订单对账)的调帐功能记录此表(异常订单)
 						// 记录商户渠道余额表，先根据商户编号、支付渠道编号、渠道商户号获取记录。如果记录存在就更新，不存在就新增
 						saveMchChannelBal(tradeOrder, tradeOrderSeq, freezeBal);
@@ -659,21 +659,21 @@ public class PayChannelService<T> {
 		key.setMercNo(tradeOrder.getMercNo());//下游商户编号
 		key.setChannelCode(tradeOrder.getChannelCode());//支付渠道编号
 		key.setPayingMercNo(tradeOrderSeq.getPayingMercNo());//渠道商户号
-		BigDecimal orderAmount  = Arith.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue());//单笔订单金额-手续费=实际入账金额
-		BigDecimal chnAvaiBal = Arith.sub(orderAmount,freezeBal);//可用余额=订单金额-手续费-冻结金额
+		BigDecimal orderAmount  = ArithUtil.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue());//单笔订单金额-手续费=实际入账金额
+		BigDecimal chnAvaiBal = ArithUtil.sub(orderAmount,freezeBal);//可用余额=订单金额-手续费-冻结金额
 		MerchantChannelBal merchantChannelBal = this.merchantChannelBalMapper.selectByPrimaryKey(key);//先根据商户编号、支付渠道编号、渠道商户号获取记录。如果记录存在就更新，不存在就新增
 		if(cn.itbeien.common.util.StringUtils.isNotNull(merchantChannelBal)){
 			log.info("上游支付异步通知 --平台订单号:" + tradeOrderSeq.getOrderId() + ",商户" + tradeOrder.getMercNo() + "--" + tradeOrder.getChannelCode() + "--" + tradeOrderSeq.getPayingMercNo()
-				+ "对应渠道余额表中原总金额为:" + Arith.round(merchantChannelBal.getChnBal(),2) + ",可用余额：" + Arith.round(merchantChannelBal.getChnAvaiBal(),2) + ",冻结金额为:" + Arith.round(merchantChannelBal.getChnFreezeBal(),2) + ",手续费为:" + Arith.round(merchantChannelBal.getChnFeeBal(),2) + ",入账总金额:" + Arith.round(merchantChannelBal.getChnInAmt(),2));
-			merchantChannelBal.setChnBal(Arith.add(orderAmount, merchantChannelBal.getChnBal()));//总余额=原来的总余额+单笔订单金额
-			merchantChannelBal.setChnAvaiBal(Arith.add(chnAvaiBal, merchantChannelBal.getChnAvaiBal()));//可用余额=原来的可用余额+当前可用余额
-			merchantChannelBal.setChnFreezeBal(Arith.add(freezeBal, merchantChannelBal.getChnFreezeBal()));//冻结余额=原来冻结余额+当前冻结余额
-			merchantChannelBal.setChnFeeBal(Arith.add(tradeOrder.getFeeValue(), merchantChannelBal.getChnFeeBal()));//手续费金额=原来的手续费金额+当前手续费金额
-			merchantChannelBal.setChnInAmt(Arith.add(orderAmount,merchantChannelBal.getChnInAmt()));//入账总金额=原有入账总金额+(当前订单订单金额-当前订单金额手续费)
+				+ "对应渠道余额表中原总金额为:" + ArithUtil.round(merchantChannelBal.getChnBal(),2) + ",可用余额：" + ArithUtil.round(merchantChannelBal.getChnAvaiBal(),2) + ",冻结金额为:" + ArithUtil.round(merchantChannelBal.getChnFreezeBal(),2) + ",手续费为:" + ArithUtil.round(merchantChannelBal.getChnFeeBal(),2) + ",入账总金额:" + ArithUtil.round(merchantChannelBal.getChnInAmt(),2));
+			merchantChannelBal.setChnBal(ArithUtil.add(orderAmount, merchantChannelBal.getChnBal()));//总余额=原来的总余额+单笔订单金额
+			merchantChannelBal.setChnAvaiBal(ArithUtil.add(chnAvaiBal, merchantChannelBal.getChnAvaiBal()));//可用余额=原来的可用余额+当前可用余额
+			merchantChannelBal.setChnFreezeBal(ArithUtil.add(freezeBal, merchantChannelBal.getChnFreezeBal()));//冻结余额=原来冻结余额+当前冻结余额
+			merchantChannelBal.setChnFeeBal(ArithUtil.add(tradeOrder.getFeeValue(), merchantChannelBal.getChnFeeBal()));//手续费金额=原来的手续费金额+当前手续费金额
+			merchantChannelBal.setChnInAmt(ArithUtil.add(orderAmount,merchantChannelBal.getChnInAmt()));//入账总金额=原有入账总金额+(当前订单订单金额-当前订单金额手续费)
 			merchantChannelBal.setCreateTime(new Date());//更新创建时间
 			this.merchantChannelBalMapper.updateByPrimaryKey(merchantChannelBal);
 			log.info("上游支付异步通知 --平台订单号:" + tradeOrderSeq.getOrderId() + ",商户" + tradeOrder.getMercNo() + "--" + tradeOrder.getChannelCode() + "--" + tradeOrderSeq.getPayingMercNo()
-			+ "对应渠道余额表中更新后总金额为:" + Arith.round(merchantChannelBal.getChnBal(),2) + ",可用余额：" + Arith.round(merchantChannelBal.getChnAvaiBal(),2) + ",冻结金额为:" + Arith.round(merchantChannelBal.getChnFreezeBal(),2) + ",手续费为:" + Arith.round(merchantChannelBal.getChnFeeBal(),2) + ",入账总金额:" + Arith.round(merchantChannelBal.getChnInAmt(),2));
+			+ "对应渠道余额表中更新后总金额为:" + ArithUtil.round(merchantChannelBal.getChnBal(),2) + ",可用余额：" + ArithUtil.round(merchantChannelBal.getChnAvaiBal(),2) + ",冻结金额为:" + ArithUtil.round(merchantChannelBal.getChnFreezeBal(),2) + ",手续费为:" + ArithUtil.round(merchantChannelBal.getChnFeeBal(),2) + ",入账总金额:" + ArithUtil.round(merchantChannelBal.getChnInAmt(),2));
 		}else{
 			MerchantChannelBal record = new MerchantChannelBal();
 			record.setMercNo(tradeOrder.getMercNo());
@@ -690,7 +690,7 @@ public class PayChannelService<T> {
 			record.setChnOutAmt(new BigDecimal("0")); //出账金额默认为0
 			this.merchantChannelBalMapper.insert(record);
 			log.info("上游支付异步通知 --平台订单号:" + tradeOrderSeq.getOrderId() + ",商户" + tradeOrder.getMercNo() + "--" + tradeOrder.getChannelCode() + "--" + tradeOrderSeq.getPayingMercNo()
-			+ "对应渠道余额表中原总金额为:" + Arith.round(record.getChnBal(),2) + ",可用余额：" + Arith.round(record.getChnAvaiBal(),2) + ",冻结金额为:" + Arith.round(record.getChnFreezeBal(),2) + ",手续费为:" + Arith.round(record.getChnFeeBal(),2) + ",入账总金额:" + Arith.round(record.getChnInAmt(),2));
+			+ "对应渠道余额表中原总金额为:" + ArithUtil.round(record.getChnBal(),2) + ",可用余额：" + ArithUtil.round(record.getChnAvaiBal(),2) + ",冻结金额为:" + ArithUtil.round(record.getChnFreezeBal(),2) + ",手续费为:" + ArithUtil.round(record.getChnFeeBal(),2) + ",入账总金额:" + ArithUtil.round(record.getChnInAmt(),2));
 		}
 		
 	}
@@ -736,15 +736,15 @@ public class PayChannelService<T> {
 
 		//根据各结算周期统计各周期的结算金额
 		//BigDecimal t0 =  Arith.mul(BigDecimal.valueOf(Double.valueOf(T0)), Arith.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue()));
-        BigDecimal t0 =  new BigDecimal(T0).multiply(Arith.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue()));
+        BigDecimal t0 =  new BigDecimal(T0).multiply(ArithUtil.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue()));
 		//BigDecimal t1 =  Arith.mul(BigDecimal.valueOf(Double.valueOf(T1)), Arith.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue()));
-        BigDecimal t1 = new BigDecimal(T1).multiply( Arith.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue()));
+        BigDecimal t1 = new BigDecimal(T1).multiply( ArithUtil.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue()));
 		//BigDecimal d0 =  Arith.mul(BigDecimal.valueOf(Double.valueOf(D0)), Arith.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue()));
 		//BigDecimal d1 =  Arith.mul(BigDecimal.valueOf(Double.valueOf(D1)), Arith.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue()));
-		BigDecimal d1 =  new BigDecimal(D1).multiply(Arith.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue()));
-		t0 = Arith.round(t0, 2);//保留两位小数
-		t1 = Arith.round(t1, 2);//保留两位小数
-        d1 = Arith.round(d1, 2);//保留两位小数
+		BigDecimal d1 =  new BigDecimal(D1).multiply(ArithUtil.sub(tradeOrder.getOrderAmount(),tradeOrder.getFeeValue()));
+		t0 = ArithUtil.round(t0, 2);//保留两位小数
+		t1 = ArithUtil.round(t1, 2);//保留两位小数
+        d1 = ArithUtil.round(d1, 2);//保留两位小数
 
 		BigDecimal freezeSum = BigDecimal.valueOf(0);//需要冻结的金额
 		//获取交易当天是否为节假日
@@ -772,7 +772,7 @@ public class PayChannelService<T> {
 		freezeDetail.setPaywayCode(tradeOrder.getPaywayCode());
 		freezeDetail.setSceneCode(tradeOrder.getSceneCode());
 		freezeDetail.setPayingMercNo(payingMercNo);
-		freezeDetail.setAvaiAmount(Arith.sub(Arith.sub(tradeOrder.getOrderAmount(), freezeSum), tradeOrder.getFeeValue()));//可用金额=订单金额-冻结金额-手续费金额
+		freezeDetail.setAvaiAmount(ArithUtil.sub(ArithUtil.sub(tradeOrder.getOrderAmount(), freezeSum), tradeOrder.getFeeValue()));//可用金额=订单金额-冻结金额-手续费金额
 		double d = 0.0;
 		if(BigDecimal.valueOf(d).compareTo(t0)<0){//当t0不为0时记录商户冻结明细表
 			String frddzeId = this.serialNumber("FREEZE_NO");//商户冻结明细表主键Id

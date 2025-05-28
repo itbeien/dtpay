@@ -16,7 +16,7 @@ import cn.itbeien.common.mapper.PlatPayDetailMapper;
 import cn.itbeien.common.mapper.merchant.MerchantAccRelMapper;
 import cn.itbeien.common.mapper.merchant.MerchantChannelBalMapper;
 import cn.itbeien.common.redis.RedisCache;
-import cn.itbeien.common.util.Arith;
+import cn.itbeien.common.util.ArithUtil;
 import cn.itbeien.common.util.DateUtils;
 import cn.itbeien.common.util.SpringUtils;
 import cn.itbeien.common.util.StringUtils;
@@ -527,17 +527,17 @@ public class TradeQueryServiceImpl implements ITradeQueryService {
 				// 代付金额
 				BigDecimal transAmt = platPayDetail.getTransAmt();
 				// 要减去 或者 加上的金额
-				BigDecimal subAmt = Arith.add(transAmt, feeBal);
+				BigDecimal subAmt = ArithUtil.add(transAmt, feeBal);
 				
-				merchantAccRel.setAcctAvaiBal(Arith.add(merchantAccRel.getAcctAvaiBal(), subAmt));
-				merchantAccRel.setFreezeBal(Arith.sub(merchantAccRel.getFreezeBal(), subAmt));
+				merchantAccRel.setAcctAvaiBal(ArithUtil.add(merchantAccRel.getAcctAvaiBal(), subAmt));
+				merchantAccRel.setFreezeBal(ArithUtil.sub(merchantAccRel.getFreezeBal(), subAmt));
 				merchantAccRel.setUpdateTime(new Date());
 				// 更新商户虚拟账户表
 				this.merchantAccRelMapper.updateBymercNoSelective(merchantAccRel);
 			
 				// 更新对应渠道表
-				merchantChannelBal.setChnAvaiBal(Arith.add(merchantChannelBal.getChnAvaiBal(), subAmt));
-				merchantChannelBal.setChnFreezeBal(Arith.sub(merchantChannelBal.getChnFreezeBal(), subAmt));
+				merchantChannelBal.setChnAvaiBal(ArithUtil.add(merchantChannelBal.getChnAvaiBal(), subAmt));
+				merchantChannelBal.setChnFreezeBal(ArithUtil.sub(merchantChannelBal.getChnFreezeBal(), subAmt));
 				this.merchantChannelBalMapper.updateByPrimaryKey(merchantChannelBal);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -607,7 +607,7 @@ public class TradeQueryServiceImpl implements ITradeQueryService {
 			// 代付金额
 			BigDecimal transAmt = platPayDetail.getTransAmt();
 			// 要减去 或者 加上的金额
-			BigDecimal subAmt = Arith.add(transAmt, feeBal);
+			BigDecimal subAmt = ArithUtil.add(transAmt, feeBal);
 
 			//获取同步锁
 			RedisLock distributedLock = new RedisLock(redisTemplate, platPayDetail.getMercNo(), 50000,60000);
@@ -631,25 +631,25 @@ public class TradeQueryServiceImpl implements ITradeQueryService {
 				MerchantChannelBal merchantChannelBal = this.merchantChannelBalMapper.selectByPrimaryKey(key);
 				
 				// 总余额 
-				merchantAccRel.setAcctBal(Arith.sub(merchantAccRel.getAcctBal(), subAmt));
+				merchantAccRel.setAcctBal(ArithUtil.sub(merchantAccRel.getAcctBal(), subAmt));
 				// 冻结金额
-				merchantAccRel.setFreezeBal(Arith.sub(merchantAccRel.getFreezeBal(), subAmt));
+				merchantAccRel.setFreezeBal(ArithUtil.sub(merchantAccRel.getFreezeBal(), subAmt));
 				// 出账总金额
-				merchantAccRel.setOutAmt(Arith.add(merchantAccRel.getOutAmt(), subAmt));
+				merchantAccRel.setOutAmt(ArithUtil.add(merchantAccRel.getOutAmt(), subAmt));
 				// 手续费
-				merchantAccRel.setFeeBal(Arith.add(merchantAccRel.getFeeBal(), feeBal));
+				merchantAccRel.setFeeBal(ArithUtil.add(merchantAccRel.getFeeBal(), feeBal));
 				merchantAccRel.setUpdateTime(new Date());
 				//更新商户虚拟账户表
 				this.merchantAccRelMapper.updateBymercNoSelective(merchantAccRel);	
 				
 				// 总余额 
-				merchantChannelBal.setChnBal(Arith.sub(merchantChannelBal.getChnBal(), subAmt));
+				merchantChannelBal.setChnBal(ArithUtil.sub(merchantChannelBal.getChnBal(), subAmt));
 				// 冻结金额
-				merchantChannelBal.setChnFreezeBal(Arith.sub(merchantChannelBal.getChnFreezeBal(), subAmt));
+				merchantChannelBal.setChnFreezeBal(ArithUtil.sub(merchantChannelBal.getChnFreezeBal(), subAmt));
 				// 出账总金额
-				merchantChannelBal.setChnOutAmt(Arith.add(merchantChannelBal.getChnOutAmt(), subAmt));
+				merchantChannelBal.setChnOutAmt(ArithUtil.add(merchantChannelBal.getChnOutAmt(), subAmt));
 				// 手续费
-				merchantChannelBal.setChnFeeBal(Arith.add(merchantChannelBal.getChnFeeBal(), feeBal));
+				merchantChannelBal.setChnFeeBal(ArithUtil.add(merchantChannelBal.getChnFeeBal(), feeBal));
 				this.merchantChannelBalMapper.updateByPrimaryKey(merchantChannelBal);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
