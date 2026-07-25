@@ -77,4 +77,6 @@ dtpay服务端基于JDK17/21开发，开发工具IDEA2024.3.5，使用Maven3.9.9
 
 ![](https://gitee.com/itbeien/base/raw/master/images/星球-贝恩聊架构.png)
 
+![](https://gitee.com/itbeien/base/raw/master/images/星球-项目经验.png)
+
 ![](https://gitee.com/itbeien/base/raw/master/images/企业级项目及OpenClaw源码分析.png)
