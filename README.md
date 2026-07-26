@@ -75,4 +75,4 @@ dtpay服务端基于JDK17/21开发，开发工具IDEA2024.3.5，使用Maven3.9.9
 
 ## 7 加入我的社群
 
-![贝恩聊架构-知识星球-知识星球项目介绍-new_01(3)](https://gitee.com/itbeien/base/raw/master/images/贝恩聊架构-知识星球-知识星球项目介绍-new_01(3).png)
+![](https://gitee.com/itbeien/base/raw/master/images/星球-贝恩聊架构.png)
