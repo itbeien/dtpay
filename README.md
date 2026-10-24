@@ -6,6 +6,10 @@
 
 ## AI工程化及应用
 
-AI+OpenSpec+Spec-kit驱动支付项目开发、Claude Code/Qoder/Workbuddy+SDD项目实战
+AI+OpenSpec+Spec-kit驱动支付项目开发、Claude Code/Qoder/Codebuddy/Codex+SDD项目实战
+
+## 项目更新计划
+
+工作日晚10点同步更新当日工作成果
 
 ![](https://gitee.com/itbeien/base/raw/master/images/01-两条主线.jpg)
